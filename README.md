@@ -2,9 +2,9 @@
 ****
 ## PROJECT DESCRIPTION
 
-  -This project aims to create a portal which allows clubs to manage their activities, events, members etc. 
-  -By this portal, clubs can announce events and users can enroll in clubs and activities. 
-  -Club participants' authoritization will depend on their roles and these roles will be defined by club manager. 
+  This project aims to create a portal which allows clubs to manage their activities, events, members etc. 
+  By this portal, clubs can announce events and users can enroll in clubs and activities. 
+  Club participants' authoritization will depend on their roles and these roles will be defined by club manager. 
 
 
 ### ESSENTIAL FEATURES
@@ -32,7 +32,7 @@ Event Application Process:
   Users will access this page via Events Page. Members will be able to apply to events by this page.
 
 ----------------------------------------
-### EXTRAS
+### EXTRA FEATURES
 
 Event Notification:
   Members of a club will be notified when there are new events.
