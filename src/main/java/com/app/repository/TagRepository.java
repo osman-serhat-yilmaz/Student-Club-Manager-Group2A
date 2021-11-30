@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.user_management.User;
+import com.app.event_management.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Repository
 @EnableJpaRepositories
-public interface UserRepository extends JpaRepository<User, UUID> {
-    public List<User> findUsersByName(String name);
-    public User getById(UUID id);
+public interface TagRepository extends JpaRepository<Tag, UUID> {
+    public Tag getById(UUID id);
+    public List<Tag> findTagByEventID(UUID eventID);
 }

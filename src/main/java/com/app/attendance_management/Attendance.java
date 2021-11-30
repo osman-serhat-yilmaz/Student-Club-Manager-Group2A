@@ -1,4 +1,4 @@
-package com.app.entity;
+package com.app.attendance_management;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,12 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClubRole {
+public class Attendance {
     @Id
     private UUID id;
 
+    private UUID eventID;
     private UUID userID;
-    private UUID clubID;
-    private String role;
-
+    private boolean attended;
 }
