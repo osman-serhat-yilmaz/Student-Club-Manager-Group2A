@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ClubRoleController {
+
 }
