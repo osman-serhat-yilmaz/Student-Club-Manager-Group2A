@@ -1,7 +1,6 @@
-package com.app.club_management;
+package com.app.service;
 
-import com.app.attendance_management.Attendance;
-import com.app.repository.AttendanceRepository;
+import com.app.entity.Club;
 import com.app.repository.ClubRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

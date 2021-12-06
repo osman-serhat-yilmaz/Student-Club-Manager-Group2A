@@ -1,7 +1,6 @@
-package com.app.clubrole_management;
+package com.app.service;
 
-import com.app.club_management.Club;
-import com.app.repository.ClubRepository;
+import com.app.entity.ClubRole;
 import com.app.repository.ClubRoleRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

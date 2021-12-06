@@ -1,4 +1,4 @@
-package com.app.user_management;
+package com.app.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,12 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Club {
     @Id
     private UUID id;
 
-    private String email;
     private String name;
-    private String password;
     private String description;
+
 }

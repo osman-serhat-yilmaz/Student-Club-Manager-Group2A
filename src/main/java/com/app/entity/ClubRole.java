@@ -1,4 +1,4 @@
-package com.app.clubrole_management;
+package com.app.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

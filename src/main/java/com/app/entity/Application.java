@@ -1,4 +1,4 @@
-package com.app.event_management;
+package com.app.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +12,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Tag {
+public class Application {
     @Id
     private UUID id;
-    private String name;
-    private UUID eventID;
+
+    private UUID senderID;
+    private UUID recipientID;
+    private String applicationStatus;
+    private UUID clubID;
+
 }

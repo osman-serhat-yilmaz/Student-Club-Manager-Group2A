@@ -1,5 +1,6 @@
-package com.app.attendance_management;
+package com.app.service;
 
+import com.app.entity.Attendance;
 import com.app.repository.AttendanceRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

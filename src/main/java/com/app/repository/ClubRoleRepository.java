@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.clubrole_management.ClubRole;
+import com.app.entity.ClubRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;

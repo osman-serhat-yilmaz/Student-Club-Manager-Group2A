@@ -1,5 +1,6 @@
-package com.app.application_management;
+package com.app.service;
 
+import com.app.entity.Application;
 import com.app.repository.ApplicationRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

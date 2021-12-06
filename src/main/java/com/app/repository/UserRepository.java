@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.user_management.User;
+import com.app.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;

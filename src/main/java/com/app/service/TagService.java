@@ -1,5 +1,6 @@
-package com.app.event_management;
+package com.app.service;
 
+import com.app.entity.Tag;
 import com.app.repository.TagRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

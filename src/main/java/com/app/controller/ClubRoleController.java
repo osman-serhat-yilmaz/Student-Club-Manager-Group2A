@@ -1,11 +1,11 @@
-package com.app.club_management;
+package com.app.controller;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
-public class ClubController {
+public class ClubRoleController {
 }

@@ -1,4 +1,4 @@
-package com.app.club_management;
+package com.app.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Club {
+public class ParticipationForm {
     @Id
     private UUID id;
-
-    private String name;
-    private String description;
+    private UUID userId;
+    private UUID eventId;
+    private String question;
+    private String answer;
 
 }

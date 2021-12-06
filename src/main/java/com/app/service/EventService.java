@@ -1,7 +1,6 @@
-package com.app.event_management;
+package com.app.service;
 
-import com.app.club_management.Club;
-import com.app.repository.ClubRepository;
+import com.app.entity.Event;
 import com.app.repository.EventRepository;
 import com.app.repository.ParticipationFormRepository;
 import com.app.repository.TagRepository;
@@ -45,5 +44,5 @@ public class EventService {
         return eventRepository.count();
     }
 
-
+    //Tag and ParticipationForm methods could be added
 }

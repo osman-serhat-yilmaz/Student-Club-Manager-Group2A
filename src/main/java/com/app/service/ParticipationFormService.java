@@ -1,5 +1,6 @@
-package com.app.event_management;
+package com.app.service;
 
+import com.app.entity.ParticipationForm;
 import com.app.repository.ParticipationFormRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

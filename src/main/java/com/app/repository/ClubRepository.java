@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.club_management.Club;
+import com.app.entity.Club;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;

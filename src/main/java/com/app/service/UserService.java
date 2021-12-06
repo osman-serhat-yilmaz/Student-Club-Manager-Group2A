@@ -1,6 +1,7 @@
-package com.app.user_management;
+package com.app.service;
 
 import com.app.repository.UserRepository;
+import com.app.entity.User;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
