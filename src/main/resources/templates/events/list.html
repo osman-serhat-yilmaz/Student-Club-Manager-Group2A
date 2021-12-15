@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Events Page</title>
+
+  <link rel="stylesheet" href="../../static/css/eventsList.css">
+</head>
+<body>
+
+<section class="navigation">
+  <div class="nav-container">
+    <div class="brand">
+      <a href="#!">Sigma</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li>
+          <a href="#!">Clubs</a>
+        </li>
+        <li>
+          <a href="#!">Events</a>
+        </li>
+        <li>
+          <a href="#!">Schedule</a>
+        </li>
+        <li>
+          <a href="#!">Profile</a>
+        </li>
+        <li>
+          <a href="#!">Sign Out</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<ul>
+  <input type="text" id="myInput" onkeyup="search()" placeholder="Search for an event.." >
+
+  <div class="dropdown">
+    <button onclick="dropdown()" class="dropbtn">Choose a Filter</button>
+    <div id="myDropdown" class="dropdown-content">
+      <button style="background-color: darkred" onclick="dropdown()" class="dropbtn">Tags</button>
+      <div id="myDropdown1" class="dropdown-content1">
+        <a href="#home">Science</a>
+        <a href="#about">Engineering</a>
+        <a href="#contact">Astronomy</a>
+      </div>
+
+      <button style="background-color: darkred" onclick="dropdown()" class="dropbtn">Clubs</button>
+      <div id="myDropdown2" class="dropdown-content2">
+        <a href="#home">OR</a>
+        <a href="#about">YES</a>
+        <a href="#contact">ADT</a>
+      </div>
+    </div>
+  </div>
+
+</ul>
+
+
+<div id="events">
+  <ul>
+    <li>
+      <p><center>Osman</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event A</a></center></p>
+      <p><center>yesterday   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event B</a></center></p>
+      <p><center>tomorrow   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Osman</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Star Wars Marathon</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Yeah</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>KD > Lebron</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+
+  </ul>
+  <ul>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+    <li>
+      <p><center>Club Name</center></p>
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="alternatetext" height="200">
+      <p><center><a>Event Name</a></center></p>
+      <p><center>Date   Location    Price</center></p>
+    </li>
+  </ul>
+</div>
+
+<script src="../../static/js/eventsList.js"></script>
+
+</body>
+
+</html>
+
