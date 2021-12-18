@@ -1,10 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<!DOCTYPE html>   
+<html>   
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<title> Register Page </title>  
+	<style>   
+		Body {  
+		  font-family: Calibri, Helvetica, sans-serif;  
+		  background-color: white;  
+		  color: #8C8C8C;
+		}  
+		h1{
+			font-size: 36px;
+			color: #923F1C;
+			justify-content: center;
+		}
+		h2{
+			color: gray;
+			font-size: 28px;
+		}
+		div{
+			border: none;   
+		}
+		img{
+			padding-top: 60px;
+			width: 450px;
+			height: 450px;
+		}
+		button {   
+			background-color: #8C8C8C;  
+			color: white;
+			width: 100%;  
+			color: 8C8C8C;   
+			padding: 15px;   
+			margin: 10px 0px;   
+			border: none;   
+			cursor: pointer;   
+			border-radius: 25px;
+		}   
+		form {   
+			border: none;   
+			padding-bottom: 50px;
+		} 
+		#forgot_password{
+			color: #8C8C8C;
+			text-decoration: none;
+			float:right;
+			font-weight: bold;
+		}
+		#create_account{
+			font-size: 17px;
+			text-decoration: none;
+			color: #8C8C8C;
+			font-weight: bold;
+		}
+		input[type=checkbox]{
+			color: #8C8C8C;
+			background-color: #ccc;
+		}
+		
+		input[type=text], input[type=password] {   
+			width: 100%;   
+			margin: 8px 0;  
+			padding: 12px 20px;   
+			display: inline-block;  
+			background-color: #F3F4F5;
+			border: 0px;
+			border-bottom: 4px solid #8C8C8C;   
+			box-sizing: border-box;   
+		}  
+		button:hover {   
+			opacity: 0.7;   
+		}    	
+		.container {   
+			padding: 25px; 
+			padding-top: 5px;
+		}   
+		#parent {
+			display: flex;
+		}
+		#div1 {
+			padding-left: 110px;
+		}
+		#div2 {
+			padding-left: 110px;
+			padding-right: 200px;
+		}
+</style>   
+</head>    
+<body>    
+	<div id="parent">
+	<div id="div1">
+		<img src="rec.png" alt="Rectangle">
+	</div>
+	<div id="div2">
+	<center><h1>Welcome</h1></center>
+    <form>
+        <div class="container">   
+			<center><h2>Create account</h2></center>
+            <label>Email</label>   
+            <input type="text" placeholder="" name="email" required>  
+            <label>Password</label>   
+            <input type="password" placeholder="" name="password" required>  
+            <button type="submit">Register</button>    
+        </div> 
+	</form>
+	<center style = "font-size: 17px">Already have an account? <a id = "create_account" href="#login">Login here</a></center>
+	</div> 
+	
+	</div>	
+</body>     
+</html>  
