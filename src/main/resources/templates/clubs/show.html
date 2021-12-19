@@ -1,10 +1,208 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Club Profile Page</title>
+    <link rel="stylesheet" href="../../static/css/clubProfilePageCSS.css" />
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: white;
+            color: #8C8C8C;
+            margin: auto;
+        }
+        .coverphoto {
+            position: absolute;
+            width:1519px;
+            height: 210px;
+            left: 0px;
+            top: 70px;
+            background: linear-gradient(270deg, #BA7777 0%, #DEAA76 102.33%);
+        }
+        .profilephoto {
+            position: absolute;
+            width: 135px;
+            height: 135px;
+            left: 34px;
+            top: 251px;
+            background: linear-gradient(224.89deg, #986581 3.15%, #5C729D 100%);
+        }
+    </style>
 </head>
+
 <body>
+<div class="coverphoto">
+    <img src="" alt="cover photo" style="width: 1540px; height: 199px; object-fit: cover;" left: 0px top: 80px/>
+</div>
+
+<div class="profilephoto">
+    <img src="" alt="profile photo" style="width: 135px; height: 135px; object-fit: cover;" left: 24px top: 251px/>
+</div>
+
+<button class= "followbutton" type="submit">follow</button>
+<button class= "requestactivemembershipbutton" type="submit">request active membership</button>
+<button class= "createeventbutton" type="submit">create event</button>
+
+<div class = "clubname">X CLUB</div>
+
+<div id="description">Description...</div>
+
+<p class = "activemembernum">xx Active Members</p>
+
+<section class="navigation">
+    <div class="nav-container">
+        <div class="brand">
+            <a href="#!">Sigma</a>
+        </div>
+        <nav>
+            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+            <ul class="nav-list">
+                <li>
+                    <a href="#!">Clubs</a>
+                </li>
+                <li>
+                    <a href="#!">Events</a>
+                </li>
+                <li>
+                    <a href="#!">Schedule</a>
+                </li>
+                <li>
+                    <a href="#!">Profile</a>
+                </li>
+                <li>
+                    <a id="signout" href="#!">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<div id="upcomingevents">
+    <p id="eventstitle">Upcoming events:</p>
+    <ul id="eventslist">
+        <li id="event1">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+        </li>
+        <li id="event2">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+        </li>
+        <li id="event3">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+            <a id="more" href="">more</a>
+        </li>
+    </ul>
+</div>
+<div id="pastevents">
+    <p id="eventstitle">Past events:</p>
+    <ul id="eventslist">
+        <li id="event1">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+        </li>
+        <li id="event2">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+        </li>
+        <li id="event3">
+            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="eventphoto"  style="width: 232px; height: 154px; object-fit: cover;" left: 0px top: 30px /></a>
+            <a class="eventname" href="">X Event</a>
+            <p class="eventdate">28 Apr 2022</p>
+            <a id="more" href="">more</a>
+        </li>
+    </ul>
+</div>
+
+<p class="activememberlisttitle">Active Members:</p>
+<div class="maincontainer">
+    <ul id="activemembers">
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+        </li>
+    </ul>
+</div>
+
+<p class="requestlisttitle">Requests:</p>
+<div class="secondcontainer">
+    <ul id="requests">
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+        <li>
+            <a class="username" href="">Osman</a>
+            <button class= "acceptbutton" type="submit">🗸</button>
+            <button class= "rejectbutton" type="submit">✖</button>
+        </li>
+    </ul>
+</div>
+
+<button>
+    <div class="pencil">
+        <div class="triangle"></div>
+        <div class="rec1"></div>
+        <div class="rec2"></div>
+        <div class="rec3"></div>
+    </div>
+</button>
 
 </body>
 </html>
