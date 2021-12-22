@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import java.util.Date;
@@ -17,9 +18,13 @@ import java.util.UUID;
 public class Event extends BaseEntity{
 
     private String name;
-    private Date date;
+    @DateTimeFormat(style = "yyyy-MM-dd")
+    private Long date;
+
     private String description;
     private String location;
     private UUID clubID;
-    private Date applicationDeadline;
+
+    @DateTimeFormat(style = "yyyy-MM-dd")
+    private Long applicationDeadline;
 }

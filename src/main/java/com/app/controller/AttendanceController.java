@@ -1,73 +1,84 @@
 package com.app.controller;
 
+import com.app.entity.Application;
 import com.app.entity.Attendance;
+import com.app.entity.Club;
 import com.app.service.AttendanceService;
+import com.app.service.ClubService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.UUID;
 
-@RestController
-@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
-@RequestMapping("/attendance")
+@Controller
+@RequestMapping("/attendances")
 public class AttendanceController {
     private final AttendanceService attendanceService;
 
-    @PostMapping
-    public String create(@ModelAttribute Attendance attendance, BindingResult result, RedirectAttributes redirectAttrs, Model model) {
-        if (result.hasErrors()) {
-            populateForm(model, new Attendance());
-            return "attendance/create";
-        }
+    @Autowired
+    public AttendanceController(AttendanceService attendanceService) {
+        this.attendanceService = attendanceService;
+    }
 
-        Attendance newAttendance = attendanceService.save(attendance);
-        redirectAttrs.addAttribute("id", newAttendance.getId());
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String listAttendances() {
+        return "attendances/list";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<Attendance> getAttendances() {
+        return attendanceService.findAll();
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String createAttendance(@RequestBody Attendance attendance, RedirectAttributes redirectAttributes) {
+        attendanceService.save(attendance);
+        redirectAttributes.addAttribute("id", attendance.getId());
         return "redirect:/attendances/{id}";
     }
 
-    @GetMapping
-    public String createForm(Model model) {
-        populateForm(model, new Attendance());
-        return "attendances/create";
+    //single item
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String showAttendance(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("attendance", attendanceService.findOneById(id));
+        return "attendances/show";
     }
 
-    @GetMapping("/edit-form/{id}")
-    public String editForm(@PathVariable("id") UUID id, Model model) {
-        populateForm(model, attendanceService.findOneById(id));
-        return "attendances/edit";
-    }
-
-    @PutMapping()
-    public String update( @ModelAttribute Attendance attendance, BindingResult result, RedirectAttributes redirectAttrs, Model model) {
-        if (result.hasErrors()) {
-            populateForm(model, attendance);
-            return "attendances/edit";
-        }
-
+    @PutMapping("/{id}")
+    public String updateAttendance(@RequestBody Attendance attendance, RedirectAttributes redirectAttributes) {
         Attendance savedAttendance = attendanceService.save(attendance);
-        redirectAttrs.addAttribute("id", savedAttendance.getId());
+        redirectAttributes.addAttribute("id",savedAttendance.getId());
         return "redirect:/attendances/{id}";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") UUID id, Model model) {
+    public String deleteAttendance(@PathVariable UUID id, Model model) {
         attendanceService.delete(id);
         model.asMap().clear();
         return "redirect:/attendances";
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("attendance", attendanceService.findOneById(id));
-        return "attendances/show";
+    @RequestMapping(value = "/create-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String createForm(Model model) {
+        model.addAttribute("attendance", new Attendance());
+        return "attendances/create";
     }
 
-    void populateForm(Model model, Attendance attendance) {
-        model.addAttribute("attendance", attendance);
+    @RequestMapping(value = "/edit-form/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String editForm(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("attendance", attendanceService.findOneById(id));
+        return "attendances/edit";
     }
+
 }

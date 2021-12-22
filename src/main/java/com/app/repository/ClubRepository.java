@@ -12,5 +12,4 @@ import java.util.UUID;
 @EnableJpaRepositories
 public interface ClubRepository extends JpaRepository<Club, UUID> {
     public List<Club> findClubsByName(String name);
-    public Club getById(UUID id);
 }

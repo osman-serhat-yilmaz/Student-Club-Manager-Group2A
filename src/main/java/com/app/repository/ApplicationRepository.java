@@ -5,11 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
 @EnableJpaRepositories
 public interface ApplicationRepository extends JpaRepository<Application, UUID> {
     public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID recipientId);
+    public List<Application> findApplicationByClubID(UUID clubID);
     public Application getById(UUID id);
 }

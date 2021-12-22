@@ -17,4 +17,5 @@ public class Tag extends BaseEntity{
 
     private String name;
     private UUID eventID;
+
 }
