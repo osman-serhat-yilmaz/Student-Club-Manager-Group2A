@@ -24,17 +24,12 @@ public class EventController {
     @Autowired
     public EventController(EventService eventService) {
         this.eventService = eventService;
-    }
+    } //autowiring the clubService
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String listEvents() {
+    public String getEvents(Model model) {
+        model.addAttribute("events", eventService.findAll());  //put all the event objects in model as a List<Event>
         return "events/list";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Event> getEvents() {
-        return eventService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)

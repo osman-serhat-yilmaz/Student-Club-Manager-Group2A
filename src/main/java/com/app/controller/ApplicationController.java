@@ -30,14 +30,9 @@ public class ApplicationController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String list() {
+    public String getApplications(Model model) {
+        model.addAttribute("applications",applicationService.findAll());
         return "applications/list";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Application> getApplications() {
-        return applicationService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)

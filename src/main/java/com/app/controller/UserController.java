@@ -27,16 +27,10 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String listUsers() {
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
         return "users/list";
     }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<User> getUsers() {
-        return userService.findAll();
-    }
-
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createUser(@RequestBody User user, RedirectAttributes redirectAttributes) {

@@ -29,14 +29,9 @@ public class AttendanceController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String listAttendances() {
+    public String getAttendances(Model model) {
+        model.addAttribute("attendances",attendanceService.findAll());
         return "attendances/list";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Attendance> getAttendances() {
-        return attendanceService.findAll();
     }
 
 

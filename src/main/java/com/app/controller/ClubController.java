@@ -29,14 +29,9 @@ public class ClubController {
 
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String listClubs() {
+    public String getClubs( Model model) {
+        model.addAttribute("clubs", clubService.findAll());
         return "clubs/list";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<Club> getClubs() {
-        return clubService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
