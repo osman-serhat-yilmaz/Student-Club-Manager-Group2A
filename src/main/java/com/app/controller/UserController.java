@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.entity.Event;
 import com.app.entity.User;
+import com.app.service.AttendanceService;
 import com.app.service.EventService;
 import com.app.service.UserService;
 import lombok.NonNull;
@@ -20,10 +21,12 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final AttendanceService attendanceService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AttendanceService attendanceService) {
         this.userService = userService;
+        this.attendanceService = attendanceService;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -64,7 +67,7 @@ public class UserController {
     @RequestMapping(value = "/create-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String createForm(Model model) {
         model.addAttribute("user", new User());
-        return "clubs/create";
+        return "users/create";
     }
 
     @RequestMapping(value = "/edit-form/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -72,4 +75,11 @@ public class UserController {
         model.addAttribute("user", userService.findOneById(id));
         return "users/edit";
     }
+
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String userAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByUserID(id));
+        return "/users/attendances";
+    }
+
 }

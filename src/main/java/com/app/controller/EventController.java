@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.entity.Club;
 import com.app.entity.Event;
+import com.app.service.AttendanceService;
 import com.app.service.ClubService;
 import com.app.service.EventService;
 import lombok.NonNull;
@@ -20,10 +21,12 @@ import java.util.UUID;
 @RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
+    private final AttendanceService attendanceService;
 
     @Autowired
-    public EventController(EventService eventService) {
+    public EventController(EventService eventService, AttendanceService attendanceService) {
         this.eventService = eventService;
+        this.attendanceService = attendanceService;
     } //autowiring the clubService
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -71,6 +74,12 @@ public class EventController {
     public String editForm(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("event", eventService.findOneById(id));
         return "events/edit";
+    }
+
+    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String eventAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(id));
+        return "/users/attendances";
     }
 
 }
