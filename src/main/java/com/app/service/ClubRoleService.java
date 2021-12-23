@@ -31,6 +31,10 @@ public class ClubRoleService {
         return clubRoleRepository.getById(id);
     }
 
+    public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, String role) {
+        return clubRoleRepository.findClubRolesByClubIDAndRole(clubId,role);
+    }
+
     public ClubRole findClubByName(UUID clubId, UUID userId) {
         return clubRoleRepository.findClubRoleByClubIDAndUserID(clubId, userId);
     }

@@ -18,13 +18,9 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/club-roles")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ClubRoleController {
     private final ClubRoleService clubRoleService;
-
-    @Autowired
-    public ClubRoleController(ClubRoleService clubRoleService) {
-        this.clubRoleService = clubRoleService;
-    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubRoles(Model model) {
