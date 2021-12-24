@@ -18,6 +18,10 @@ public class ChinaController {
     public String getTiananmenPage( Model model) {
         return "china/tiananmen";
     }
+    @RequestMapping(path = "/apartheid", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getApartheidPage( Model model) {
+        return "china/apartheid";
+    }
 
 
 }
