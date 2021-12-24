@@ -18,16 +18,15 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
-    @Autowired
-    public EmailController() {
-
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getEmailPage( Model model) {
+        return "email";
     }
 
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String sendMail(String message) {
-        emailService.sendMail("ozgurabi123@gmail.com", "Bruh", "bruh");
-        return "bruh";
+    @RequestMapping( method = RequestMethod.POST)
+    public void sendMail(String email, String subject, String message) {
+        emailService.sendMail(email, subject, message);
     }
 
 }
