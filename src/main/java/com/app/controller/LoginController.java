@@ -19,10 +19,11 @@ public class LoginController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
 
-    @RequestMapping("/")
+    @RequestMapping("/login")
     public String index() {
         return "/login";
     }
+
 
     @PostMapping("/login")
     public String login(HttpServletRequest httpServletRequest, Model model) {
@@ -32,10 +33,9 @@ public class LoginController {
         if (userService.validateCredentials(email, password))
             return "/clubs/list";
         else {
-            model.addAttribute("error", "Invalid Credentials");
-            return "/";
+            return "/login";
         }
     } //login bozuk
-    
+
 
 }
