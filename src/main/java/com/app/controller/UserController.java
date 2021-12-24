@@ -19,15 +19,11 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/users")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class UserController {
     private final UserService userService;
+    private final EventService eventService;
     private final AttendanceService attendanceService;
-
-    @Autowired
-    public UserController(UserService userService, AttendanceService attendanceService) {
-        this.userService = userService;
-        this.attendanceService = attendanceService;
-    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getUsers(Model model) {
@@ -76,10 +72,21 @@ public class UserController {
         return "users/edit";
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "/{id}/attendances", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String userAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByUserID(id));
         return "/users/attendances";
     }
 
+    @RequestMapping("/schedule/{id}")
+    public String schedule(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("user", userService.findOneById(id));
+        model.addAttribute("events", attendanceService.findAttendancesByUserIDAndAttended(id, null));
+        return "/users/schedule";
+    }
+
+   /* @RequestMapping("/schedule")
+    public String showSchedule() { //fıx thıs
+        return
+    }*/
 }

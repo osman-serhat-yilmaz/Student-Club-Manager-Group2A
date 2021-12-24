@@ -21,19 +21,9 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/applications")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ApplicationController {
     private final ApplicationService applicationService;
-
-    @Autowired
-    public ApplicationController(ApplicationService applicationService) {
-        this.applicationService = applicationService;
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getApplications(Model model) {
-        model.addAttribute("applications",applicationService.findAll());
-        return "applications/list";
-    }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createApplication(@RequestBody Application application, RedirectAttributes redirectAttributes) {

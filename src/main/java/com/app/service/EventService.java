@@ -9,8 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
@@ -38,6 +41,14 @@ public class EventService {
 
     public List<Event> findEventByName(String name) {
         return eventRepository.findEventsByName(name);
+    }
+
+    public List<Event> findEventsByClubIDAndDateBefore(UUID clubId) {
+        return eventRepository.findEventsByClubIDAndDateBefore(clubId, new java.util.Date().getTime());
+    }
+
+    public List<Event> findEventsByClubIDAndDateAfter(UUID clubId) {
+        return eventRepository.findEventsByClubIDAndDateAfter(clubId, new java.util.Date().getTime());
     }
 
     public Long count() {

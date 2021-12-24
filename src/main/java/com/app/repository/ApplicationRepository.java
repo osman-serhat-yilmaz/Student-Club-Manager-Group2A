@@ -12,6 +12,6 @@ import java.util.UUID;
 @EnableJpaRepositories
 public interface ApplicationRepository extends JpaRepository<Application, UUID> {
     public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID recipientId);
-    public List<Application> findApplicationByClubID(UUID clubID);
+    public List<Application> findApplicationsByClubID(UUID clubID);
     public Application getById(UUID id);
 }

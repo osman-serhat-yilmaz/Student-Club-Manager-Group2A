@@ -3,7 +3,9 @@ package com.app.controller;
 import com.app.entity.Application;
 import com.app.entity.Club;
 import com.app.service.ApplicationService;
+import com.app.service.ClubRoleService;
 import com.app.service.ClubService;
+import com.app.service.EventService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +16,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 @RequestMapping(path = "clubs")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ClubController {
     private final ClubService clubService;
-
-    @Autowired
-    public ClubController(ClubService clubService) {
-        this.clubService = clubService;
-    }
-
+    private final ApplicationService applicationService;
+    private final EventService eventService;
+    private final ClubRoleService clubRoleService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubs( Model model) {
@@ -46,6 +47,9 @@ public class ClubController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showClub(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("club", clubService.findOneById(id));
+        model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
+        model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
+        model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, "ACTIVE_MEMBER"));
         return "clubs/show";
     }
 
@@ -73,6 +77,12 @@ public class ClubController {
     public String editForm(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("club", clubService.findOneById(id));
         return "clubs/edit";
+    }
+
+    @RequestMapping(value = "/{id}/applications", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String getClubApplications(@PathVariable("id") UUID id, Model model) {
+        model.addAttribute("applications", applicationService.findApplicationsByClubID(id));
+        return "clubs/applications/list";
     }
 
 }

@@ -2,6 +2,8 @@ package com.app.controller;
 
 import com.app.entity.Attendance;
 import com.app.service.AttendanceService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,13 +15,9 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/attendances")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class AttendanceController {
     private final AttendanceService attendanceService;
-
-    @Autowired
-    public AttendanceController(AttendanceService attendanceService) {
-        this.attendanceService = attendanceService;
-    }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createAttendance(@RequestBody Attendance attendance, RedirectAttributes redirectAttributes) {

@@ -19,15 +19,10 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/events")
+@RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class EventController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
-
-    @Autowired
-    public EventController(EventService eventService, AttendanceService attendanceService) {
-        this.eventService = eventService;
-        this.attendanceService = attendanceService;
-    } //autowiring the clubService
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
@@ -76,7 +71,7 @@ public class EventController {
         return "events/edit";
     }
 
-    @RequestMapping(value = "/events/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "/{id}/attendances", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String eventAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(id));
         return "/users/attendances";
