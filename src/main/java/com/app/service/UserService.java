@@ -5,6 +5,7 @@ import com.app.entity.User;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class UserService {
     }
 
     public boolean validateCredentials(String email, String password) {
-        User user = userRepository.findUserByEmail( email);
+        User user = userRepository.findUserByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not present"));
         if (user != null)
             return user.getPassword().equals(password);
         else
