@@ -1,72 +1,75 @@
 /* buttons -------------------------------------------------------*/
-.createeventbutton{
+.savebutton{
     position: absolute;
-    /*width: 119px;*/
-    height: 44px;
-    margin-left: 920px;
-    top: 297px;
+    margin-left: 95%;
+    top: 88px;
+    /*width: 79px;*/
+    height: 34px;
 
-    background: #975B5E;
-    border-radius: 15px;
-    border: none;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #0657A8;
+    box-sizing: border-box;
+    border-radius: 5px;
     cursor: pointer;
 
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
-    line-height: 26px;
+    font-size: 20px;
+    line-height: 24px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+
+    color: #0657A8;
 }
 
-.followbutton{
+.changeprofile{
     position: absolute;
     /*width: 119px;*/
-    height: 44px;
-    margin-left: 191px;
-    top: 297px;
-
-    background: #45818F;
-    border-radius: 15px;
+    height: 36px;
+    margin-left: 39px;
+    top: 301px;
     border: none;
+
+    background: rgba(240, 240, 240, 0.25);
+    border-radius: 10px;
     cursor: pointer;
 
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
-    line-height: 26px;
+    font-size: 12.5px;
+    line-height: 15px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+
+    color: #5A5A5A;
 }
 
-.requestactivemembershipbutton{
+.changecover{
     position: absolute;
-    /*width: 288px;*/
+    /*width: 215px;*/
     height: 44px;
-    margin-left: 327px;
-    top: 297px;
-
-    background: #656CB0;
-    border-radius: 15px;
+    margin-left: 44%;
+    top: 150px;
     border: none;
+
+    background: rgba(240, 240, 240, 0.25);
+    border-radius: 10px;
     cursor: pointer;
 
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
+    font-size: 22px;
     line-height: 26px;
     display: flex;
     align-items: center;
     text-align: center;
 
-    color: #FFFFFF;
+    color: #5A5A5A;
 }
 
 button {
@@ -101,6 +104,15 @@ button:hover {
     object-fit: cover;
 }
 
+.covergrey{
+    position: absolute;
+    width: 1519px;
+    height: 210px;
+    margin-left: 0;
+    top: 70px;
+    background: rgba(94, 94, 94, 0.33);
+}
+
 .profilephoto{
     position: absolute;
     width: 135px;
@@ -115,17 +127,27 @@ button:hover {
     object-fit: cover;
 }
 
+.profilegrey{
+    margin: 0;
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    margin-left: 34px;
+    top: 251px;
+    background: rgba(94, 94, 94, 0.33);
+}
+
 .clubname{
     position: absolute;
     width: 270px;
     height: 72px;
-    margin-left: 640px;
+    margin-left: 710px;
     top: 289px;
 
     font-family: Noto Serif Kannada, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 32px;
+    font-size: 34px;
     line-height: 55px;
     display: flex;
     align-items: center;
@@ -153,21 +175,42 @@ button:hover {
     color: #5A5A5A;
 }
 
-#description {
-    position: absolute;
-    width:422px;
-    height: 72px;
-    margin-left: 193px;
-    top: 338px;
+textarea {
+    resize: none;
+    padding: 0 0;
+    margin: 8px 8px;
+    border: none;
+    outline: none;
+    background: none;
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 26px;
     display: flex;
     align-items: center;
 
-    color: #5A5A5A;
+    color: #898989;
+}
+
+.descriptionbox{
+    position: absolute;
+    width: 734px;
+    height: 92px;
+    margin-left: 181px;
+    margin-top: 353px;
+
+    background: #F0F0F0;
+}
+
+.clubnamebox{
+    position: absolute;
+    width: 300px;
+    height: 44px;
+    margin-left: 615px;
+    margin-top: 297px;
+
+    background: #F0F0F0;
 }
 
 /* NAVBAR -------------------------------------------------------*/
@@ -473,6 +516,23 @@ nav ul li ul li a {
     background: rgba(138, 138, 138, 0.7);
 }
 
+textarea::-webkit-scrollbar {
+    width: 3px;
+}
+
+textarea::-webkit-scrollbar-track {
+    opacity: 1;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: rgba(191, 187, 187, 0.7);
+    border-radius: 40px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background: rgba(138, 138, 138, 0.7);
+}
+
 #activemembers li a{
     text-decoration: none;
 
@@ -515,6 +575,7 @@ nav ul li ul li a {
     font-size: 20px;
     line-height: 26px;
     align-items: center;
+    background: white;
 
     color: #5A5A5A;
 }
@@ -629,58 +690,4 @@ nav ul li ul li a {
     text-align: center;
 
     color: #F0F0F0;
-}
-
-.pencil{
-    position: absolute;
-    margin-left: 1440px;
-    top: 90px;
-    opacity: 0.8;
-}
-
-.triangle{
-    position: absolute;
-    margin-left: 12px;
-    top: 31px;
-
-    width: 0;
-    height: 0;
-    border: 8px solid transparent;
-    border-top: 0;
-    border-bottom: 8px solid #3C3C3C;
-    transform: rotate(-132deg);
-}
-
-.rec1{
-    position: absolute;
-    margin-left: 30px;
-    top: 1px;
-
-    height: 35.8px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-}
-
-.rec2{
-    position: absolute;
-    margin-left: 46px;
-    top: 2px;
-
-    height: 5px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-}
-
-.rec3{
-    position: absolute;
-    margin-left: 48px;
-    top: 0;
-
-    height: 5px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-    border-radius: 10px;
 }
