@@ -26,6 +26,14 @@ public class FinanceController {
     public String getFinances(Model model) {
         model.addAttribute("incomes", financeService.findIncomes());  //put all the event objects in model as a List<Event>
         model.addAttribute("outcomes", financeService.findOutcomes());  //put all the event objects in model as a List<Event>
+        int totalBalance = 0;
+        for (Finance income: financeService.findIncomes()) {
+            totalBalance =+ income.getValue();
+        }
+        for (Finance outcome: financeService.findOutcomes()) {
+            totalBalance =+ outcome.getValue();
+        }
+        model.addAttribute("totalBalance", totalBalance);
         return "financeTable/list";
     }
 
@@ -43,4 +51,6 @@ public class FinanceController {
         model.asMap().clear();
         return "redirect:/financeTable/list";
     }
+
+    //add create form edit form
 }

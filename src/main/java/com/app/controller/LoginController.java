@@ -7,9 +7,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
@@ -18,9 +19,23 @@ public class LoginController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public String index() {
-        return "index";
+        return "/login";
     }
+
+    @PostMapping("/login")
+    public String login(HttpServletRequest httpServletRequest, Model model) {
+        String email = httpServletRequest.getParameter("email");
+        String password = httpServletRequest.getParameter("password");
+        System.out.println(email + " , " + password);
+        if (userService.validateCredentials(email, password))
+            return "/clubs/list";
+        else {
+            model.addAttribute("error", "Invalid Credentials");
+            return "/";
+        }
+    } //login bozuk
+    
 
 }

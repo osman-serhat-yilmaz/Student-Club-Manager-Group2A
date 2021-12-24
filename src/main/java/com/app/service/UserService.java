@@ -31,8 +31,12 @@ public class UserService {
         return userRepository.getById(id);
     }
 
-    public List<User> findByName(String name) {
-        return userRepository.findUsersByName(name);
+    public boolean validateCredentials(String email, String password) {
+        User user = userRepository.findUserByEmail( email);
+        if (user != null)
+            return user.getPassword().equals(password);
+        else
+            return false;
     }
 
     public Long count() {

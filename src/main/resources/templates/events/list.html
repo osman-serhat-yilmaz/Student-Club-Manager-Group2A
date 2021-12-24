@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Events Page</title>
 
@@ -141,6 +141,12 @@
     </li>
   </ul>
 </div>
+
+<ul th:each="event : ${events}">
+  <li th:text="${event.name}"></li>
+  <li th:text="${event.description}"></li>
+  <li th:text="${event.id}"></li>
+</ul>
 
 <script src="../../static/js/eventsList.js"></script>
 

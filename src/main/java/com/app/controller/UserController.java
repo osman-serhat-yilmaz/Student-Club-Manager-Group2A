@@ -78,14 +78,14 @@ public class UserController {
         return "/users/attendances";
     }
 
-    @RequestMapping("/schedule/{id}")
+   /* @RequestMapping("/schedule/{id}")
     public String schedule(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("user", userService.findOneById(id));
         model.addAttribute("events", attendanceService.findAttendancesByUserIDAndAttended(id, null));
         return "/users/schedule";
     }
 
-   /* @RequestMapping("/schedule")
+    @RequestMapping("/schedule")
     public String showSchedule() { //fıx thıs
         return
     }*/
