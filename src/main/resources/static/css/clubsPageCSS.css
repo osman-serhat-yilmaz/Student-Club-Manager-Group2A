@@ -260,44 +260,44 @@ nav ul li ul li a {
 }
 
 .square{
-    position: absolute;
+    position: fixed;
     width: 192.06px;
     height: 191.6px;
     left: -44px;
-    top: 450px;
+    top: 350px;
 
     background: rgba(148, 167, 172, 0.5);
     transform: rotate(-28.33deg);
 }
 
 .circle1{
-    position: absolute;
+    position: fixed;
     width: 209px;
     height: 217px;
     left: 23px;
-    top: 595px;
+    top: 495px;
 
     border-radius: 50%;
     background: rgba(249, 174, 101, 0.5);
 }
 
 .parallelog{
-    position: absolute;
+    position: fixed;
     width: 186px;
     height: 190px;
     left: 1290px;
-    top: 670px;
+    top: 570px;
 
     transform: skew(-20deg) rotate(-130deg);
     background: rgba(69, 129, 143, 0.44);
 }
 
 .circle2{
-    position: absolute;
+    position: fixed;
     width: 210px;
     height: 190px;
     left: 1300px;
-    top: 530px;
+    top: 430px;
 
     border-radius: 50%;
     background: rgba(214, 158, 101, 0.47);

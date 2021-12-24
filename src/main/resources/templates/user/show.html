@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <title>Profile Page</title>
-
     <link rel="stylesheet" href="../../static/css/userProfilePage.css">
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: white;
+            color: #8C8C8C;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -25,20 +32,20 @@
                     <a href="#!">Schedule</a>
                 </li>
                 <li>
-                    <a href="#!">Profile</a>
+                    <a href="#!" style="background: #3C6D79">Profile</a>
                 </li>
                 <li>
-                    <a href="#!">Sign Out</a>
+                    <a id="signout" href="#!">Sign Out</a>
                 </li>
             </ul>
         </nav>
     </div>
 </section>
-
+<div id="gradient"></div>
 
 <div class="top">
-    <img>
-    <p>Username</p>
+    <img id="profilephoto" src="" alt="profile photo"/>
+    <p id="userName">Username</p>
 </div>
 
 
@@ -56,31 +63,29 @@
     </ul>
 </div>
 
-
 <div class="bottom">
-    <div class = "buttons">
-        <button onclick="openEvents()">Events</button>
-        <button onclick="openMemberships()">Active Memberships</button>
-    </div>
-    <div id="line"></div>
+    <div id="buttons"><button id="eventsButton" onclick="openEvents()">Events</button>
+        <button id="membershipsButton" onclick="openMemberships()">Active Memberships</button></div>
+    <div id="lineWhite"></div>
+    <div id="lineGray"></div>
     <div id="events">
         <table>
             <tr>
                 <td>
                     <img>
-                    <p>X Event</p>
+                    <p class="eventName">X Event</p>
                 </td>
                 <td>
                     <img>
-                    <p>Y Event</p>
+                    <p class="eventName">X Event</p>
                 </td>
                 <td>
                     <img>
-                    <p>Z Event</p>
+                    <p class="eventName">X Event</p>
                 </td>
                 <td>
                     <img>
-                    <p>T Event</p>
+                    <p class="eventName">X Event</p>
                 </td>
             </tr>
         </table>
@@ -91,26 +96,24 @@
             <tr>
                 <td>
                     <img>
-                    <p>X Event</p>
+                    <p class="clubName">X Club</p>
                 </td>
                 <td>
                     <img>
-                    <p>Y Event</p>
+                    <p class="clubName">X Club</p>
                 </td>
                 <td>
                     <img>
-                    <p>Z Event</p>
+                    <p class="clubName">X Club</p>
                 </td>
                 <td>
                     <img>
-                    <p>T Event</p>
+                    <p class="clubName">X Club</p>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-
-
 
 <script src="../../static/js/userProfilePage.js"></script>
 
