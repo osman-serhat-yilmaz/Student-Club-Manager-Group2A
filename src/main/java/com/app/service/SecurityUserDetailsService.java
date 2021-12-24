@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.tutorial.spring.security.formlogin.model.User;
-import com.tutorial.spring.security.formlogin.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
