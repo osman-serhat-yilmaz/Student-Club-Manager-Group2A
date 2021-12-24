@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Attendance extends BaseEntity{
+public class Attendance extends BaseEntity {
 
     private UUID eventID;
     private UUID userID;

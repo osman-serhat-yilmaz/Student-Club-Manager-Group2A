@@ -31,8 +31,16 @@ public class AttendanceService {
         return attendanceRepository.getById(id);
     }
 
-    public Attendance findAttendanceByUserIDAndEventID(UUID userId, UUID eventId) {
-        return attendanceRepository.findAttendanceByUserIDAndEventID(userId, eventId);
+    public List<Attendance> findAttendancesByEventID( UUID eventId) {
+        return attendanceRepository.findAttendancesByEventID( eventId);
+    }
+
+    public List<Attendance> findAttendancesByUserID( UUID userId) {
+        return attendanceRepository.findAttendancesByUserID( userId);
+    }
+
+    public List<Attendance> findAttendancesByUserIDAndAttended(UUID userId, Boolean attended) {
+        return attendanceRepository.findAttendancesByUserIDAndAttended(userId, attended);
     }
 
     public Long count() {

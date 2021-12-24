@@ -31,6 +31,10 @@ public class ApplicationService {
         return applicationRepository.getById(id);
     }
 
+    public List<Application> findApplicationsByClubID(UUID clubID) {
+        return applicationRepository.findApplicationsByClubID(clubID);
+    }
+
     public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID recipientId) {
         return applicationRepository.findApplicationBySenderIDAndRecipientID(senderId, recipientId);
     }
