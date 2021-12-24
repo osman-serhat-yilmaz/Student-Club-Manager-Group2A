@@ -16,23 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Override
-    public void configure(final HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests().antMatchers("/register**")
-                .permitAll() .anyRequest().authenticated()
-                .and()
-                .formLogin() .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout() .invalidateHttpSession(true)
-                .clearAuthentication(true) .permitAll();
+    public void configure(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring().antMatchers("/**");
     }
     //JWT, Roles & Authorization
 }
