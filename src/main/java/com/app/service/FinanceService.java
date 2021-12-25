@@ -33,7 +33,7 @@ public class FinanceService {
     }
 
     public Finance findOneById( UUID id) {
-        return financeRepository.getById(id);
+        return financeRepository.findFinanceById(id);
     }
 
     public List<Finance> findIncomes() {

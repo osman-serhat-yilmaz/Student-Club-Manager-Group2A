@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User findOneById(UUID id) {
-        return userRepository.getById(id);
+        return userRepository.getById(id); //problem çıkarabilir
     }
 
     public Optional<User> findUserByEmail(String email) {

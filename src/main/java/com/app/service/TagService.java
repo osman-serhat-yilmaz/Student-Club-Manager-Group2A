@@ -28,7 +28,7 @@ public class TagService {
     }
 
     public Tag findOneById( UUID id) {
-        return tagRepository.getById(id);
+        return tagRepository.findTagById(id);
     }
 
     public List<Tag> findTagByEventID(UUID eventID) {

@@ -28,7 +28,7 @@ public class ParticipationFormService {
     }
 
     public ParticipationForm findOneById( UUID id) {
-        return participationFormRepository.getById(id);
+        return participationFormRepository.findParticipationFormById(id);
     }
 
     public ParticipationForm findParticipationFormByUserIdAndEventId( UUID userID, UUID eventID) {

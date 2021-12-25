@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -14,4 +15,6 @@ import java.util.UUID;
 public interface FinanceRepository extends JpaRepository<Finance, UUID> {
     List<Finance> findFinancesByValueIsGreaterThan(int value);
     List<Finance> findFinancesByValueIsLessThan(int value);
+
+    Finance findFinanceById(UUID uuid);
 }

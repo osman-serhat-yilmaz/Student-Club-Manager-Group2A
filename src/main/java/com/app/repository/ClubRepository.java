@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 @EnableJpaRepositories
 public interface ClubRepository extends JpaRepository<Club, UUID> {
-    public List<Club> findClubsByName(String name);
+    Club findClubById(UUID uuid);
 }

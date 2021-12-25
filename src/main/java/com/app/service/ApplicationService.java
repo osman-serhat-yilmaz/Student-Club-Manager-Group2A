@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,8 +28,8 @@ public class ApplicationService {
         return applicationRepository.findAll();
     }
 
-    public Application findOneById( UUID id) {
-        return applicationRepository.getById(id);
+    public Optional<Application> findOneById(UUID id) {
+        return applicationRepository.findById(id);
     }
 
     public List<Application> findApplicationsByClubID(UUID clubID) {

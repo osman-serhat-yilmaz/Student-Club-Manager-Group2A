@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -14,4 +15,6 @@ public interface ParticipationFormRepository extends JpaRepository<Participation
     public ParticipationForm getById(UUID id);
     public ParticipationForm findParticipationFormByUserIdAndEventId(UUID userID, UUID eventID);
     public List<ParticipationForm> findParticipationFormsByEventId( UUID eventID);
+
+    ParticipationForm findParticipationFormById(UUID uuid);
 }

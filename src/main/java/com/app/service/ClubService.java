@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.management.OperatingSystemMXBean;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -27,12 +29,8 @@ public class ClubService {
         return clubRepository.findAll();
     }
 
-    public Club findOneById( UUID id) {
-        return clubRepository.getById(id);
-    }
-
-    public List<Club> findClubByName(String name) {
-        return clubRepository.findClubsByName(name);
+    public Club findOneById(UUID id) {
+        return clubRepository.findClubById(id);
     }
 
     public Long count() {

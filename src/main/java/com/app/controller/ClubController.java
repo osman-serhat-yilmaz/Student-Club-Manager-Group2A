@@ -34,28 +34,41 @@ public class ClubController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubs( Model model) {
         model.addAttribute("clubs", clubService.findAll());
-
+        for (Club c : clubService.findAll()){
+            System.out.println(c.getName() + " / " + c.getDescription() + " / " + c.getId());
+        }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(((MyUserDetails)authentication.getPrincipal()).getEmail());
 
         return "clubs/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String createClub(@RequestBody Club club, RedirectAttributes redirectAttributes) {
+    @PostMapping(path = "/create")
+    public String createClub(@RequestParam String name, @RequestParam String description) {
+        Club club = new Club();
+        club.setName(name);
+        club.setDescription(description);
         clubService.save(club);
-        redirectAttributes.addAttribute("id", club.getId());
-        return "redirect:/clubs/{id}";
+        System.out.println("club created");
+        Club club2 = clubService.findOneById(club.getId());
+        System.out.println("club2 name: " + club2.getName());
+        //return "redirect:/clubs/{id}";
+        return "clubs/create";
     }
 
     //single item
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String showClub(@PathVariable("id") UUID id, Model model) {
+    public String showClub(@PathVariable("id") String ids, Model model) {
+        UUID id = UUID.fromString(ids);
+        System.out.println("123123123123 ");
+        System.out.println( clubService.findOneById(id).getName());
+
+
         model.addAttribute("club", clubService.findOneById(id));
-        model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
-        model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
-        model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, "ACTIVE_MEMBER"));
+   //     model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
+    //    model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
+    //    model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, "ACTIVE_MEMBER"));
         return "clubs/show";
     }
 
@@ -73,10 +86,9 @@ public class ClubController {
         return "redirect:/clubs";
     }
 
-    @RequestMapping(value = "/create-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String createForm(Model model) {
-        model.addAttribute("club", new Club());
-        return "clubs/create";
+    @GetMapping(value = "/create")
+    public String createForm() {
+        return "/clubs/create";
     }
 
     @RequestMapping(value = "/edit-form/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

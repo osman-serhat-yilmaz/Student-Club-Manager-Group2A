@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -13,7 +14,7 @@ import java.util.UUID;
 public interface AttendanceRepository extends JpaRepository<Attendance, UUID> {
     public List<Attendance> findAttendancesByUserID(UUID userId);
     public List<Attendance> findAttendancesByEventID(UUID eventId);
-    public Attendance getById(UUID id);
-
     public List<Attendance> findAttendancesByUserIDAndAttended(UUID userId, boolean attended);
+
+    Attendance findAttendanceById(UUID uuid);
 }

@@ -36,7 +36,7 @@ public class EventService {
     }
 
     public Event findOneById( UUID id) {
-        return eventRepository.getById(id);
+        return eventRepository.findEventById(id);
     }
 
     public List<Event> findEventByName(String name) {

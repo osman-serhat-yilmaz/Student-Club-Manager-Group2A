@@ -28,7 +28,7 @@ public class AttendanceService {
     }
 
     public Attendance findOneById( UUID id) {
-        return attendanceRepository.getById(id);
+        return attendanceRepository.findAttendanceById(id);
     }
 
     public List<Attendance> findAttendancesByEventID( UUID eventId) {
