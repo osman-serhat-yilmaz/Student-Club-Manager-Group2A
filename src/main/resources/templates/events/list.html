@@ -7,14 +7,22 @@
 <body>
   <div th:replace="navbar/show :: navbar" ></div>
 
-  <tr th:each="event: ${events}">
-    <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
-  </tr>
+  <div id="pastEvents">
+    <tr th:each="event: ${pastEvents}">
+      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
+    </tr>
+  </div>
+  <div id="upcomingEvents">
+    <tr th:each="event: ${upcomingEvents}">
+      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
+    </tr>
+  </div>
+
 
   <div class="filters">
     <input type="text" id="searchForEventInput" onkeyup="search()" placeholder="Search for an event..." >
-    <button id="pastEvents" onclick="openPastEvents()">Past Events</button>
-      <button id="upcomingEvents" onclick="openUpcomingEvents()">Upcoming Events</button>
+    <button id="pastEventsBtn" onclick="openPastEvents()">Past Events</button>
+      <button id="upcomingEventsBtn" onclick="openUpcomingEvents()">Upcoming Events</button>
 
     <div class="dropdown">
       <button onclick="dropdown()" class="dropbtn">Choose a filter</button>

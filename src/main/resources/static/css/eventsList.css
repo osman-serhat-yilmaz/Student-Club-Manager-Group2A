@@ -121,7 +121,7 @@ Body {
     margin-left: 4px;
 }
 
-#pastEvents{
+#pastEventsBtn{
     position: relative;
     float: right;
     margin-top: 6px;
@@ -137,7 +137,7 @@ Body {
     color: #FFFFFF;
 }
 
-#upcomingEvents{
+#upcomingEventsBtn{
     position: relative;
     float: right;
     margin-top: 6px;
@@ -169,4 +169,8 @@ li input{
 
 .filters {
     margin-top: 30px;
+}
+
+#pastEvents {
+    display: none;
 }
