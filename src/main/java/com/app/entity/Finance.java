@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class Finance extends BaseEntity{
     private String name;
     private String description;
     private int value;
+    @Column(name = "clubid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
     private UUID clubID;
 
     @DateTimeFormat(style = "yyyy-MM-dd")

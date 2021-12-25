@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Detailed Event Information Page</title>
+    <link th:href="@{/css/eventInfo.css}" rel="stylesheet" />
   </head>
 
   <body>
@@ -16,7 +17,7 @@
       <div class="column">
         <p th:text="${event.name}"></p>
         <p th:text="${'Description:' + event.description}"></p>
-        <p th:text="${'Date:' + event.date}"></p>
+        <!-- <p th:text="${'Date:' + event.date}"></p> -->
         <p th:text="${'Location:' + event.location}"></p>
         <button> Register</button>
       </div>

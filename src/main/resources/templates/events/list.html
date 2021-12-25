@@ -9,8 +9,7 @@
 <div th:replace="navbar/show :: navbar" ></div>
 
 <tr th:each="event: ${events}">
-  <td th:text="${event.id}" />
-  <td th:text="${event.name}" />
+  <a th:href="@{/events/{id}(id=${event.id})}">bruh</a>
 </tr>
 
 <ul>

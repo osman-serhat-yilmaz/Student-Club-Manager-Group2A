@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class Tag extends BaseEntity{
 
     private String name;
+    @Column(name = "eventid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
     private UUID eventID;
 
 }
