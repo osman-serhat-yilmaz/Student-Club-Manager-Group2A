@@ -24,7 +24,7 @@ public class Event extends BaseEntity{
     @DateTimeFormat(style = "yyyy-MM-dd")
     private Long endDate;
 
-
+    private int fee;
     private int maxParticipants;
     private String description;
     private String location;

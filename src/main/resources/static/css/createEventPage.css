@@ -5,7 +5,7 @@ h1 {
 }
 #eventForm {
     margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 150px;
 }
 .box span.label {
     display: inline-block;
@@ -78,7 +78,7 @@ textarea {
     height: 191.6px;
     left: -44px;
     top: 380px;
-
+    z-index: -1;
     background: rgba(148, 167, 172, 0.5);
     transform: rotate(-28.33deg);
 }
@@ -89,7 +89,7 @@ textarea {
     height: 217px;
     left: 23px;
     top: 525px;
-
+    z-index: -1;
     border-radius: 50%;
     background: rgba(249, 174, 101, 0.5);
 }
@@ -100,7 +100,7 @@ textarea {
     height: 190px;
     left: 1290px;
     top: 570px;
-
+    z-index: -1;
     transform: skew(-20deg) rotate(-130deg);
     background: rgba(69, 129, 143, 0.44);
 }
@@ -111,7 +111,7 @@ textarea {
     height: 190px;
     left: 1300px;
     top: 430px;
-
+    z-index: -1;
     border-radius: 50%;
     background: rgba(214, 158, 101, 0.47);
     transform: rotate(42deg);

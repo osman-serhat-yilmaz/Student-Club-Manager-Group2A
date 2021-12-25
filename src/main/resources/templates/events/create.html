@@ -24,18 +24,17 @@
                 <span class="ib"> <input type="text" class="formInput" name="location" id="location"/>
                 </span>
             </div>
-        <!--
+            <div class="box">
+                <span class="label">Fee </span>
+                <span class="ib"> <input type="number" class="formInput" name="fee" id="fee"/></span>
+            </div>
             <div class="box">
                 <span class="label">Club  </span>
-                <select class="formInput" name="club" id="club">
-                    <option value=""></option>
-                    <option value="OR">OR</option>
-                    <option value="YES">YES</option>
-                    <option value="Chess Club">Chess Club</option>
-                    <option value="Bruh Club">Bruh Club</option>
+                <select class="formInput" name="clubId" id="clubId">
+                    <option value="0">Select club</option>
+                    <option th:each="managedclub: ${managedclubs}" th:value="${managedclub.id}" th:text="${managedclub.name}"></option>
                 </select>
             </div>
-        -->
             <div class="box">
                 <span class="label">Max Participants </span>
                 <span class="ib"> <input type="number" class="formInput" name="maxParticipants" id="maxParticipants"/></span>

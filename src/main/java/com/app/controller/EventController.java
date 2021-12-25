@@ -31,6 +31,7 @@ public class EventController {
     private final AttendanceService attendanceService;
     private final ClubRoleService clubRoleService;
     private final ClubService clubService;
+
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
         List<Event> pastEvents = eventService.findEventsByStartDateBefore();
@@ -47,7 +48,9 @@ public class EventController {
     public String createEvent(@RequestParam String name, @RequestParam String description,
                               @RequestParam String location, @RequestParam String startDate,
                               @RequestParam String endDate, @RequestParam String applicationDeadline,
-                              @RequestParam int maxParticipants, RedirectAttributes redirectAttributes) {
+                              @RequestParam int maxParticipants, @RequestParam int fee,
+                              @RequestParam UUID clubId,RedirectAttributes redirectAttributes) {
+
         Event event = new Event();
         event.setName(name);
         event.setDescription(description);
@@ -56,6 +59,8 @@ public class EventController {
         event.setEndDate( Long.parseLong(endDate.replace("-", "")) );
         event.setApplicationDeadline( Long.parseLong(applicationDeadline.replace("-", "")) );
         event.setMaxParticipants(maxParticipants);
+        event.setFee(fee);
+        event.setClubID(clubId);
         eventService.save(event);
         redirectAttributes.addAttribute("id", event.getId());
         return "redirect:/events/{id}";
