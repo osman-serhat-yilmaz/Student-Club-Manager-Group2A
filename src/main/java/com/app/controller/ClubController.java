@@ -68,8 +68,8 @@ public class ClubController {
 
 
         model.addAttribute("club", clubService.findOneById(id));
-   //     model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
-    //    model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
+        model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
+        model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
         model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER));
         
         return "clubs/show";

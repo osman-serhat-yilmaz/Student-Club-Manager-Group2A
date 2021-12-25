@@ -1,13 +1,20 @@
 package com.app.controller;
 
 import com.app.entity.Club;
+import com.app.entity.ClubRole;
 import com.app.entity.Event;
+import com.app.entity.MyUserDetails;
+import com.app.helpers.Role;
 import com.app.service.AttendanceService;
+import com.app.service.ClubRoleService;
+import com.app.service.ClubService;
 import com.app.service.EventService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,33 +29,18 @@ import java.util.*;
 public class EventController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
-
+    private final ClubRoleService clubRoleService;
+    private final ClubService clubService;
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
-        List<Event> events = eventService.findAll();
-        List<String> dates = new ArrayList<String>();
-        for (Event event: events)
-        {
-            if(event.getStartDate() != null && event.getEndDate() != null) {
-                if(event.getStartDate() == event.getEndDate()) {
-                    dates.add(dateString(event.getStartDate()));
-                }
-                else {
-                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
-                }
-            }
-            else
-                dates.add("TBA");
-        }
+        List<Event> pastEvents = eventService.findEventsByStartDateBefore();
+        List<Event> upcomingEvents = eventService.findEventsByStartDateAfter();
 
-        model.addAttribute("dates", dates);
-        model.addAttribute("events", eventService.findAll());  //put all the event objects in model as a List<Event>
+        model.addAttribute("pastDates", getDates(pastEvents));
+        model.addAttribute("upcomingDates", getDates(upcomingEvents));
+        model.addAttribute("pastEvents", pastEvents);
+        model.addAttribute("upcomingEvents", upcomingEvents);
         return "events/list";
-    }
-
-    public String dateString(Long longDate) {
-        String date = Long.toString(longDate);
-        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
     }
 
     @RequestMapping(value = "/create",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
@@ -76,7 +68,7 @@ public class EventController {
         String date;
         if(event.getStartDate() != null && event.getEndDate() != null) {
             if(Objects.equals(event.getStartDate(), event.getEndDate())) {
-                date = dateString(event.getStartDate()); 
+                date = dateString(event.getStartDate());
             }
             else {
                 date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
@@ -106,7 +98,17 @@ public class EventController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String createForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UUID userID = ((MyUserDetails)authentication.getPrincipal()).getUUID();
+        List<ClubRole> clubroles = clubRoleService.findClubRolesByUserIDAndRole(userID, Role.MANAGER);
+        clubroles.addAll((Collection<? extends ClubRole>) clubRoleService.findClubRolesByUserIDAndRole(userID, Role.MANAGEMENT_MEMBER));
+        List<Club> managedclubs = new ArrayList<>();
+        for(ClubRole cr : clubroles){
+            managedclubs.add(clubService.findOneById(cr.getClubID()));
+        }
+        model.addAttribute("managedclubs", managedclubs);
         model.addAttribute("event", new Event());
+
         return "events/create";
     }
 
@@ -120,6 +122,31 @@ public class EventController {
     public String eventAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(id));
         return "/users/attendances";
+    }
+
+    //|||||||||||||||||||||||||||||||||||||||||||||||||
+
+    public String dateString(Long longDate) {
+        String date = Long.toString(longDate);
+        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+    }
+
+    public List<String> getDates(List<Event> events){
+        List<String> dates = new ArrayList<String>();
+        for (Event event: events)
+        {
+            if(event.getStartDate() != null && event.getEndDate() != null) {
+                if(event.getStartDate() == event.getEndDate()) {
+                    dates.add(dateString(event.getStartDate()));
+                }
+                else {
+                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
+                }
+            }
+            else
+                dates.add("TBA");
+        }
+        return dates;
     }
 
 }
