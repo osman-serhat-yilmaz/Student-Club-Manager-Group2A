@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <title>Profile Page</title>
-    <link rel="stylesheet" href="../../static/css/userProfilePage.css">
+    <link th:href="@{/css/userProfilePage.css}" rel="stylesheet" />
     <style>
         Body {
             font-family: Calibri, Helvetica, sans-serif;
@@ -26,15 +26,16 @@
 
 <div class="middle">
     <ul class="info">
-        <li>Department: <p th:text="${user.department}"></p> </li>
-        <li>Date of birth: <p th:text="${user.dateOfBirth}"></p> </li>
-        <li>Start of studies: <p th:text="${user.startOfStudies}"></p></li>
+        <li th:text="'Department: ' + ${user.department}"></li>
+        <li th:text="'Date of Birth: ' + ${user.dateOfBirth}"></li>
+        <li th:text="'Start of studies: ' + ${user.startOfStudies}"></li>
         <li>Participated in x events</li>
+        <li th:text="'About me: ' + ${user.description}"></li>
     </ul>
     <ul class="social">
-        <li th:text="${user.email}"></li>
-        <li th:text="${user.instagramUsername}"> </li>
-        <li th:text="${user.linkedinUsername}"></li>
+        <li th:text="'email: ' + ${user.email}"></li>
+        <li> instagram: <a th:href="${'https://www.instagram.com/' + user.instagramUsername}" th:text="${user.instagramUsername}"></a> </li>
+        <li th:text="'linkedin: ' + ${user.linkedinUsername}"></li>
     </ul>
 </div>
 
@@ -104,4 +105,3 @@
 </body>
 
 </html>
-
