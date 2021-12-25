@@ -94,17 +94,19 @@
 	</div>
 	<div id="div2">
 	<center><h1>Welcome</h1></center>
-    <form>
+    <form method="post" action="/register">
         <div class="container">   
 			<center><h2>Create account</h2></center>
             <label>Email</label>   
-            <input type="text" placeholder="" name="email" required>  
+            <input type="text" id="email" placeholder="email" name="email" required>
+			<label>Username</label>
+			<input type="text" id="username" placeholder="username" name="username" required>
             <label>Password</label>   
-            <input type="password" placeholder="" name="password" required>  
+            <input type="password" id="password" placeholder="password" name="password" required>
             <button type="submit">Register</button>    
         </div> 
 	</form>
-	<center style = "font-size: 17px">Already have an account? <a id = "create_account" href="#login">Login here</a></center>
+	<center style = "font-size: 17px">Already have an account? <a id = "create_account" href="/login">Login here</a></center>
 	</div> 
 	
 	</div>	

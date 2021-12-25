@@ -39,9 +39,10 @@ public class EventController {
     //single item
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String showEvent(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("event", eventService.findOneById(id));
-        return "events/show";
+    public String showEvent(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
+        System.out.println(eventService.findOneById(id).getName());
+        redirectAttributes.addAttribute("event", eventService.findOneById(id));
+        return "/events/show";
     }
 
     @PutMapping("/{id}")

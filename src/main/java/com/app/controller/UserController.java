@@ -31,12 +31,12 @@ public class UserController {
         return "users/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+ /*   @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createUser(@RequestBody User user, RedirectAttributes redirectAttributes) {
         userService.save(user);
         redirectAttributes.addAttribute("id", user.getId());
         return "redirect:/users/{id}";
-    }
+    }*/
 
     //single item
 
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public String updateUser(@RequestBody User user, RedirectAttributes redirectAttributes) {
+    public String updateUser(@RequestBody User user, RedirectAttributes redirectAttributes) throws Exception {
         User savedUser = userService.save(user);
         redirectAttributes.addAttribute("id", savedUser.getId());
         return "redirect:/users/{id}";
