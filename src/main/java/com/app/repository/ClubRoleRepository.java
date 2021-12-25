@@ -15,6 +15,6 @@ import java.util.UUID;
 public interface ClubRoleRepository extends JpaRepository<ClubRole, UUID> {
     public ClubRole findClubRoleByClubIDAndUserID(UUID clubId, UUID userId);
     public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, Role role);
-
+    public List<ClubRole> findClubRolesByUserIDAndRole(UUID userId, Role role);
     ClubRole findClubRoleById(UUID uuid);
 }

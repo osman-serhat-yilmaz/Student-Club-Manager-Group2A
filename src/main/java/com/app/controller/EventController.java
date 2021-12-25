@@ -1,13 +1,20 @@
 package com.app.controller;
 
 import com.app.entity.Club;
+import com.app.entity.ClubRole;
 import com.app.entity.Event;
+import com.app.entity.MyUserDetails;
+import com.app.helpers.Role;
 import com.app.service.AttendanceService;
+import com.app.service.ClubRoleService;
+import com.app.service.ClubService;
 import com.app.service.EventService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +29,8 @@ import java.util.*;
 public class EventController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
-
+    private final ClubRoleService clubRoleService;
+    private final ClubService clubService;
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
         List<Event> pastEvents = eventService.findEventsByStartDateBefore();
@@ -90,7 +98,17 @@ public class EventController {
 
     @RequestMapping(value = "/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String createForm(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UUID userID = ((MyUserDetails)authentication.getPrincipal()).getUUID();
+        List<ClubRole> clubroles = clubRoleService.findClubRolesByUserIDAndRole(userID, Role.MANAGER);
+        clubroles.addAll((Collection<? extends ClubRole>) clubRoleService.findClubRolesByUserIDAndRole(userID, Role.MANAGEMENT_MEMBER));
+        List<Club> managedclubs = new ArrayList<>();
+        for(ClubRole cr : clubroles){
+            managedclubs.add(clubService.findOneById(cr.getClubID()));
+        }
+        model.addAttribute("managedclubs", managedclubs);
         model.addAttribute("event", new Event());
+
         return "events/create";
     }
 
