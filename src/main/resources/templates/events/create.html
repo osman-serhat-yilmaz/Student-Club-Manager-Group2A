@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+	<title> Create Event </title>
     <meta charset="UTF-8">
     <title>Create Event Page</title>
+    <style>
+        h1 {text-align: center;}
+        input, #S, #createButton{
+            position: absolute;
+            left: 200px;
+        }
+        #eventCreateForm {
+            width: 50%;
+            margin: auto;
+            
+        }
+
+    </style>
 </head>
 <body>
-
+	<h1> CREATE YOUR EVENT </h1>
+    <div id = "eventCreateForm">
+        <form action="/action_page.php">
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" name="namebox"><br>
+          <label for="eventPlace">Place:</label>
+          <input type="text" id="eventPlace" name="placebox"><br>
+          <label for "club">Club:</label>
+          <input type="search" id="eventClub" name:"clubbox"><br>
+          <label for="eventDate">Event Dates:</label>
+          <input type="date" id="dateMin" name="eventdateminbox"> - <input type="date" id="dateMax" name="eventdatemaxbox"> <br>
+          <label for="appDate">Application Period:</label>
+          <input type="date" id="appDateMin" name="appdateminbox"> - <input type="date" id="appDateMax" name="appdatemaxbox"> <br>
+          <label for="eventDesc">Description:</label>
+          <textarea id="S" name="s" rows="10" cols="75"></textarea>
+        </form>
+    </div>
 </body>
 </html>
