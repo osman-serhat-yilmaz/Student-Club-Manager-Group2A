@@ -6,23 +6,76 @@
 	<link rel="stylesheet" href="C:\Users\90539\Documents\GitHub\Student-Club-Manager-Group2A\src\main\resources\static\css\navbar.css">
     <title>Create Event Page</title>
     <style>
-        h1 {text-align: center;}
-        #eventForm {
-			background-color: purple;
-            width: 50%;
-            margin: auto;
-
+        h1 {
+            text-align: center;
+            color: #45818F;
+            font-size: 44px;
         }
-            .box span.label {
+        #eventForm {
+            margin-top: 40px;
+            margin-left: 20px;
+        }
+        .box span.label {
             display: inline-block;
             margin-bottom: 20px;
+            margin-top: 5px;
             vertical-align: top;
-            width: 80px;
+            width: 300px;
+            font-size: 20px;
         }
 		Body {
             font-family: Calibri, Helvetica, sans-serif;
             background-color: white;
+            width: 65%;
             margin: auto;
+        }
+
+
+
+
+        .picButton{
+            height: 48px;
+            background: #45818F;
+            border-radius: 13px;
+            border: none;
+            cursor: pointer;
+
+            font-family: Poly, sans-serif;
+            font-size: 19px;
+            color: #FFFFFF;
+        }
+        .formInput{
+            height: 30px;
+            font-size: 20px;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+            opacity: 1;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+            background: rgba(191, 187, 187, 0.7);
+            border-radius: 40px;
+        }
+
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: rgba(138, 138, 138, 0.7);
+        }
+
+        textarea {
+            resize: none;
+            /*margin: 14px 14px; */
+            border: solid #898989 2px;
+            background: none;
+            font-family: Poly, sans-serif;
+            font-size: 22px;
+
+            background: #ffffff;
+            color: black;
         }
 		
     </style>
@@ -32,50 +85,58 @@
     <h1> CREATE YOUR EVENT </h1>
     <form id="eventForm" action="AddItems" method="post">
             <div class="box">
-                <span class="label"> Event Name</span>
-                <span class="ib"> <input type="text" name="event_name" id="event_name"/></span>
+                <div><span class="label"> Event Name</span>
+                <span class="ib"> <input type="text" class="formInput" name="event_name" id="event_name"/></span></div>
             </div>
             <div class="box">
                 <span class="label">Place </span>
-                <span class="ib"> <input type="text" name="place" id="place"/>
+                <span class="ib"> <input type="text" class="formInput" name="place" id="place"/>
                 </span>
             </div>
             <div class="box">
                 <span class="label">Club  </span>
-                <span class="ib"><input type="text" name="club" id="club"/></span>
+                <select class="formInput" name="club" id="clubsList">
+                    <option value=""></option>
+                    <option value="OR">OR</option>
+                    <option value="YES">YES</option>
+                    <option value="Chess Club">Chess Club</option>
+                    <option value="Bruh Club">Bruh Club</option>
+                </select>
             </div>
             <div class="box">
+                <span class="label">Max Participants </span>
+                <span class="ib"> <input type="number" class="formInput" name="maxparticipantsbox" id="maxParticipants"/></span>
+            </div>
+            <div class="box" >
                 <span class="label">Event Date</span>
-                <span class="ib">  <input type="date" name="item_size" id="item_size"/></span>
-                <span class="ib">  <input type="date" name="item_size" id="item_size"/></span>
+                <span class="ib">  <input type="date" class="formInput" name="eventdateminbox" id="eventDateMin"/></span> -
+                <span class="ib">  <input type="date" class="formInput" name="eventdatemaxbox" id=eventDateMax"/></span>
             </div>
             <div class="box">
-                <span class="label">Application Period </span>
-                <span class="ib"><input type="date" name="item_supplier" id="item_supplier"/></span>
-                <span class="ib"><input type="date" name="item_supplier" id="item_supplier"/></span>
+                <span class="label">Application Deadline</span>
+                <span class="ib"><input type="date" class="formInput" name="appdeadlinebox" id="appDeadline"/></span>
             </div>
             <div class="box">
                 <span class="label">Description </span>
-                <span class="ib">  <textarea id="S" name="s" rows="10" cols="75"></textarea></span>
+                <span class="ib">  <textarea id="description" name="description" rows="10" cols="75"></textarea></span>
             </div>
             <div class="box">
                 <span class="label">Upload a custom event thumbnail/header image
                 only one picture is allowed.</span>
-                <span class="ib">
-                <input type="submit" value="Upload thumbnail">
+                <span class="ib"></span>
+                <input class="picButton" type="submit" value="Upload thumbnail">
                 <span class="label">Preview:</span>
             </div>
             <div class="box">
                 <span class="label">Upload images for event slider. Older
                 pictures will be deleted.</span>
                 <span class="ib">
-                <input type="submit" value="Upload slider">
+                <input class="picButton" type="submit" value="Upload slider">
                 <span class="label">Preview:</span>
             </div>
-            <input type="submit" value="Create Event">
+            <input class="picButton" type="submit" value="Create Event">
         </form>
 
-		<button onclick="myFunction()">Try it</button>
 		<p id="demo"></p>
 		
 		<script>
