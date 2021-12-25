@@ -45,12 +45,12 @@
     <div id="lineWhite"></div>
     <div id="lineGray"></div>
     <div id="events">
+
         <table>
             <tr>
                 <td th:each="attendedevent: ${attendedevents}" th:value="${attendedevent.getId()}" th:text="${attendedevent.getName()}">
 
                 </td>
-
             </tr>
         </table>
     </div>

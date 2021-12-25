@@ -42,7 +42,7 @@ public class ClubRoleController {
     @PostMapping(path = "/adduser")
     public String createClubRole(@RequestParam String clubname, @RequestParam String usermail, RedirectAttributes redirectAttributes) {
         ClubRole cr = new ClubRole();
-        cr.setRole(Role.ACTIVE_MEMBER);
+        cr.setRole(Role.MANAGEMENT_MEMBER);
         System.out.println("1");
         Club c = clubService.findOneByName(clubname);
         System.out.println("club id" + c.getId());
