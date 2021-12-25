@@ -87,6 +87,11 @@
 		.rememberMeBox{
 			margin-top: 8px;
 		}
+		.alert{
+			margin-bottom:3px;
+			font-size: 18px;
+			color: red;
+		}
 	</style>
 </head>
 <body>
@@ -99,7 +104,7 @@
 		<form method="post" action="/login">
 			<div class="container">
 				<center><h2>Please sign in</h2></center>
-				<div class="alert alert-danger" role="alert">Invalid Credentials</div>
+				<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
 				<label for="email">Email</label>
 				<input type="text" id="email" name="email" placeholder="Enter Email" required>
 				<label for="password">Password</label>
