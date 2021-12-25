@@ -7,11 +7,14 @@ import com.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.sasl.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
@@ -23,6 +26,17 @@ public class LoginController {
     @RequestMapping("/login")
     public String index() {
         return "/login";
+    }
+
+    @GetMapping("/login-error")
+    public String loginErrorPage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        String errorMessage = null;
+        if (session != null) {
+            errorMessage = "無效的電子郵件或密碼 !";
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        return "login";
     }
 
     @GetMapping("/register")
