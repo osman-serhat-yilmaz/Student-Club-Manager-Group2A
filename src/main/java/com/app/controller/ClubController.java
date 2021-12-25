@@ -1,9 +1,6 @@
 package com.app.controller;
 
-import com.app.entity.Application;
-import com.app.entity.Club;
-import com.app.entity.MyUserDetails;
-import com.app.entity.User;
+import com.app.entity.*;
 import com.app.helpers.Role;
 import com.app.service.*;
 import lombok.NonNull;
@@ -63,14 +60,16 @@ public class ClubController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showClub(@PathVariable("id") String ids, Model model) {
         UUID id = UUID.fromString(ids);
-        System.out.println("123123123123 ");
-        System.out.println( clubService.findOneById(id).getName());
-
 
         model.addAttribute("club", clubService.findOneById(id));
-        model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
+        model.addAttribute("upcomingEvents", eventService.findEventsByClubIDAndDateAfter(id));
         model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
-        model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER));
+        List<User> activeMembers = new ArrayList<User>();
+        List<ClubRole> activeMemberRoles = clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER);
+        for (ClubRole role: activeMemberRoles ) {
+            activeMembers.add(userService.findOneById(role.getUserID()));
+        }
+        model.addAttribute("activeMembers", activeMembers);
         
         return "clubs/show";
     }
