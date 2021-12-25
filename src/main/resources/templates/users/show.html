@@ -47,22 +47,10 @@
     <div id="events">
         <table>
             <tr>
-                <td>
-                    <img>
-                    <p class="eventName">X Event</p>
+                <td th:each="attendedevent: ${attendedevents}" th:value="${attendedevent.getId()}" th:text="${attendedevent.getName()}">
+
                 </td>
-                <td>
-                    <img>
-                    <p class="eventName">X Event</p>
-                </td>
-                <td>
-                    <img>
-                    <p class="eventName">X Event</p>
-                </td>
-                <td>
-                    <img>
-                    <p class="eventName">X Event</p>
-                </td>
+
             </tr>
         </table>
     </div>

@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.entity.Attendance;
 import com.app.entity.Event;
 import com.app.entity.MyUserDetails;
 import com.app.entity.User;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,8 +35,13 @@ public class UserController {
     public String goUserProfilePage(Model model) {
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
+        List<Attendance> ats = attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true);
+        List<Event> attendedEvents = new ArrayList<>();
+        for(Attendance at : ats){
+            attendedEvents.add(eventService.findOneById(at.getEventID()));
+        }
+        model.addAttribute("attendedevents", attendedEvents);
 
-        model.addAttribute("attendedevents", attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true));
        return "users/show";
     }
 
