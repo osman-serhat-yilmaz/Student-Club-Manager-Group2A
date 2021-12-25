@@ -1,48 +1,42 @@
-article {
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 10px;
+Body {
+    font-family: Calibri, Helvetica, sans-serif;
+    background-color: white;
+    color: #8C8C8C;
+    margin: auto;
 }
 
-#events ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-flex
-}
-
-#events li {
-    display: inline-block;
-    padding: 4px 50px;
-}
-
-#myInput {
+#searchForEventInput{
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
+    margin-left: 5%;
     width: 25%; /* Full-width */
+    height: 15px;
     font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
+    padding: 12px 12px 12px 12px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
+    outline: none;
     margin-bottom: 12px; /* Add some space below the input */
-}
-
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #2980B9;
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
+}
+
+.dropbtn {
+    background-color: #D69E65;
+    color: white;
+    padding: 11px;
+    margin: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    opacity: 0.7;
 }
 
 .dropdown-content {
@@ -66,3 +60,113 @@ article {
 
 .show {display: block;}
 
+/* events -------------------- */
+.middle {
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.eventName{
+    position: relative;
+    font-family: PoetsenOne, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    top: 4px;
+    color: #3C6D79;
+    margin-bottom: 8px;
+}
+
+.clubName{
+    position: relative;
+    font-family: PoetsenOne, sans-serif;
+    font-size: 15px;
+    margin-left: 0;
+    top: 16px;
+    margin-bottom: 4px;
+    color: #3C6D79;
+}
+
+.eventInfo{
+    position: relative;
+    font-family: PoetsenOne, sans-serif;
+    font-size: 15px;
+    top: 4px;
+    color: #3C6D79;
+    padding-bottom: 40px;
+}
+
+.eventInfoElement{
+    height: 16px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+#events{
+    width: 87%;
+    margin: 20px auto 0;
+}
+#events table{
+    width: 100%;
+}
+#events img{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin-top: 20px;
+    padding-bottom: 6px;
+}
+#events p{
+    margin-top: 0;
+    margin-left: 4px;
+}
+
+#pastEvents{
+    position: relative;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10%;
+    height: 45px;
+
+    background: #45818F;
+    border: none;
+    border-radius: 15px;
+
+    font-family: Poly, sans-serif;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+#upcomingEvents{
+    position: relative;
+    float: right;
+    margin-top: 6px;
+    margin-right: 1%;
+    height: 45px;
+
+    background: #45818F;
+    border: none;
+    border-radius: 15px;
+
+    font-family: Poly, sans-serif;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+li {
+    display: inline;
+}
+
+li input{
+    display: inline;
+    size: 60px;
+}
+
+.filters {
+    margin-top: 30px;
+}
