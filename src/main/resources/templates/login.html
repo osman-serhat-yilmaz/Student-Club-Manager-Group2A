@@ -30,7 +30,6 @@
 			background-color: #8C8C8C;
 			color: white;
 			width: 100%;
-			color: 8C8C8C;
 			padding: 15px;
 			margin: 10px 0px;
 			border: none;
@@ -85,6 +84,9 @@
 			padding-left: 110px;
 			padding-right: 200px;
 		}
+		.rememberMeBox{
+			margin-top: 8px;
+		}
 	</style>
 </head>
 <body>
@@ -103,16 +105,14 @@
 				<label for="password">Password</label>
 				<input type="password" id="password" name="password" placeholder="Enter Password" required>
 				<button type="submit">Login</button>
-				<input type="checkbox" checked="checked"> Remember me
+				<input class="rememberMeBox" type="checkbox" checked="checked"> Remember me
 				<a id = "forgot_password" href="#forgot_password">Forgot password? </a>
 			</div>
 		</form>
 
 		<form method="get" action="/register">
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+			<center style = "font-size: 17px">Don't have an account? <a id = "create_account" href="/register">Create account</a></center>
 		</form>
-
-		<center style = "font-size: 17px">Don't have an account? <a id = "create_account" href="/register">Create account</a></center>
 	</div>
 
 
