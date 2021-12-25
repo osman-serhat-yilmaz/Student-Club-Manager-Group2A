@@ -1,8 +1,11 @@
 package com.app.controller;
 
+import com.app.entity.Club;
 import com.app.entity.ClubRole;
 import com.app.entity.User;
+import com.app.helpers.Role;
 import com.app.service.ClubRoleService;
+import com.app.service.ClubService;
 import com.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,10 @@ import java.util.UUID;
 @RequestMapping("/club-roles")
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ClubRoleController {
+
+    private final UserService userService;
     private final ClubRoleService clubRoleService;
+    private final ClubService clubService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubRoles(Model model) {
@@ -28,11 +34,27 @@ public class ClubRoleController {
         return "club-roles/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String createClubRole(@RequestBody ClubRole clubRole, RedirectAttributes redirectAttributes) {
-        clubRoleService.save(clubRole);
-        redirectAttributes.addAttribute("id", clubRole.getId());
-        return "redirect:/club-roles/{id}";
+    @GetMapping(value = "/adduser")
+    public String createForm() {
+        return "/clubs/adduser";
+    }
+
+    @PostMapping(path = "/adduser")
+    public String createClubRole(@RequestParam String clubname, @RequestParam String usermail, RedirectAttributes redirectAttributes) {
+        ClubRole cr = new ClubRole();
+        cr.setRole(Role.ACTIVE_MEMBER);
+        System.out.println("1");
+        Club c = clubService.findOneByName(clubname);
+        System.out.println("club id" + c.getId());
+        cr.setClubID(c.getId());
+        System.out.println("2");
+        User u = userService.findUserByEmail(usermail);
+        System.out.println("user id" + u.getId());
+        cr.setUserID(u.getId());
+        System.out.println("3");
+        clubRoleService.save(cr);
+        redirectAttributes.addAttribute("id", cr.getClubID());
+        return "redirect:/clubs/{id}";
     }
 
     //single item

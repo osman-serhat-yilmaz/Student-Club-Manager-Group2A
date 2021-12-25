@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Tag extends BaseEntity{
 
     private String name;
-    @Column(name = "eventid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "eventid", columnDefinition = "BINARY(16)")
     private UUID eventID;
 
 }

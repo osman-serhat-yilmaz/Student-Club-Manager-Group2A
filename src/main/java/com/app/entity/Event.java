@@ -24,7 +24,7 @@ public class Event extends BaseEntity{
 
     private String description;
     private String location;
-    @Column(name = "clubid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "clubid", columnDefinition = "BINARY(16)")
     private UUID clubID;
 
     @DateTimeFormat(style = "yyyy-MM-dd")

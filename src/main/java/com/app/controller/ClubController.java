@@ -4,6 +4,7 @@ import com.app.entity.Application;
 import com.app.entity.Club;
 import com.app.entity.MyUserDetails;
 import com.app.entity.User;
+import com.app.helpers.Role;
 import com.app.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -68,7 +70,8 @@ public class ClubController {
         model.addAttribute("club", clubService.findOneById(id));
    //     model.addAttribute("futureEvents", eventService.findEventsByClubIDAndDateAfter(id));
     //    model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
-    //    model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, "ACTIVE_MEMBER"));
+        model.addAttribute("activeMembers", clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER));
+        
         return "clubs/show";
     }
 

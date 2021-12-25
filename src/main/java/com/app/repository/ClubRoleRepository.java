@@ -1,6 +1,7 @@
 package com.app.repository;
 
 import com.app.entity.ClubRole;
+import com.app.helpers.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @EnableJpaRepositories
 public interface ClubRoleRepository extends JpaRepository<ClubRole, UUID> {
     public ClubRole findClubRoleByClubIDAndUserID(UUID clubId, UUID userId);
-    public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, String role);
+    public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, Role role);
 
     ClubRole findClubRoleById(UUID uuid);
 }

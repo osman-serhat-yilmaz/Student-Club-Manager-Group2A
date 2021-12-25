@@ -33,6 +33,10 @@ public class ClubService {
         return clubRepository.findClubById(id);
     }
 
+    public Club findOneByName(String name) {
+        return clubRepository.findClubByName(name);
+    }
+
     public Long count() {
         return clubRepository.count();
     }
