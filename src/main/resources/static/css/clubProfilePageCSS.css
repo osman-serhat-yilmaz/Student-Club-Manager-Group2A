@@ -1,7 +1,7 @@
 /* buttons -------------------------------------------------------*/
 .createeventbutton{
     position: absolute;
-    /*width: 119px;*/
+    width: 125px;
     height: 44px;
     margin-left: 920px;
     top: 297px;
@@ -20,36 +20,19 @@
     align-items: center;
     text-align: center;
     color: #FFFFFF;
+    padding-left: 4px;
+    text-decoration: none;
 }
 
-.followbutton{
-    position: absolute;
-    /*width: 119px;*/
-    height: 44px;
-    margin-left: 191px;
-    top: 297px;
-
-    background: #45818F;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
-
-    font-family: Poly, sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 21px;
-    line-height: 26px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
+.createeventbutton:hover {
+    opacity: 0.7;
 }
 
 .requestactivemembershipbutton{
     position: absolute;
-    /*width: 288px;*/
+    /*width: 119px;*/
     height: 44px;
-    margin-left: 327px;
+    margin-left: 191px;
     top: 297px;
 
     background: #656CB0;
@@ -119,7 +102,7 @@ button:hover {
     position: absolute;
     width: 270px;
     height: 72px;
-    margin-left: 640px;
+    margin-left: 500px;
     top: 289px;
 
     font-family: Noto Serif Kannada, sans-serif;
