@@ -55,9 +55,12 @@ public class EventController {
         event.setName(name);
         event.setDescription(description);
         event.setLocation(location);
-        event.setStartDate( Long.parseLong(startDate.replace("-", "")) );
-        event.setEndDate( Long.parseLong(endDate.replace("-", "")) );
-        event.setApplicationDeadline( Long.parseLong(applicationDeadline.replace("-", "")) );
+        if(!startDate.equals(""))
+            event.setStartDate( Long.parseLong(startDate.replace("-", "")) );
+        if(!endDate.equals(""))
+            event.setEndDate( Long.parseLong(endDate.replace("-", "")) );
+        if(!applicationDeadline.equals(""))
+            event.setApplicationDeadline( Long.parseLong(applicationDeadline.replace("-", "")) );
         event.setMaxParticipants(maxParticipants);
         event.setFee(fee);
         event.setClubID(clubId);
