@@ -2,14 +2,15 @@ package com.app.controller;
 
 import com.app.entity.Application;
 import com.app.entity.Club;
-import com.app.service.ApplicationService;
-import com.app.service.ClubRoleService;
-import com.app.service.ClubService;
-import com.app.service.EventService;
+import com.app.entity.MyUserDetails;
+import com.app.entity.User;
+import com.app.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,10 +29,16 @@ public class ClubController {
     private final ApplicationService applicationService;
     private final EventService eventService;
     private final ClubRoleService clubRoleService;
+    private final UserService userService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubs( Model model) {
         model.addAttribute("clubs", clubService.findAll());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println(((MyUserDetails)authentication.getPrincipal()).getEmail());
+
         return "clubs/list";
     }
 

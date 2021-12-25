@@ -1,115 +1,27 @@
-<!DOCTYPE html>   
-<html xmlns:th="https://www.thymeleaf.org">
-<head>  
-<meta name="viewport" content="width=device-width, initial-scale=1">  
-	<title> Login Page </title>  
-	<style>   
-		Body {  
-		  font-family: Calibri, Helvetica, sans-serif;  
-		  background-color: white;  
-		  color: #8C8C8C;
-		}  
-		h1{
-			font-size: 36px;
-			color: #923F1C;
-			justify-content: center;
-		}
-		h2{
-			color: gray;
-			font-size: 28px;
-		}
-		div{
-			border: none;   
-		}
-		img{
-			padding-top: 60px;
-			width: 450px;
-			height: 450px;
-		}
-		button {   
-			background-color: #8C8C8C;  
-			color: white;
-			width: 100%;  
-			color: 8C8C8C;   
-			padding: 15px;   
-			margin: 10px 0px;   
-			border: none;   
-			cursor: pointer;   
-			border-radius: 25px;
-		}   
-		form {   
-			border: none;   
-			padding-bottom: 50px;
-		} 
-		#forgot_password{
-			color: #8C8C8C;
-			text-decoration: none;
-			float:right;
-			font-weight: bold;
-		}
-		#create_account{
-			font-size: 17px;
-			text-decoration: none;
-			color: #8C8C8C;
-			font-weight: bold;
-		}
-		input[type=checkbox]{
-			color: #8C8C8C;
-			background-color: #ccc;
-		}
-		
-		input[type=text], input[type=password] {   
-			width: 100%;   
-			margin: 8px 0;  
-			padding: 12px 20px;   
-			display: inline-block;  
-			background-color: #F3F4F5;
-			border: 0px;
-			border-bottom: 4px solid #8C8C8C;   
-			box-sizing: border-box;   
-		}  
-		button:hover {   
-			opacity: 0.7;   
-		}    	
-		.container {   
-			padding: 25px; 
-			padding-top: 5px;
-		}   
-		#parent {
-			display: flex;
-		}
-		#div1 {
-			padding-left: 110px;
-		}
-		#div2 {
-			padding-left: 110px;
-			padding-right: 200px;
-		}
-</style>   
-</head>    
-<body>    
-	<div id="parent">
-	<div id="div1">
-		<img src="rec.png" alt="Rectangle">
-	</div>
-	<div id="div2">
-	<center><h1>Welcome</h1></center>
-    <form th:action="@{/login}" method="post">
-        <div class="container">   
-			<center><h2>Login</h2></center>
-            <label>Email</label>   
-            <input type="email" placeholder="Enter Email" name="email" required>
-            <label>Password</label>   
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <button type="submit">Login</button>   
-            <input type="checkbox" checked="checked"> Remember me  
-            <a id = "forgot_password" href="#forgot_password">Forgot password? </a>
-        </div>
-		<div style="color: red">${error}</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Please sign in</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+	<form class="form-signin" method="post" action="/login">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		<div class="alert alert-danger" role="alert">Invalid Credentials</div>        <p>
+		<label for="email" class="sr-only">Email</label>
+		<input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+	</p>
+		<p>
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+		</p>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	</form>
-	<center style = "font-size: 17px">Don't have an account? <a id = "create_account" href="#register">Create account</a></center>
-	</div> 
-	
-	</div>	
-</body>     
-</html>  
+</div>
+</body></html>

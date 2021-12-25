@@ -2,38 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Events Page</title>
-
-  <link rel="stylesheet" href="../../static/css/eventsList.css">
+  <link th:href="@{/css/eventsList.css}" rel="stylesheet" />
 </head>
 <body>
 
-<section class="navigation">
-  <div class="nav-container">
-    <div class="brand">
-      <a href="#!">Sigma</a>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="#!">Clubs</a>
-        </li>
-        <li>
-          <a href="#!">Events</a>
-        </li>
-        <li>
-          <a href="#!">Schedule</a>
-        </li>
-        <li>
-          <a href="#!">Profile</a>
-        </li>
-        <li>
-          <a href="#!">Sign Out</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
+<div th:replace="navbar/show :: navbar" ></div>
+
+<tr th:each="event: ${events}">
+  <td th:text="${event.id}" />
+  <td th:text="${event.name}" />
+</tr>
 
 <ul>
   <input type="text" id="myInput" onkeyup="search()" placeholder="Search for an event.." >
@@ -142,13 +120,7 @@
   </ul>
 </div>
 
-<ul th:each="event : ${events}">
-  <li th:text="${event.name}"></li>
-  <li th:text="${event.description}"></li>
-  <li th:text="${event.id}"></li>
-</ul>
-
-<script src="../../static/js/eventsList.js"></script>
+<script type="text/javascript" th:src="@{/js/eventsList.js}"></script>
 
 </body>
 

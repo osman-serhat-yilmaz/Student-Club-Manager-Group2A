@@ -27,14 +27,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(HttpServletRequest httpServletRequest, Model model) {
-        String email = httpServletRequest.getParameter("email");
-        String password = httpServletRequest.getParameter("password");
-        System.out.println(email + " , " + password);
-        if (userService.validateCredentials(email, password))
-            return "/clubs/list";
-        else {
-            return "/login";
-        }
+        return "login";
     } //login bozuk
 
 
