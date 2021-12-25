@@ -10,11 +10,13 @@
 
 <div class="profilephoto"><img id="profileid" src="" alt="profile photo"/></div>
 
-<button class= "followbutton" type="submit">follow</button>
-<button class= "requestactivemembershipbutton" type="submit">request active membership</button>
-<button class= "createeventbutton" type="submit">create event</button>
+<!-- <button class="followbutton" type="submit" >follow</button> -->
+<button class="requestactivemembershipbutton" type="submit" method="post" action="/clubs/applications">request active membership</button>
+<a href="/events/create" class="createeventbutton">create event</a>
 
-<div class = "clubname" th:text="${club.name}"></div>
+
+
+<div class ="clubname" th:text="${club.name}"></div>
 
 <div id="description" th:text="${club.description}"></div>
 
