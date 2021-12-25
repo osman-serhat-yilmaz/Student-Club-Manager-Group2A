@@ -36,7 +36,6 @@ public class ClubController {
         model.addAttribute("clubs", clubService.findAll());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         System.out.println(((MyUserDetails)authentication.getPrincipal()).getEmail());
 
         return "clubs/list";

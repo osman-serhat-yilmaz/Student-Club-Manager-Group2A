@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +31,11 @@ public class UserService implements UserDetailsService {
         return user.map(MyUserDetails::new).get();
     }
 
-    public User save(User user) {
+    public User save(User user) throws Exception {
+        List<User> userList = userRepository.findAll();
+        for (int i = 0; i <userList.size(); i++)
+            if (user.getEmail() == userList.get(i).getEmail())
+                throw new Exception("This user already exists");
         return userRepository.save(user);
     }
 
