@@ -1,7 +1,13 @@
 package com.app.controller;
 
 import com.app.entity.Attendance;
+import com.app.entity.Club;
+import com.app.entity.ClubRole;
+import com.app.entity.User;
+import com.app.helpers.Role;
 import com.app.service.AttendanceService;
+import com.app.service.EventService;
+import com.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +24,8 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class AttendanceController {
     private final AttendanceService attendanceService;
+    private final UserService userService;
+    private final EventService eventService;
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createAttendance(@RequestBody Attendance attendance, RedirectAttributes redirectAttributes) {
@@ -39,6 +47,25 @@ public class AttendanceController {
         Attendance savedAttendance = attendanceService.save(attendance);
         redirectAttributes.addAttribute("id",savedAttendance.getId());
         return "redirect:/attendances/{id}";
+    }
+
+    @GetMapping(value = "/create")
+    public String createForm() {
+        return "/attendances/create";
+    }
+
+    @PostMapping(path = "/create")
+    public String createAtt(@RequestParam String eventname, @RequestParam String usermail, @RequestParam String attended) {
+        Attendance att = new Attendance();
+
+        att.setAttended(attended.equals("1"));
+        System.out.println("1");
+        att.setUserID(userService.findUserByEmail(usermail).getId());
+        att.setEventID(eventService.findEventByName(eventname).get(0).getId());
+
+        attendanceService.save(att);
+
+        return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
