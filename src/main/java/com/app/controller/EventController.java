@@ -33,30 +33,14 @@ public class EventController {
     private final ClubService clubService;
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
-        List<Event> events = eventService.findAll();
-        List<String> dates = new ArrayList<String>();
-        for (Event event: events)
-        {
-            if(event.getStartDate() != null && event.getEndDate() != null) {
-                if(event.getStartDate() == event.getEndDate()) {
-                    dates.add(dateString(event.getStartDate()));
-                }
-                else {
-                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
-                }
-            }
-            else
-                dates.add("TBA");
-        }
+        List<Event> pastEvents = eventService.findEventsByStartDateBefore();
+        List<Event> upcomingEvents = eventService.findEventsByStartDateAfter();
 
-        model.addAttribute("dates", dates);
-        model.addAttribute("events", eventService.findAll());  //put all the event objects in model as a List<Event>
+        model.addAttribute("pastDates", getDates(pastEvents));
+        model.addAttribute("upcomingDates", getDates(upcomingEvents));
+        model.addAttribute("pastEvents", pastEvents);
+        model.addAttribute("upcomingEvents", upcomingEvents);
         return "events/list";
-    }
-
-    public String dateString(Long longDate) {
-        String date = Long.toString(longDate);
-        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
     }
 
     @RequestMapping(value = "/create",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
@@ -84,7 +68,7 @@ public class EventController {
         String date;
         if(event.getStartDate() != null && event.getEndDate() != null) {
             if(Objects.equals(event.getStartDate(), event.getEndDate())) {
-                date = dateString(event.getStartDate()); 
+                date = dateString(event.getStartDate());
             }
             else {
                 date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
@@ -138,6 +122,31 @@ public class EventController {
     public String eventAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
         redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(id));
         return "/users/attendances";
+    }
+
+    //|||||||||||||||||||||||||||||||||||||||||||||||||
+
+    public String dateString(Long longDate) {
+        String date = Long.toString(longDate);
+        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+    }
+
+    public List<String> getDates(List<Event> events){
+        List<String> dates = new ArrayList<String>();
+        for (Event event: events)
+        {
+            if(event.getStartDate() != null && event.getEndDate() != null) {
+                if(event.getStartDate() == event.getEndDate()) {
+                    dates.add(dateString(event.getStartDate()));
+                }
+                else {
+                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
+                }
+            }
+            else
+                dates.add("TBA");
+        }
+        return dates;
     }
 
 }

@@ -3,79 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Event Page</title>
-    <style>
-        h1 {
-            text-align: center;
-            color: #45818F;
-            font-size: 44px;
-        }
-        #eventForm {
-            margin-top: 40px;
-            margin-left: 20px;
-        }
-        .box span.label {
-            display: inline-block;
-            margin-bottom: 20px;
-            margin-top: 5px;
-            vertical-align: top;
-            width: 300px;
-            font-size: 20px;
-        }
-		Body {
-            font-family: Calibri, Helvetica, sans-serif;
-            background-color: white;
-            width: 65%;
-            margin: auto;
-        }
-        .picButton{
-            height: 48px;
-            background: #45818F;
-            border-radius: 13px;
-            border: none;
-            cursor: pointer;
+    <link th:href="@{/css/createEventPage.css}" rel="stylesheet" />
 
-            font-family: Poly, sans-serif;
-            font-size: 19px;
-            color: #FFFFFF;
-        }
-        .formInput{
-            height: 30px;
-            font-size: 20px;
-        }
-
-        textarea::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        textarea::-webkit-scrollbar-track {
-            opacity: 1;
-        }
-
-        textarea::-webkit-scrollbar-thumb {
-            background: rgba(191, 187, 187, 0.7);
-            border-radius: 40px;
-        }
-
-        textarea::-webkit-scrollbar-thumb:hover {
-            background: rgba(138, 138, 138, 0.7);
-        }
-
-        textarea {
-            resize: none;
-            /*margin: 14px 14px; */
-            border: solid #898989 2px;
-            background: none;
-            font-family: Poly, sans-serif;
-            font-size: 22px;
-
-            background: #ffffff;
-            color: black;
-        }
-		
-    </style>
 </head>
 <body style="font-family: Arial">
-<div th:replace="navbar/show :: navbar" ></div>
+<div class="square"></div>
+<div class="circle1"></div>
+<div class="parallelog"></div>
+<div class="circle2"></div>
+
+<div class="container" th:replace="navbar/show :: navbar" ></div>
     <h1> CREATE YOUR EVENT </h1>
     <form id="eventForm" action="/events/create" method="post">
             <div class="box">

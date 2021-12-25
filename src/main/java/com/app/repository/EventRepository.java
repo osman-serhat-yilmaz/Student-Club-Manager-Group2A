@@ -15,6 +15,8 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     public List<Event> findEventsByName(String name);
     public List<Event> findEventsByClubIDAndStartDateBefore(UUID clubId, Long date);
     public List<Event> findEventsByClubIDAndStartDateAfter(UUID clubId, Long date);
+    List<Event> findEventsByStartDateAfter( Long date);
+    List<Event> findEventsByStartDateBefore( Long date);
 
     Event findEventById(UUID id);
 }
