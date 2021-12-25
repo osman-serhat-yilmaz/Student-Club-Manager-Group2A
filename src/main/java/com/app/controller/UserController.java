@@ -34,6 +34,7 @@ public class UserController {
        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
 
+        model.addAttribute("attendedevents", attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true));
        return "users/show";
     }
 
