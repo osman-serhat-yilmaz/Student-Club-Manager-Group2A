@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 @EnableJpaRepositories
 public interface ApplicationRepository extends JpaRepository<Application, UUID> {
-    public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID recipientId);
+    public Application findApplicationBySenderIDAndClubID(UUID senderId, UUID clubId);
     public List<Application> findApplicationsByClubID(UUID clubID);
 
     Application findApplicationById(UUID uuid);
