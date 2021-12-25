@@ -8,6 +8,11 @@
 
 <div th:replace="navbar/show :: navbar" ></div>
 
+<tr th:each="event: ${events}">
+  <td th:text="${event.id}" />
+  <td th:text="${event.name}" />
+</tr>
+
 <ul>
   <input type="text" id="myInput" onkeyup="search()" placeholder="Search for an event.." >
 
