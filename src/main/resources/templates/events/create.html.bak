@@ -3,6 +3,7 @@
 <head>
     <title> Create Event </title>
     <meta charset="UTF-8">
+	<link rel="stylesheet" href="C:\Users\90539\Documents\GitHub\Student-Club-Manager-Group2A\src\main\resources\static\css\navbar.css">
     <title>Create Event Page</title>
     <style>
         h1 {
