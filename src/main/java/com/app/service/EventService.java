@@ -44,11 +44,25 @@ public class EventService {
     }
 
     public List<Event> findEventsByClubIDAndDateBefore(UUID clubId) {
-        return eventRepository.findEventsByClubIDAndStartDateBefore(clubId, new java.util.Date().getTime());
+        return eventRepository.findEventsByClubIDAndStartDateBefore(clubId,
+                Long.parseLong((new java.sql.Date(System.currentTimeMillis()).toString()).replace("-", "")) );
     }
 
     public List<Event> findEventsByClubIDAndDateAfter(UUID clubId) {
-        return eventRepository.findEventsByClubIDAndStartDateAfter(clubId, new java.util.Date().getTime());
+        return eventRepository.findEventsByClubIDAndStartDateAfter(clubId,
+                Long.parseLong((new java.sql.Date(System.currentTimeMillis()).toString()).replace("-", "")) );
+    }
+
+    public List<Event> findEventsByStartDateAfter() {
+        return eventRepository.findEventsByStartDateAfter(
+                Long.parseLong((new java.sql.Date(System.currentTimeMillis()).toString()).replace("-", ""))
+        );
+    }
+
+    public List<Event> findEventsByStartDateBefore() {
+        return eventRepository.findEventsByStartDateBefore(
+                Long.parseLong((new java.sql.Date(System.currentTimeMillis()).toString()).replace("-", ""))
+        );
     }
 
     public Long count() {
