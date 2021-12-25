@@ -99,6 +99,10 @@
     </ul>
 </div>
 
+<tr th:each="club: ${clubs}">
+    <td th:text="${club.id}" />
+    <td th:text="${club.name}" />
+</tr>
 
 <form class="form-signin" method="get" action="/logout">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>

@@ -1,268 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detailed Event Information Page</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detailed Event Information Page</title>
+  </head>
 
-  <style>
-    .navigation {
-      height: 70px;
-      background: #262626;
-    }
-    .brand {
-      position: absolute;
-      padding-left: 20px;
-      float: left;
-      line-height: 70px;
-      text-transform: uppercase;
-      font-size: 1.4em;
-    }
-    .brand a, .brand a:visited {
-      color: #fff;
-      text-decoration: none;
-    }
-    .nav-container {
-      max-width: 1920px;
-      margin: 0 auto;
-    }
-    nav {
-      float: right;
-    }
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li {
-      float: left;
-      position: relative;
-    }
-    nav ul li a, nav ul li a:visited {
-      display: block;
-      padding: 0 20px;
-      line-height: 70px;
-      background: #262626;
-      color: #fff;
-      text-decoration: none;
-    }
-    nav ul li a:hover, nav ul li a:visited:hover {
-      background: #2581dc;
-      color: #fff;
-    }
-    nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
-      padding-left: 4px;
-      content: " ▾";
-    }
-    nav ul li ul li {
-      min-width: 190px;
-    }
-    nav ul li ul li a {
-      padding: 15px;
-      line-height: 20px;
-    }
-    .nav-dropdown {
-      position: absolute;
-      display: none;
-      z-index: 1;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-    }
-    /* Mobile navigation */
-    .nav-mobile {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: #262626;
-      height: 70px;
-      width: 70px;
-    }
-    @media only screen and (max-width: 798px) {
-      .nav-mobile {
-        display: block;
-      }
-      nav {
-        width: 100%;
-        padding: 70px 0 15px;
-      }
-      nav ul {
-        display: none;
-      }
-      nav ul li {
-        float: none;
-      }
-      nav ul li a {
-        padding: 15px;
-        line-height: 20px;
-      }
-      nav ul li ul li a {
-        padding-left: 30px;
-      }
-      .nav-dropdown {
-        position: static;
-      }
-    }
-    @media screen and (min-width: 799px) {
-      .nav-list {
-        display: block !important;
-      }
-    }
-    #nav-toggle {
-      position: absolute;
-      left: 18px;
-      top: 22px;
-      cursor: pointer;
-      padding: 10px 35px 16px 0px;
-    }
-    #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
-      cursor: pointer;
-      border-radius: 1px;
-      height: 5px;
-      width: 35px;
-      background: #fff;
-      position: absolute;
-      display: block;
-      content: "";
-      transition: all 300ms ease-in-out;
-    }
-    #nav-toggle span:before {
-      top: -10px;
-    }
-    #nav-toggle span:after {
-      bottom: -10px;
-    }
-    #nav-toggle.active span {
-      background-color: transparent;
-    }
-    #nav-toggle.active span:before, #nav-toggle.active span:after {
-      top: 0;
-    }
-    #nav-toggle.active span:before {
-      transform: rotate(45deg);
-    }
-    #nav-toggle.active span:after {
-      transform: rotate(-45deg);
-    }
+  <body>
+    <div th:replace="navbar/show :: navbar" ></div>
 
-    * {
-      box-sizing: border-box;
-    }
-
-    .column {
-      float: left;
-      width: 50%;
-      padding: 150px;
-    }
-
-    /* Clearfix (clear floats) */
-    .row::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-
-
-
-  </style>
-</head>
-<body>
-
-<section class="navigation">
-  <div class="nav-container">
-    <div class="brand">
-      <a href="#!">Sigma</a>
-    </div>
-    <nav>
-      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-      <ul class="nav-list">
-        <li>
-          <a href="#!">Clubs</a>
-        </li>
-        <li>
-          <a href="#!">Events</a>
-        </li>
-        <li>
-          <a href="#!">Schedule</a>
-        </li>
-        <li>
-          <a href="#!">Profile</a>
-        </li>
-        <li>
-          <a href="#!">Sign Out</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-<div class="row">
-  <div class="column">
-    <img src="https://pbs.twimg.com/profile_images/1392981615865892867/Vnq2R4c6_400x400.jpg" alt="Damn" style="width:500px">
-  </div>
-  <div class="column">
-    <p style="alignment: center">KD > Harden > Curry > Osman > Lebron</p>
-    <p style="alignment: center">UNBELIEVABLE. Today I took my son to Chuck E Cheese for his birthday. He won a game and exchanged his tickets for a Mickey Mouse ring pop but then a large man with a receding hairline came in and SNATCHED it out of the poor kid’s hands! To my dismay, it was LeFRAUD himself! LeTHIEF then called himself the “GOAT” and had the audacity to tell my son, “the bubble wasn’t a fluke” and he ran away! Luckily a MOUSE TRAP was set up to catch LeMICKEY and the security guard Chef Curry showed up and took him down. Shame on you Le3-6-1. Go win a real ring.</p>
-    <p style="alignment: center">Date</p>
-    <p style="alignment: center">Biz.</p>
-    <p style="alignment: center">yarın</p>
-    <button> Register</button>
-  </div>
-
-</div>
-
-<!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<div class="container-fluid">
-  <div id="container" class="col-md-8 col-md-offset-2">
-    <div class="button">
-      <button class="description" onclick="doFunction()">Description</button>
-      <button class="participants" onclick="doFunction()">Participants</button>
+    <div class="row">
+      <div class="column">
+        <img src="https://pbs.twimg.com/profile_images/1392981615865892867/Vnq2R4c6_400x400.jpg" alt="Damn" style="width:500px">
+      </div>
+      <div class="column">
+        <p th:text="${event.name}"></p>
+        <p th:text="${'Description:' + event.description}"></p>
+        <p th:text="${'Date:' + event.date}"></p>
+        <p th:text="${'Location:' + event.location}"></p>
+        <button> Register</button>
+      </div>
     </div>
 
-    <ul class="hide">
-      <li>
-        LeMickey
-      </li>
-      <li>
-        is
-      </li>
-      <li>
-        3-6 in the Finals
-      </li>
-    </ul>
 
-    <p>DESCRIPTION</p>
+    <div>
+      <div>
+        <div class="button">
+          <button class="description" onclick="displayDescription()">Description</button>
+          <button class="participants" onclick="displayParticipants()">Participants</button>
+        </div>
 
-  </div>
-</div>
+        <div id="description">
+          <p>DESCRIPTION</p>
+        </div>
+        <div id="participants">
+          PARTICIPANTS
+        </div>
 
-
-<div class="toggle">
-  <div class="custom-control custom-switch">
-    <input type="checkbox"
-           class="custom-control-input"
-           id="toggleSwitches" />
-    <label class="custom-control-label"
-           for="toggleSwitches">
-      TOGGLE
-    </label>
-  </div>
-</div>
-
-<script>
-  function doFunction() {
-    if (this.hasClass('description')) {
-      ('#container p').removeClass('hide');
-      ('#container ul').addClass('hide');
-    }
-    else if(this.hasClass('participants')) {
-      ('#container ul').removeClass('hide');
-      ('#container p').addClass('hide');
-    }
-  };
-</script>
+      </div>
+    </div>
 
 
-</body>
+    <script type="text/javascript" th:src="@{/js/eventInfo.js}"></script>
+
+  </body>
 </html>
