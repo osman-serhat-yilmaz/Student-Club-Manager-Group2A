@@ -33,15 +33,22 @@ public class LoginController {
     @PostMapping("/login")
     public String login() {
         return "login";
-    } //login bozuk
+    }
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam String username, @RequestParam String email, @RequestParam String password) throws Exception {
+    public String registerUser(@RequestParam String username, @RequestParam String email, @RequestParam String password, @RequestParam String department,
+                               @RequestParam String dateOfBirth, @RequestParam int startOfStudies, @RequestParam String instagramUsername,
+                               @RequestParam String linkedinUsername) throws Exception {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
         user.setDescription("");
         user.setUsername(username);
+        user.setDepartment(department);
+        user.setDateOfBirth(Long.parseLong(dateOfBirth.replace("-", "")));
+        user.setStartOfStudies(startOfStudies);
+        user.setInstagramUsername(instagramUsername);
+        user.setLinkedinUsername(linkedinUsername);
         userService.save(user);
         return "login";
     }

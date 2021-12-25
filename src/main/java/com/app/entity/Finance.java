@@ -21,7 +21,7 @@ public class Finance extends BaseEntity{
     private String name;
     private String description;
     private int value;
-    @Column(name = "clubid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "clubid", columnDefinition = "BINARY(16)")
     private UUID clubID;
 
     @DateTimeFormat(style = "yyyy-MM-dd")

@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import com.app.helpers.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,10 +17,10 @@ import java.util.UUID;
 @Entity
 public class ClubRole extends BaseEntity{
 
-    @Column(name = "userid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "userid", columnDefinition = "BINARY(16)")
     private UUID userID;
-    @Column(name = "clubid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "clubid", columnDefinition = "BINARY(16)")
     private UUID clubID;
-    private String role;
+    private Role role;
 
 }

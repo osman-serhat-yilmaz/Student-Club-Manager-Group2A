@@ -16,9 +16,9 @@ import java.util.UUID;
 @Entity
 public class Application extends BaseEntity{
 
-    @Column(name = "senderid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "senderid", columnDefinition = "BINARY(16)")
     private UUID senderID;
-    @Column(name = "recipientid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "recipientid", columnDefinition = "BINARY(16)")
     private UUID recipientID;
     private String applicationStatus;
     private UUID clubID;

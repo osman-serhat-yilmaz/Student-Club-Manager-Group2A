@@ -51,8 +51,8 @@ public class UserService implements UserDetailsService {
         return userRepository.getById(id); //problem çıkarabilir
     }
 
-    public Optional<User> findUserByEmail(String email) {
-        return userRepository.findUserByEmail(email);
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email).orElseThrow();
     }
 
     public Long count() {

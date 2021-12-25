@@ -15,9 +15,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 public class ParticipationForm extends BaseEntity{
-    @Column(name = "userid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "userid", columnDefinition = "BINARY(16)")
     private UUID userId;
-    @Column(name = "eventid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)
+    @Column(name = "eventid", columnDefinition = "BINARY(16)")
     private UUID eventId;
     private String question;
     private String answer;

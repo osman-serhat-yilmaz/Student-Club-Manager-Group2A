@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,6 +28,11 @@ public class User extends BaseEntity {
     private String username;
     private String description;
 
-
+    private String department;
+    @DateTimeFormat(style = "yyyy-MM-dd")
+    private Long dateOfBirth;
+    private int startOfStudies;
+    private String instagramUsername;
+    private String linkedinUsername;
 
 }

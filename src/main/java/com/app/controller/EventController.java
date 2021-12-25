@@ -13,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("/events")
@@ -25,22 +25,68 @@ public class EventController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
+        List<Event> events = eventService.findAll();
+        List<String> dates = new ArrayList<String>();
+        for (Event event: events)
+        {
+            if(event.getStartDate() != null && event.getEndDate() != null) {
+                if(event.getStartDate() == event.getEndDate()) {
+                    dates.add(dateString(event.getStartDate()));
+                }
+                else {
+                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
+                }
+            }
+            else
+                dates.add("TBA");
+        }
+
+        model.addAttribute("dates", dates);
         model.addAttribute("events", eventService.findAll());  //put all the event objects in model as a List<Event>
         return "events/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String createEvent(@RequestBody Event event, RedirectAttributes redirectAttributes) {
+    public String dateString(Long longDate) {
+        String date = Long.toString(longDate);
+        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+    }
+
+    @RequestMapping(value = "/create",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String createEvent(@RequestParam String name, @RequestParam String description,
+                              @RequestParam String location, @RequestParam String startDate,
+                              @RequestParam String endDate, @RequestParam String applicationDeadline,
+                              @RequestParam int maxParticipants, RedirectAttributes redirectAttributes) {
+        Event event = new Event();
+        event.setName(name);
+        event.setDescription(description);
+        event.setLocation(location);
+        event.setStartDate( Long.parseLong(startDate.replace("-", "")) );
+        event.setEndDate( Long.parseLong(endDate.replace("-", "")) );
+        event.setApplicationDeadline( Long.parseLong(applicationDeadline.replace("-", "")) );
+        event.setMaxParticipants(maxParticipants);
         eventService.save(event);
         redirectAttributes.addAttribute("id", event.getId());
         return "redirect:/events/{id}";
     }
-
     //single item
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showEvent(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("event", eventService.findOneById(id));
+        Event event = eventService.findOneById(id);
+        String date;
+        if(event.getStartDate() != null && event.getEndDate() != null) {
+            if(Objects.equals(event.getStartDate(), event.getEndDate())) {
+                date = dateString(event.getStartDate()); 
+            }
+            else {
+                date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
+            }
+        }
+        else
+            date = "TBA";
+
+        model.addAttribute("date", date);
+        model.addAttribute("event", event);
         return "/events/show";
     }
 
@@ -58,7 +104,7 @@ public class EventController {
         return "redirect:/events";
     }
 
-    @RequestMapping(value = "/create-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String createForm(Model model) {
         model.addAttribute("event", new Event());
         return "events/create";

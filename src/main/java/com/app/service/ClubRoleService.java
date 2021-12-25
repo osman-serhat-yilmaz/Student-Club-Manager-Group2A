@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.entity.ClubRole;
+import com.app.helpers.Role;
 import com.app.repository.ClubRoleRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class ClubRoleService {
         return clubRoleRepository.findClubRoleById(id);
     }
 
-    public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, String role) {
+    public List<ClubRole> findClubRolesByClubIDAndRole(UUID clubId, Role role) {
         return clubRoleRepository.findClubRolesByClubIDAndRole(clubId,role);
     }
 

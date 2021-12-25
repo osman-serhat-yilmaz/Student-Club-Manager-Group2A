@@ -1,120 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/%22%3E">
-<head>
-    <meta charset="UTF-8">
-    <title>Clubs Page</title>
-    <link rel="stylesheet" href="../../static/css/clubsPageCSS.css" />
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8">
+        <title>Clubs Page</title>
+        <link th:href="@{/css/clubsPageCSS.css}" rel="stylesheet" />
 
-    <meta name= "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Please sign in</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+        <meta name= "viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
+    </head>
 
-    <style>
-        Body {
-            font-family: Calibri, Helvetica, sans-serif;
-            background-color: white;
-            color: #8C8C8C;
-            margin: auto;
-        }
-    </style>
+    <body>
 
-</head>
+    <div th:replace="navbar/show :: navbar" ></div>
 
-<body>
+    <div class="square"></div>
+    <div class="circle1"></div>
+    <div class="parallelog"></div>
+    <div class="circle2"></div>
 
-<!--<section class="navigation">
-    <div class="nav-container">
-        <div class="brand">
-            <a href="#!">Sigma</a>
-        </div>
-        <nav>
-            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-            <ul class="nav-list">
-                <li>
-                    <a href="#!" style="background: #3C6D79">Clubs</a>
-                </li>
-                <li>
-                    <a href="#!">Events</a>
-                </li>
-                <li>
-                    <a href="#!">Schedule</a>
-                </li>
-                <li>
-                    <a href="#!">Profile</a>
-                </li>
-                <li>
-                    <a id="signout" href="#!">Sign Out</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="clubsMainContainer">
+        <ul id="clubsList" th:each="club : ${clubs}">
+            <li class="oneClassElement">
+                <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
+                <a class="clubName" href="" th:text="${club.name}"></a>
+                <div class="buttonsDiv">
+                    <button class= "followButton" type="submit">follow</button>
+                    <form method="get" th:action="@{/clubs/__${club.id}__}">
+                        <button class= "goToProfilePageButton" type="submit">go to profile</button>
+                    </form>
+                </div>
+            </li>
+            <p th:text="${club.id}"></p>
+        </ul>
     </div>
-</section>-->
 
-<div th:replace="navbar/show :: navbar" ></div>
-
-<div class="square"></div>
-<div class="circle1"></div>
-<div class="parallelog"></div>
-<div class="circle2"></div>
-
-<div class="clubsMainContainer">
-    <ul id="clubsList" th:each="club : ${clubs}">
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <tr th:text="${club.id}"></tr>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <tr th:text="${club.id}"></tr>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <tr th:text="${club.id}"></tr>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <tr th:text="${club.id}"></tr>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-        <li class="oneClassElement">
-            <a href=""><img class="clubPhoto" src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo"/></a>
-            <a class="clubName" href="" th:text="${club.name}"></a>
-            <div class="buttonsDiv"><button class= "followButton" type="submit">follow</button>
-                <button class= "goToProfilePageButton" type="submit">go to profile</button></div>
-        </li>
-    </ul>
-</div>
-
-<tr th:each="club: ${clubs}">
-    <td th:text="${club.id}" />
-    <td th:text="${club.name}" />
-</tr>
-
-<form class="form-signin" method="get" action="/logout">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
-</form>
-</body>
+    <!--
+    <form class="form-signin" method="get" action="/logout">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    </form>
+    -->
+    </body>
 
 </html>
 

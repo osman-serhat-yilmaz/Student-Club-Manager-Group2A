@@ -1,6 +1,7 @@
 package com.app.controller;
 
 import com.app.entity.Event;
+import com.app.entity.MyUserDetails;
 import com.app.entity.User;
 import com.app.service.AttendanceService;
 import com.app.service.EventService;
@@ -8,7 +9,10 @@ import com.app.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +29,12 @@ public class UserController {
     private final EventService eventService;
     private final AttendanceService attendanceService;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String getUsers(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "users/list";
+    @GetMapping("/user-profile")
+    public String goUserProfilePage(Model model) {
+       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
+
+       return "users/show";
     }
 
  /*   @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
@@ -40,11 +46,11 @@ public class UserController {
 
     //single item
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+  /*  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showUser(@PathVariable("id") UUID id, Model model) {
         model.addAttribute("user", userService.findOneById(id));
         return "users/show";
-    }
+    }*/
 
     @PutMapping("/{id}")
     public String updateUser(@RequestBody User user, RedirectAttributes redirectAttributes) throws Exception {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/%22%3E">
 <head>
     <title>Club Profile Page</title>
     <link rel="stylesheet" href="../../static/css/clubProfilePageCSS.css" />
@@ -11,7 +11,7 @@
             margin: auto;
         }
         .coverphoto {
-            
+            position: absolute;
             width:1519px;
             height: 210px;
             margin-left: 0px;
@@ -19,7 +19,7 @@
             background: linear-gradient(270deg, #BA7777 0%, #DEAA76 102.33%);
         }
         .profilephoto {
-            
+            position: absolute;
             width: 135px;
             height: 135px;
             margin-left: 34px;
@@ -42,9 +42,9 @@
 
 <div id="description" th:text="${club.description}"></div>
 
-
-<p class = "activemembernum" th:text="${#lists.size(activeMembers)} + ' Active Members' "></p>
-
+<!--
+<p class = "activemembernum" th:text="${club.activeMembers.length} + 'Active Members' "></p>
+-->
 
 <div th:replace="navbar/show :: navbar" ></div>
 
