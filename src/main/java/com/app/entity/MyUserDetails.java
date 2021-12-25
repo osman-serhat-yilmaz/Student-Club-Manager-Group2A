@@ -5,12 +5,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public class MyUserDetails implements UserDetails {
     private String email;
     private String password;
     private String username;
     private String description;
+    private UUID uuid;
 
     private String department;
     private int startOfStudies;
@@ -19,6 +21,7 @@ public class MyUserDetails implements UserDetails {
     private String linkedinUsername;
 
     public MyUserDetails(User user) {
+        this.uuid = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.username = user.getUsername();
@@ -76,6 +79,8 @@ public class MyUserDetails implements UserDetails {
     public String getLinkedinUsername() {
         return linkedinUsername;
     }
+
+    public UUID getUUID(){return uuid;}
 
     @Override
     public boolean isAccountNonExpired() {
