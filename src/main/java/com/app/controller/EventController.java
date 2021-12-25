@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,22 +28,50 @@ public class EventController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
+        List<Event> events = eventService.findAll();
+        List<String> dates = new ArrayList<String>();
+        for (Event event: events)
+        {
+            if(event.getDate() != null) {
+                String date = Long.toString(event.getDate());
+                date = date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+                dates.add(date);
+            }
+            else
+                dates.add("TBA");
+        }
+
+        model.addAttribute("dates", dates);
         model.addAttribute("events", eventService.findAll());  //put all the event objects in model as a List<Event>
         return "events/list";
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String createEvent(@RequestBody Event event, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/create",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String createEvent(@RequestParam String name, @RequestParam String description,
+                              @RequestParam String location, @RequestParam String eventdatemin,
+                              RedirectAttributes redirectAttributes) {
+        Event event = new Event();
+        event.setName(name);
+        event.setDescription(description);
+        event.setLocation(location);
+        event.setDate( Long.parseLong(eventdatemin.replace("-", "")) );
         eventService.save(event);
         redirectAttributes.addAttribute("id", event.getId());
         return "redirect:/events/{id}";
     }
-
     //single item
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showEvent(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("event", eventService.findOneById(id));
+        Event event = eventService.findOneById(id);
+        if(event.getDate() != null) {
+            String date = Long.toString(event.getDate());
+            date = date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+            model.addAttribute("date", date);
+        }
+        else
+            model.addAttribute("date", "TBA");
+        model.addAttribute("event", event);
         return "/events/show";
     }
 
@@ -58,7 +89,7 @@ public class EventController {
         return "redirect:/events";
     }
 
-    @RequestMapping(value = "/create-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "/create", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String createForm(Model model) {
         model.addAttribute("event", new Event());
         return "events/create";

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/%22%3E">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Create Event Page</title>
@@ -77,19 +77,20 @@
 <body style="font-family: Arial">
 <div th:replace="navbar/show :: navbar" ></div>
     <h1> CREATE YOUR EVENT </h1>
-    <form id="eventForm" action="AddItems" method="post">
+    <form id="eventForm" action="/events/create" method="post">
             <div class="box">
                 <div><span class="label"> Event Name</span>
-                <span class="ib"> <input type="text" class="formInput" name="event_name" id="event_name"/></span></div>
+                <span class="ib"> <input type="text" class="formInput" name="name" id="name"/></span></div>
             </div>
             <div class="box">
                 <span class="label">Place </span>
-                <span class="ib"> <input type="text" class="formInput" name="place" id="place"/>
+                <span class="ib"> <input type="text" class="formInput" name="location" id="location"/>
                 </span>
             </div>
+        <!--
             <div class="box">
                 <span class="label">Club  </span>
-                <select class="formInput" name="club" id="clubsList">
+                <select class="formInput" name="club" id="club">
                     <option value=""></option>
                     <option value="OR">OR</option>
                     <option value="YES">YES</option>
@@ -97,23 +98,29 @@
                     <option value="Bruh Club">Bruh Club</option>
                 </select>
             </div>
+        -->
+        <!--
             <div class="box">
                 <span class="label">Max Participants </span>
                 <span class="ib"> <input type="number" class="formInput" name="maxparticipantsbox" id="maxParticipants"/></span>
             </div>
-            <div class="box" >
+            -->
+            <div class="box">
                 <span class="label">Event Date</span>
-                <span class="ib">  <input type="date" class="formInput" name="eventdateminbox" id="eventDateMin"/></span> -
-                <span class="ib">  <input type="date" class="formInput" name="eventdatemaxbox" id="eventDateMax"/></span>
+                <span class="ib">  <input type="date" class="formInput" name="eventdatemin" id="eventdatemin"/></span> -
+                <span class="ib">  <input type="date" class="formInput" name="eventdatemax" id="eventdatemax"/></span>
             </div>
+        <!--
             <div class="box">
                 <span class="label">Application Deadline</span>
                 <span class="ib"><input type="date" class="formInput" name="appdeadlinebox" id="appDeadline"/></span>
             </div>
+            -->
             <div class="box">
                 <span class="label">Description </span>
-                <span class="ib">  <textarea id="description" name="description" rows="10" cols="75"></textarea></span>
+                <span class="ib">  <textarea type="text" id="description" name="description" rows="10" cols="75"></textarea></span>
             </div>
+        <!--
             <div class="box">
                 <span class="label">Upload a custom event thumbnail/header image
                 only one picture is allowed.</span>
@@ -128,6 +135,7 @@
                 <input class="picButton" type="submit" value="Upload slider">
                 <span class="label">Preview:</span>
             </div>
+            -->
             <input class="picButton" type="submit" value="Create Event">
         </form>
 </body>
