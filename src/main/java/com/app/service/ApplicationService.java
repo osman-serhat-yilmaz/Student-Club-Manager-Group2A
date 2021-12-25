@@ -36,8 +36,8 @@ public class ApplicationService {
         return applicationRepository.findApplicationsByClubID(clubID);
     }
 
-    public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID recipientId) {
-        return applicationRepository.findApplicationBySenderIDAndRecipientID(senderId, recipientId);
+    public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID clubId) {
+        return applicationRepository.findApplicationBySenderIDAndClubID(senderId, clubId);
     }
 
     public Long count() {

@@ -11,7 +11,7 @@
 <div class="profilephoto"><img id="profileid" src="" alt="profile photo"/></div>
 
 <!-- <button class="followbutton" type="submit" >follow</button> -->
-<button class="requestactivemembershipbutton" type="submit" method="post" action="/clubs/applications">request active membership</button>
+<button class="requestactivemembershipbutton" th:type="submit" th:method="post" th:action="@{/clubs/{id}(id=${club.id})/applications}">request active membership</button>
 <a href="/events/create" class="createeventbutton">create event</a>
 
 
