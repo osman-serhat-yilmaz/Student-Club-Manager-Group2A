@@ -1,6 +1,8 @@
+/* NAVBAR -------------------------------------------------------*/
 .navigation {
+    width: 1519px;
     height: 70px;
-    background: #262626;
+    background: #45818F;
 }
 .brand {
     position: absolute;
@@ -15,10 +17,9 @@
     text-decoration: none;
 }
 .nav-container {
-    max-width: 1920px;
+    width: 100%;
     margin: 0 auto;
 }
-
 nav {
     float: right;
 }
@@ -35,12 +36,12 @@ nav ul li a, nav ul li a:visited {
     display: block;
     padding: 0 20px;
     line-height: 70px;
-    background: #262626;
+    background: #45818F;
     color: #fff;
     text-decoration: none;
 }
 nav ul li a:hover, nav ul li a:visited:hover {
-    background: #2581dc;
+    background: #3C6D79;
     color: #fff;
 }
 nav ul li a:not(:only-child):after, nav ul li a:visited:not(:only-child):after {
@@ -60,14 +61,13 @@ nav ul li ul li a {
     z-index: 1;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
-
 /* Mobile navigation */
 .nav-mobile {
     display: none;
     position: absolute;
     top: 0;
     right: 0;
-    background: #262626;
+    background: #2A4E56;
     height: 70px;
     width: 70px;
 }
@@ -103,10 +103,10 @@ nav ul li ul li a {
 }
 #nav-toggle {
     position: absolute;
-    left: 18px;
+    margin-left: 18px;
     top: 22px;
     cursor: pointer;
-    padding: 10px 35px 16px 0px;
+    padding: 10px 35px 16px 0;
 }
 #nav-toggle span, #nav-toggle span:before, #nav-toggle span:after {
     cursor: pointer;
@@ -137,13 +137,46 @@ nav ul li ul li a {
 #nav-toggle.active span:after {
     transform: rotate(-45deg);
 }
+#signout {
+    background: #8F4545;
+}
+#signout:hover{
+    background: #833E3E;
+}
+/* user profile page -----------------------------------------------*/
+#gradient{
+    position: absolute;
+    width: 1519px;
+    height: 148px;
+    left: 0;
+    top: 70px;
+    z-index: -1;
 
+    background: linear-gradient(180deg, #45818F 0%, rgba(69, 129, 143, 0) 100%);
+}
 .top img{
-	width: 150px;
-	height: 150px;
-	margin: 20px auto;
+	width: 170px;
+	height: 170px;
+	margin: 40px auto;
 	display: block;
 }
+#profilephoto {
+    width: 170px;
+    height: 170px;
+    margin: 40px auto;
+    display: block;
+    background: linear-gradient(224.89deg, #986581 3.15%, #5C729D 100%);
+}
+
+#userName{
+    position: relative;
+    margin: auto;
+    top: -15px;
+    font-family: Noto Serif Kannada, sans-serif;
+    font-size: 26px;
+    color: #5A5A5A;
+}
+
 .top p{
 	display: block;
 	text-align: center;
@@ -152,32 +185,33 @@ nav ul li ul li a {
 .middle {
 	overflow: hidden;
 	margin: 0 auto;
+    z-index: -1;
 }
 
 .info {
 	float: left;
 	list-style: none;
+    position: relative;
+    top: -10px;
+    left: 40px;
 }
 .social {
 	float: right;
 	list-style: none;
 	position: relative;
-	top: 10px;
-	right: 30px;
+	top: -10px;
+	right: 70px;
+    font-weight: bold;
 }
 
 .bottom {
 	overflow: hidden;
-}
-
-.buttons{
-	float: right;
-	padding-right: 200px;
+    padding-top: 28px;
 }
 
 #events{
 	width: 90%;
-	margin: 5px auto 0;
+	margin: 20px auto 0;
 }
 #events table{
 	width: 100%;
@@ -185,6 +219,7 @@ nav ul li ul li a {
 #events img{
 	width: 200px;
 	height: 150px;
+    object-fit: cover;
 }
 #events p{
 	margin-top: 0;
@@ -194,7 +229,7 @@ nav ul li ul li a {
 #memberships {
 	display: none;
 	width: 90%;
-	margin: 5px auto 0;
+	margin: 20px auto 0;
 }
 #memberships table{
 	width: 100%;
@@ -202,16 +237,91 @@ nav ul li ul li a {
 #memberships img{
 	width: 150px;
 	height: 150px;
+    object-fit: cover;
 }
 #memberships p{
 	margin-top: 0;
 	margin-left: 10px;
 }
 
-#line {
-	width: 92%;
-	height: 2px;
-	margin: 30px auto 0px;
+#lineWhite {
+    position: relative;
+	width: 100%;
+	height: 15px;
+	margin: 17px auto 0;
 
-	background: #C4C4C4;
+	background: #FFFFFF;
+    z-index: 1;
+}
+
+#lineGray {
+    position: relative;
+    width: 92%;
+    height: 2px;
+    margin: -11px auto 0;
+
+    background: #C4C4C4;
+    z-index: 2;
+}
+
+
+/* buttons customize --------------------*/
+button {
+    font-family: Poly, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+#eventsButton{
+    width: 100px;
+    height: 48px;
+
+    background: #C8B39E;
+    border: none;
+    border-radius: 15px;
+
+    font-family: Poly, sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+#membershipsButton{
+    width: 200px;
+    height: 48px;
+
+    background: #D69E65;
+    border: none;
+    border-radius: 15px;
+
+    font-family: Poly, sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.eventName{
+    position: relative;
+    font-family: PoetsenOne, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    top: 4px;
+    color: #3C6D79;
+}
+
+.clubName{
+    position: relative;
+    font-family: PoetsenOne, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    top: 4px;
+    color: #3C6D79;
+}
+
+#buttons{
+    position: relative;
+    float: right;
+    margin-right: 10%;
+    margin-top: -20px;
 }
