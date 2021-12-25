@@ -17,7 +17,7 @@
     <form id="eventForm" action="/events/create" method="post">
             <div class="box">
                 <div><span class="label"> Event Name</span>
-                <span class="ib"> <input type="text" class="formInput" name="name" id="name"/></span></div>
+                <span class="ib"> <input type="text" class="formInput" name="name" id="name" required/></span></div>
             </div>
             <div class="box">
                 <span class="label">Place </span>
@@ -26,27 +26,27 @@
             </div>
             <div class="box">
                 <span class="label">Fee </span>
-                <span class="ib"> <input type="number" class="formInput" name="fee" id="fee"/></span>
+                <span class="ib"> <input type="number" class="formInput" name="fee" id="fee" required/></span>
             </div>
             <div class="box">
                 <span class="label">Club  </span>
-                <select class="formInput" name="clubId" id="clubId">
-                    <option value="0">Select club</option>
+                <select class="formInput" name="clubId" id="clubId" required>
+                    <option value="">Select club</option>
                     <option th:each="managedclub: ${managedclubs}" th:value="${managedclub.id}" th:text="${managedclub.name}"></option>
                 </select>
             </div>
             <div class="box">
                 <span class="label">Max Participants </span>
-                <span class="ib"> <input type="number" class="formInput" name="maxParticipants" id="maxParticipants"/></span>
+                <span class="ib"> <input type="number" class="formInput" name="maxParticipants" id="maxParticipants" required/></span>
             </div>
             <div class="box">
                 <span class="label">Event Date</span>
-                <span class="ib">  <input type="date" class="formInput" name="startDate" id="startDate"/></span> -
-                <span class="ib">  <input type="date" class="formInput" name="endDate" id="endDate"/></span>
+                <span class="ib">  <input type="date" class="formInput" name="startDate" id="startDate" required/></span> -
+                <span class="ib">  <input type="date" class="formInput" name="endDate" id="endDate" required/></span>
             </div>
             <div class="box">
                 <span class="label">Application Deadline</span>
-                <span class="ib"><input type="date" class="formInput" name="applicationDeadline" id="applicationDeadline"/></span>
+                <span class="ib"><input type="date" class="formInput" name="applicationDeadline" id="applicationDeadline" required/></span>
             </div>
             <div class="box">
                 <span class="label">Description </span>
