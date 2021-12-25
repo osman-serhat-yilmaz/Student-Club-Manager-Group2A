@@ -76,7 +76,7 @@ public class EventController {
         String date;
         if(event.getStartDate() != null && event.getEndDate() != null) {
             if(Objects.equals(event.getStartDate(), event.getEndDate())) {
-                date = dateString(event.getStartDate());
+                date = dateString(event.getStartDate()); 
             }
             else {
                 date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
