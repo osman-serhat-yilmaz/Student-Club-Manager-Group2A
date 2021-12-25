@@ -44,11 +44,11 @@ public class EventService {
     }
 
     public List<Event> findEventsByClubIDAndDateBefore(UUID clubId) {
-        return eventRepository.findEventsByClubIDAndDateBefore(clubId, new java.util.Date().getTime());
+        return eventRepository.findEventsByClubIDAndStartDateBefore(clubId, new java.util.Date().getTime());
     }
 
     public List<Event> findEventsByClubIDAndDateAfter(UUID clubId) {
-        return eventRepository.findEventsByClubIDAndDateAfter(clubId, new java.util.Date().getTime());
+        return eventRepository.findEventsByClubIDAndStartDateAfter(clubId, new java.util.Date().getTime());
     }
 
     public Long count() {
