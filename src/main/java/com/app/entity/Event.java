@@ -20,8 +20,12 @@ public class Event extends BaseEntity{
 
     private String name;
     @DateTimeFormat(style = "yyyy-MM-dd")
-    private Long date;
+    private Long startDate;
+    @DateTimeFormat(style = "yyyy-MM-dd")
+    private Long endDate;
 
+
+    private int maxParticipants;
     private String description;
     private String location;
     @Column(name = "clubid", columnDefinition = "BINARY(16)", insertable = false, updatable = false)

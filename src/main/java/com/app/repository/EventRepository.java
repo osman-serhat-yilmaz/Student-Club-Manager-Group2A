@@ -13,8 +13,8 @@ import java.util.UUID;
 @EnableJpaRepositories
 public interface EventRepository extends JpaRepository<Event, UUID> {
     public List<Event> findEventsByName(String name);
-    public List<Event> findEventsByClubIDAndDateBefore(UUID clubId, Long date);
-    public List<Event> findEventsByClubIDAndDateAfter(UUID clubId, Long date);
+    public List<Event> findEventsByClubIDAndStartDateBefore(UUID clubId, Long date);
+    public List<Event> findEventsByClubIDAndStartDateAfter(UUID clubId, Long date);
 
     Event findEventById(UUID id);
 }

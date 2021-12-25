@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/events")
@@ -32,10 +29,13 @@ public class EventController {
         List<String> dates = new ArrayList<String>();
         for (Event event: events)
         {
-            if(event.getDate() != null) {
-                String date = Long.toString(event.getDate());
-                date = date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
-                dates.add(date);
+            if(event.getStartDate() != null && event.getEndDate() != null) {
+                if(event.getStartDate() == event.getEndDate()) {
+                    dates.add(dateString(event.getStartDate()));
+                }
+                else {
+                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
+                }
             }
             else
                 dates.add("TBA");
@@ -46,15 +46,24 @@ public class EventController {
         return "events/list";
     }
 
+    public String dateString(Long longDate) {
+        String date = Long.toString(longDate);
+        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
+    }
+
     @RequestMapping(value = "/create",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createEvent(@RequestParam String name, @RequestParam String description,
-                              @RequestParam String location, @RequestParam String eventdatemin,
-                              RedirectAttributes redirectAttributes) {
+                              @RequestParam String location, @RequestParam String startDate,
+                              @RequestParam String endDate, @RequestParam String applicationDeadline,
+                              @RequestParam int maxParticipants, RedirectAttributes redirectAttributes) {
         Event event = new Event();
         event.setName(name);
         event.setDescription(description);
         event.setLocation(location);
-        event.setDate( Long.parseLong(eventdatemin.replace("-", "")) );
+        event.setStartDate( Long.parseLong(startDate.replace("-", "")) );
+        event.setEndDate( Long.parseLong(endDate.replace("-", "")) );
+        event.setApplicationDeadline( Long.parseLong(applicationDeadline.replace("-", "")) );
+        event.setMaxParticipants(maxParticipants);
         eventService.save(event);
         redirectAttributes.addAttribute("id", event.getId());
         return "redirect:/events/{id}";
@@ -64,13 +73,19 @@ public class EventController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showEvent(@PathVariable("id") UUID id, Model model) {
         Event event = eventService.findOneById(id);
-        if(event.getDate() != null) {
-            String date = Long.toString(event.getDate());
-            date = date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
-            model.addAttribute("date", date);
+        String date;
+        if(event.getStartDate() != null && event.getEndDate() != null) {
+            if(Objects.equals(event.getStartDate(), event.getEndDate())) {
+                date = dateString(event.getStartDate());
+            }
+            else {
+                date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
+            }
         }
         else
-            model.addAttribute("date", "TBA");
+            date = "TBA";
+
+        model.addAttribute("date", date);
         model.addAttribute("event", event);
         return "/events/show";
     }
