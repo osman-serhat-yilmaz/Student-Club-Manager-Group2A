@@ -3,7 +3,6 @@ package com.app.controller;
 import com.app.entity.Club;
 import com.app.entity.Event;
 import com.app.service.AttendanceService;
-import com.app.service.ClubService;
 import com.app.service.EventService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
