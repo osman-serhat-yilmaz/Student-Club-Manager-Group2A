@@ -1,5 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<style>
+    Body {
+        font-family: Calibri, Helvetica, sans-serif;
+        background-color: white;
+        margin: auto;
+    }
+</style>
 
     <div th:fragment="navbar">
         <link th:href="@{/css/navbar.css}" rel="stylesheet" />
@@ -22,7 +29,7 @@
                             <a href="/schedule">Schedule</a>
                         </li>
                         <li>
-                            <a href="#!">Profile</a>
+                            <a href="/users/user-profile">Profile</a>
                         </li>
                         <li>
                             <a id="signout" href="/logout">Sign Out</a>
