@@ -16,7 +16,6 @@
 	<button type="button", id="reset_1"> setData </button>
 	
 	
-	
 	<script type="text/javascript" th:inline="javascript">
 		var table = new Tabulator("#income-table", {
 			height:"311px",
@@ -59,11 +58,16 @@
 	<button type="button", id="del-row_2"> deleteRow </button>
 	<button type="button", id="clear_2"> clearData </button>
 	<button type="button", id="reset_2"> setData </button>
-	
-	<p>
-	<button type="button", id="bruh"> Calculate the Balance </button>
+
+
+	<form id="tables" action="/financeTable" method="post">
+		<input type="text" class="formInput" name="incomeData" id="incomeData"/>
+		<input type="text" class="formInput" name="expenseData" id="expenseData"/>
+		<input id="checkBalanceButton" class="picButton" type="submit" value="Submit Budget">
+	</form>
+	<button type="button", id="data"> Calculate Balance </button>
 	<h2 id="balance"></h2>
-	</p>
+
 	
 	
 	
@@ -100,25 +104,31 @@
 	$("#reset_2").click(function(){
 		table_2.setData(tabledata);
 	});
+
+		//stringify a json object
+		$("#data").click(function(){
+			var data = table.getData();
+			var str = "";
+
+			for(let i = 0; i < data.length; i++) {
+				str = str + JSON.stringify(data[i]) + "<br/>";
+			}
+
+			document.getElementById("incomeData").innerHTML = str;
+
+			data = table_2.getData();
+			str = "";
+
+			for(let i = 0; i < data.length; i++) {
+				str = str + JSON.stringify(data[i]) + "<br/>";
+			}
+
+			document.getElementById("expenseData").innerHTML = str;
+
+
+		});
 	
-	/*stringify a json object
-	$("#bruh").click(function(){
-		var selectedRows = table_2.getSelectedRows();
-		var total = 0;
-		var str = "";
-		for(var i=0;i<selectedRows.length;i++)
-		{
-		str = str + JSON.stringify(selectedRows[i].getData()) + "\n";
-		}
-		alert(str);
-		for(var i=0;i<selectedRows.length;i++)
-		{
-			total += selectedRows[i].getData().amount;
-		}
-		alert(total);
-	});*/
-	
-	$("#bruh").click(function(){
+	$("#checkBalanceButton").click(function(){
 		var totalIncome = 0;
 		var totalExpenses = 0;
 		
