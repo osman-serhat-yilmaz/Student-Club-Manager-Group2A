@@ -65,7 +65,7 @@ public class ClubController {
         model.addAttribute("upcomingEvents", eventService.findEventsByClubIDAndDateAfter(id));
         model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
         List<User> activeMembers = new ArrayList<User>();
-        List<ClubRole> activeMemberRoles = clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER);
+        List<ClubRole> activeMemberRoles = clubRoleService.findActiveMembers(id);
         for (ClubRole role: activeMemberRoles ) {
             activeMembers.add(userService.findOneById(role.getUserID()));
         }

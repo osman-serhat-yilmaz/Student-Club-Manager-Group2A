@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +39,13 @@ public class ClubRoleService {
 
     public List<ClubRole> findClubRolesByUserIDAndRole(UUID userId, Role role) {
         return clubRoleRepository.findClubRolesByUserIDAndRole(userId, role);
+    }
+
+    public List<ClubRole> findActiveMembers(UUID userId) {
+        List<ClubRole> activeMembers = findClubRolesByUserIDAndRole(userId, Role.MANAGEMENT_MEMBER);
+        activeMembers.addAll(findClubRolesByUserIDAndRole(userId, Role.MANAGER));
+        activeMembers.addAll(findClubRolesByUserIDAndRole(userId, Role.ACTIVE_MEMBER));
+        return activeMembers;
     }
 
     public ClubRole findClubByName(UUID clubId, UUID userId) {
