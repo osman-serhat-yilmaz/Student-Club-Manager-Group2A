@@ -48,7 +48,7 @@
 
         <table>
             <tr>
-                <td th:each="attendedevent: ${attendedevents}" th:value="${attendedevent.getId()}" th:text="${attendedevent.getName()}">
+                <td th:each="attendedevent: ${attendedevents}" th:value="${attendedevent.getId()}" th:text="${attendedevent.name}">
 
                 </td>
             </tr>
@@ -79,16 +79,9 @@
     </div>
 </div>
 
-<script src="../../static/js/userProfilePage.js"></script>
+<script type="text/javascript" th:src="@{/js/userProfilePage.js}"></script>
 
-<button href="/users/edit-profile-page">
-    <div class="pencil">
-        <div class="triangle"></div>
-        <div class="rec1"></div>
-        <div class="rec2"></div>
-        <div class="rec3"></div>
-    </div>
-</button>
+<button class= "editButton" type="submit">edit</button>
 
 </body>
 

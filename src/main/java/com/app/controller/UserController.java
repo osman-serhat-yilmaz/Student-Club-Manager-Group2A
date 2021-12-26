@@ -36,10 +36,13 @@ public class UserController {
     public String goUserProfilePage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
-        System.out.println(((MyUserDetails)authentication.getPrincipal()).getUUID());
-        model.addAttribute("attendedevents", attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true));
+        List<Attendance> ats = attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true);
+        List<Event> attendedEvents = new ArrayList<>();
+        for(Attendance at : ats){
+            attendedEvents.add(eventService.findOneById(at.getEventID()));
+        }
         model.addAttribute("canEdit", true);
-
+        model.addAttribute("attendedevents", attendedEvents);
         return "users/show";
     }
 
@@ -56,14 +59,17 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showAnotherUser(@PathVariable("id") UUID id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(((MyUserDetails)authentication.getPrincipal()).getUUID() );
-        System.out.println(id);
-        System.out.println();
         if( Objects.equals( ((MyUserDetails)authentication.getPrincipal()).getUUID(), id) )
             return "redirect:/users/user-profile";
+            
+        List<Attendance> ats = attendanceService.findAttendancesByUserIDAndAttended(id, true);
+        List<Event> attendedEvents = new ArrayList<>();
+        for(Attendance at : ats){
+            attendedEvents.add(eventService.findOneById(at.getEventID()));
+        }
+        model.addAttribute("attendedevents", attendedEvents);
 
         model.addAttribute("user", userService.findOneById(id));
-        model.addAttribute("attendedevents", attendanceService.findAttendancesByUserIDAndAttended(id, true));
         model.addAttribute("canEdit", false);
         return "users/show";
     }
