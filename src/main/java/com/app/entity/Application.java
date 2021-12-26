@@ -20,6 +20,7 @@ public class Application extends BaseEntity{
     private UUID senderID;
 
     private String applicationStatus;
+    @Column(name = "clubid", columnDefinition = "BINARY(16)")
     private UUID clubID;
 
 }
