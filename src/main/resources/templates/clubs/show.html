@@ -35,17 +35,17 @@
     <p class="eventstitle">Upcoming events:</p>
     <ul class="eventslist">
         <li class="event1" th:if="${!upcomingEvents.isEmpty()}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(0).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${upcomingEvents.get(0).name}"></a>
             <p class="eventdate" th:text="${upcomingEvents.get(0).location}"></p>
         </li>
         <li class="event2" th:if="${upcomingEvents.size() >= 2}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(1).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${upcomingEvents.get(1).name}"></a>
             <p class="eventdate" th:text="${upcomingEvents.get(1).location}"></p>
         </li>
         <li class="event3" th:if="${upcomingEvents.size() >= 3}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(2).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${upcomingEvents.get(2).name}"></a>
             <p class="eventdate" th:text="${upcomingEvents.get(2).location}"></p>
             <a class="more" href="">more</a>
@@ -56,17 +56,17 @@
     <p class="eventstitle">Past events:</p>
     <ul class="eventslist">
         <li class="event1" th:if="${pastEvents.size() >= 1}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(0).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(0).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(0).location}"></p>
         </li>
         <li class="event2" th:if="${pastEvents.size() >= 2}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(1).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(1).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(1).location}"></p>
         </li>
         <li class="event3" th:if="${pastEvents.size() >= 3}">
-            <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(2).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(2).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(2).location}"></p>
             <a class="more" href="">more</a>
