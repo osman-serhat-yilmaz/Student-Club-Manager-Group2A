@@ -463,58 +463,29 @@ button:hover {
     color: #F0F0F0;
 }
 
-.pencil{
+.editButton{
     position: absolute;
-    margin-left: 1440px;
-    top: 90px;
-    opacity: 0.8;
-}
+    margin-left: 93%;
+    top: 88px;
+    /*width: 79px;*/
+    height: 34px;
 
-.triangle{
-    position: absolute;
-    margin-left: 12px;
-    top: 31px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #0657A8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
 
-    width: 0;
-    height: 0;
-    border: 8px solid transparent;
-    border-top: 0;
-    border-bottom: 8px solid #3C3C3C;
-    transform: rotate(-132deg);
-}
+    font-family: Poly, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 
-.rec1{
-    position: absolute;
-    margin-left: 30px;
-    top: 1px;
-
-    height: 35.8px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-}
-
-.rec2{
-    position: absolute;
-    margin-left: 46px;
-    top: 2px;
-
-    height: 5px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-}
-
-.rec3{
-    position: absolute;
-    margin-left: 48px;
-    top: 0;
-
-    height: 5px;
-    width: 15px;
-    background-color: #3C3C3C;
-    transform: rotate(48deg);
-    border-radius: 10px;
+    color: #0657A8;
 }
 
 Body {
