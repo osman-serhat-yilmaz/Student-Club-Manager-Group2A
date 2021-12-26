@@ -1,7 +1,7 @@
 /* buttons -------------------------------------------------------*/
 .createeventbutton{
     position: absolute;
-    width: 125px;
+    width: 105px;
     height: 44px;
     margin-left: 920px;
     top: 297px;
@@ -14,7 +14,7 @@
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 26px;
     display: flex;
     align-items: center;
@@ -22,6 +22,35 @@
     color: #FFFFFF;
     padding-left: 4px;
     text-decoration: none;
+}
+
+.goToFinanceTablePageButton{
+    position: absolute;
+    width: 147px;
+    height: 44px;
+    margin-left: 750px;
+    top: 297px;
+
+    background: #5b7d97;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+
+    font-family: Poly, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding-left: 4px;
+    text-decoration: none;
+}
+
+.goToFinanceTablePageButton:hover{
+    opacity: 0.7;
 }
 
 .createeventbutton:hover {
@@ -43,7 +72,7 @@
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 26px;
     display: flex;
     align-items: center;
@@ -67,6 +96,7 @@ button {
 }
 
 button:hover {
+    cursor: pointer;
     opacity: 0.7;
 }
 
@@ -509,4 +539,11 @@ Body {
     margin-left: 34px;
     margin-top: 251px;
     background: linear-gradient(224.89deg, #986581 3.15%, #5C729D 100%);
+}
+
+.username{
+    padding-left: 10px;
+    padding-top: 19px;
+    text-decoration: none;
+    font-size: 18px;
 }

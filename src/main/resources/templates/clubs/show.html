@@ -16,6 +16,7 @@
     <button class="requestactivemembershipbutton" type="submit" name="submit" value="value" >request active membership</button>
 </form>
 <a href="/events/create" class="createeventbutton">create event</a>
+<a href="" class="goToFinanceTablePageButton">view finance table</a>
 
 
 
@@ -98,18 +99,9 @@
     </div>
 </div>
 
-
-<button class= "editButton" type="submit">edit</button>
-
 <button th:if="${role}<=1">
-    <div class="pencil">
-        <div class="triangle"></div>
-        <div class="rec1"></div>
-        <div class="rec2"></div>
-        <div class="rec3"></div>
-    </div>
+    <button class= "editButton" type="submit">edit</button>
 </button>
-
 
 </body>
 </html>
