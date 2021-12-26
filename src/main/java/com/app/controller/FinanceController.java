@@ -24,8 +24,8 @@ public class FinanceController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getFinances(Model model) {
-        model.addAttribute("incomes", financeService.findIncomes());  //put all the event objects in model as a List<Event>
-        model.addAttribute("outcomes", financeService.findOutcomes());  //put all the event objects in model as a List<Event>
+        model.addAttribute("incomeData", financeService.findIncomes());  //put all the event objects in model as a List<Event>
+        model.addAttribute("expenseData", financeService.findOutcomes());  //put all the event objects in model as a List<Event>
         int totalBalance = 0;
         for (Finance income: financeService.findIncomes()) {
             totalBalance =+ income.getValue();

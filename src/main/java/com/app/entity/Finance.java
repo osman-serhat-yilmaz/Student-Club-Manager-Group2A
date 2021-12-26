@@ -26,5 +26,8 @@ public class Finance extends BaseEntity{
 
     @DateTimeFormat(style = "yyyy-MM-dd")
     private Long date;
+
+    private String incomeTable;
+    private String outcomeTable;
 }
 
