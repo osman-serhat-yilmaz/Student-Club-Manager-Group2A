@@ -16,7 +16,7 @@
     <button class="requestactivemembershipbutton" type="submit" name="submit" value="value" >request active membership</button>
 </form>
 <a href="/events/create" class="createeventbutton">create event</a>
-<a href="" class="goToFinanceTablePageButton">view finance table</a>
+<a th:if="${role}==0 or ${role}==3" href="/financeTable" class="goToFinanceTablePageButton">view finance table</a>
 
 
 
