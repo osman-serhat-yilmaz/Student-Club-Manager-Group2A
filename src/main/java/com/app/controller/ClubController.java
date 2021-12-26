@@ -70,6 +70,13 @@ public class ClubController {
             activeMembers.add(userService.findOneById(role.getUserID()));
         }
         model.addAttribute("activeMembers", activeMembers);
+
+        List<User> requestedUsers = new ArrayList<User>();
+        List<Application> requests = applicationService.findApplicationsByClubID(id);
+        for (Application request: requests ) {
+            requestedUsers.add(userService.findOneById(request.getSenderID()));
+        }
+        model.addAttribute("activeMembershipRequests", requestedUsers);
         
         return "clubs/show";
     }
