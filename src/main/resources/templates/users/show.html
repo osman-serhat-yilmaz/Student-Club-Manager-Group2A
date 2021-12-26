@@ -45,11 +45,10 @@
     <div id="lineWhite"></div>
     <div id="lineGray"></div>
     <div id="events">
-
         <table>
             <tr>
-                <td th:each="attendedevent: ${attendedevents}" th:value="${attendedevent.getId()}" th:text="${attendedevent.name}">
-
+                <td th:each="attendedevent: ${attendedevents}">
+					<p class = "clubName"><th:block th:text="${attendedevent.name}"> </th:block> </p>
                 </td>
             </tr>
         </table>
@@ -58,21 +57,8 @@
     <div id="memberships">
         <table>
             <tr>
-                <td>
-                    <img>
-                    <p class="clubName">X Club</p>
-                </td>
-                <td>
-                    <img>
-                    <p class="clubName">X Club</p>
-                </td>
-                <td>
-                    <img>
-                    <p class="clubName">X Club</p>
-                </td>
-                <td>
-                    <img>
-                    <p class="clubName">X Club</p>
+                <td th:each="club: ${clubs}">
+					<p class = "clubName"><th:block th:text="${club.name}"> </th:block> </p>
                 </td>
             </tr>
         </table>
