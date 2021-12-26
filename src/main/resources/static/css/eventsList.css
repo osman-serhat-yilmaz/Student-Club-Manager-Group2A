@@ -108,21 +108,40 @@ Body {
     margin-left: 4px;
 }
 
-#events{
+#upcomingEvents{
     width: 87%;
     margin: 20px auto 0;
 }
-#events table{
+#upcomingEvents table{
     width: 100%;
 }
-#events img{
+#upcomingEvents img{
     width: 200px;
     height: 150px;
     object-fit: cover;
     margin-top: 20px;
     padding-bottom: 6px;
 }
-#events p{
+#upcomingEvents p{
+    margin-top: 0;
+    margin-left: 4px;
+}
+
+#pastEvents{
+    width: 87%;
+    margin: 20px auto 0;
+}
+#pastEvents table{
+    width: 100%;
+}
+#pastEvents img{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin-top: 20px;
+    padding-bottom: 6px;
+}
+#pastEvents p{
     margin-top: 0;
     margin-left: 4px;
 }

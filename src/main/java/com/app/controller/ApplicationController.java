@@ -61,7 +61,7 @@ public class ApplicationController {
         return "redirect:/clubs/{id}";
     }
 
-    @RequestMapping(value = "clubs/{id}/applications/approve",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    @RequestMapping(value = "clubs/{id}/applications/reject",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String rejectApplication(@PathVariable("id") UUID clubid,@ModelAttribute("user") User user,
                                      RedirectAttributes redirectAttributes) {
 
