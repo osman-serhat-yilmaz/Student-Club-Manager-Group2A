@@ -33,7 +33,7 @@ public class LoginController {
         HttpSession session = request.getSession(false);
         String errorMessage = null;
         if (session != null) {
-            errorMessage = "無效的電子郵件或密碼 !";
+            errorMessage = "無效的電子郵件或密碼 ! (Incorrect email or password!)";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
