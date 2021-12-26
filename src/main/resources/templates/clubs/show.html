@@ -81,19 +81,35 @@
     </tr>
 </div>
 
-
-<p class="requestlisttitle">Active Membership Requests:</p>
-<div class="secondcontainer" th:each="user : ${activeMembershipRequests}">
-    <ul id="requests">
-        <li>
-            <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
-            <button class= "acceptbutton" type="submit">🗸</button>
-            <button class= "rejectbutton" type="submit">✖</button>
-        </li>
-    </ul>
+<div th:if="${role}<=1">
+    <p class="requestlisttitle" >Active Membership Requests:</p>
+    <div class="secondcontainer" th:each="user : ${activeMembershipRequests}">
+        <ul id="requests">
+            <li>
+                <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
+                <form method="POST" th:action="@{/clubs/{id}/applications/approve(id=${club.id})}" th:object="${user}"  modelAttribute="user">
+                    <button class= "acceptbutton" type="submit" >🗸</button>
+                </form>
+                <form method="POST" th:action="@{/clubs/{id}/applications/reject(id=${club.id})}" th:object="${user}"  modelAttribute="user">
+                    <button class= "rejectbutton" type="submit" >✖</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 </div>
 
+
 <button class= "editButton" type="submit">edit</button>
+
+<button th:if="${role}<=1">
+    <div class="pencil">
+        <div class="triangle"></div>
+        <div class="rec1"></div>
+        <div class="rec2"></div>
+        <div class="rec3"></div>
+    </div>
+</button>
+
 
 </body>
 </html>
