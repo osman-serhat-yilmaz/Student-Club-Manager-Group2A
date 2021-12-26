@@ -8,12 +8,12 @@
 	</head>
 	
 	<body style = "background-color: #45818F">
+	<div th:replace="navbar/show :: navbar" ></div>
 	<h1> INCOME TABLE </h1>
 	<div id="income-table"></div>
-	<button type="button", id="add-row_1"> addRow </button>
-	<button type="button", id="del-row_1"> deleteRow </button>
-	<button type="button", id="clear_1"> clearData </button>
-	<button type="button", id="reset_1"> setData </button>
+	<button type="button", id="add-row_1"> Add New Row </button>
+	<button type="button", id="del-row_1"> Delete Selected Rows </button>
+	<button type="button", id="clear_1"> Delete ALL Rows </button>
 	
 	
 	<script type="text/javascript" th:inline="javascript">
@@ -54,18 +54,12 @@
 	
 	<h1> EXPENSES TABLE </h1>
 	<div id="expenses-table"></div>
-	<button type="button", id="add-row_2"> addRow </button>
-	<button type="button", id="del-row_2"> deleteRow </button>
-	<button type="button", id="clear_2"> clearData </button>
-	<button type="button", id="reset_2"> setData </button>
+	<button type="button", id="add-row_2"> Add New Row </button>
+	<button type="button", id="del-row_2"> Delete Selected Rows </button>
+	<button type="button", id="clear_2"> Delete ALL Rows </button>
 
-
-	<form id="tables" action="/financeTable" method="post">
-		<input type="text" class="formInput" name="incomeData" id="incomeData"/>
-		<input type="text" class="formInput" name="expenseData" id="expenseData"/>
-		<input id="checkBalanceButton" class="picButton" type="submit" value="Submit Budget">
-	</form>
-	<button type="button", id="data"> Calculate Balance </button>
+	<br><br>
+	<div><button type="button", id="calculateBalance"> Calculate Balance </button></div>
 	<h2 id="balance"></h2>
 
 	
@@ -106,7 +100,7 @@
 	});
 
 		//stringify a json object
-		$("#data").click(function(){
+		/* $("#data").click(function(){
 			var data = table.getData();
 			var str = "";
 
@@ -126,9 +120,9 @@
 			document.getElementById("expenseData").innerHTML = str;
 
 
-		});
+		}); */
 	
-	$("#checkBalanceButton").click(function(){
+	$("#calculateBalance").click(function(){
 		var totalIncome = 0;
 		var totalExpenses = 0;
 		
