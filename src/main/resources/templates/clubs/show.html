@@ -89,7 +89,6 @@
                 <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
                 <form method="POST" th:action="@{/clubs/{id}/applications/approve(id=${club.id})}" >
                     <button class= "acceptbutton" type="submit" >🗸</button>
-                    <input type="date" class="formInput" name="startDate" id="startDate" required/>
                 </form>
                 <form method="POST" th:action="@{/clubs/{id}/applications/reject(id=${club.id})}" >
                     <button class= "rejectbutton" type="submit" >✖</button>
