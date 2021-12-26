@@ -55,6 +55,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findUserByEmail(email).orElseThrow();
     }
 
+    public List<User> findUsersByUsernameContaining(String username) {
+        return userRepository.findUsersByUsernameContaining(username);
+    }
+
     public Long count() {
         return userRepository.count();
     }

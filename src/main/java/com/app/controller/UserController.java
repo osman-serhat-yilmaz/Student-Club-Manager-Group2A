@@ -29,6 +29,12 @@ public class UserController {
     private final ClubService clubService;
     private final ClubRoleService clubRoleService;
 
+    @GetMapping()
+    public String getUsers(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "/users/list";
+    }
+
     @GetMapping("/user-profile")
     public String goUserProfilePage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -48,15 +54,6 @@ public class UserController {
 
         return "users/show";
     }
-
- /*   @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String createUser(@RequestBody User user, RedirectAttributes redirectAttributes) {
-        userService.save(user);
-        redirectAttributes.addAttribute("id", user.getId());
-        return "redirect:/users/{id}";
-    }*/
-
-    //single item
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
@@ -121,6 +118,8 @@ public class UserController {
         redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByUserID(id));
         return "/users/attendances";
     }
+
+
 
    /* @RequestMapping("/schedule/{id}")
     public String schedule(@PathVariable("id") UUID id, Model model) {
