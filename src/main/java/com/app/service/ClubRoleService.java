@@ -42,9 +42,9 @@ public class ClubRoleService {
     }
 
     public List<ClubRole> findActiveMembers(UUID userId) {
-        List<ClubRole> activeMembers = findClubRolesByUserIDAndRole(userId, Role.MANAGEMENT_MEMBER);
-        activeMembers.addAll(findClubRolesByUserIDAndRole(userId, Role.MANAGER));
-        activeMembers.addAll(findClubRolesByUserIDAndRole(userId, Role.ACTIVE_MEMBER));
+        List<ClubRole> activeMembers = findClubRolesByClubIDAndRole(userId, Role.MANAGEMENT_MEMBER);
+        activeMembers.addAll(findClubRolesByClubIDAndRole(userId, Role.MANAGER));
+        activeMembers.addAll(findClubRolesByClubIDAndRole(userId, Role.ACTIVE_MEMBER));
         return activeMembers;
     }
 

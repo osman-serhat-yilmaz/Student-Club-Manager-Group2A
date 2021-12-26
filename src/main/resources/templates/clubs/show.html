@@ -77,22 +77,22 @@
 <p class="activememberlisttitle">Active Members:</p>
 <div class="maincontainer">
     <tr id="activemembers" th:each="user : ${activeMembers}">
-            <a class="username" th:href="@{/users/{id}(id=${user.getId() })}" th:text="${user.getUsername()}"></a>
+            <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
     </tr>
 </div>
 
-<!--
+
 <p class="requestlisttitle">Active Membership Requests:</p>
 <div class="secondcontainer" th:each="user : ${activeMembershipRequests}">
     <ul id="requests">
         <li>
-            <a class="username" href="" th:text="${user.name}"></a>
+            <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
             <button class= "acceptbutton" type="submit">🗸</button>
             <button class= "rejectbutton" type="submit">✖</button>
         </li>
     </ul>
 </div>
--->
+
 <button>
     <div class="pencil">
         <div class="triangle"></div>
