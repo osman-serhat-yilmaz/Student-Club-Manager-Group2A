@@ -37,6 +37,8 @@ public class EventController {
 
         model.addAttribute("pastDates", getDates(pastEvents));
         model.addAttribute("upcomingDates", getDates(upcomingEvents));
+        model.addAttribute("pastClubs", getClubs(pastEvents));
+        model.addAttribute("upcomingClubs", getClubs(upcomingEvents));
         model.addAttribute("pastEvents", pastEvents);
         model.addAttribute("upcomingEvents", upcomingEvents);
         return "events/list";
@@ -154,7 +156,7 @@ public class EventController {
         for (Event event: events)
         {
             if(event.getStartDate() != null && event.getEndDate() != null) {
-                if(event.getStartDate() == event.getEndDate()) {
+                if(Objects.equals(event.getStartDate(), event.getEndDate())) {
                     dates.add(dateString(event.getStartDate()));
                 }
                 else {
@@ -165,6 +167,15 @@ public class EventController {
                 dates.add("TBA");
         }
         return dates;
+    }
+
+    public List<String> getClubs(List<Event> events){
+        List<String> clubs = new ArrayList<String>();
+        for (Event event: events)
+        {
+            clubs.add(clubService.findOneById(event.getClubID()).getName());
+        }
+        return clubs;
     }
 
 }

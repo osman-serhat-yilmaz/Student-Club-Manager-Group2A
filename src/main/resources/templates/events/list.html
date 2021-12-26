@@ -58,8 +58,8 @@
       <table th:each="i : ${#numbers.sequence( 0, pastEvents.size(), 4)}">
         <tr>
 
-          <td>
-            <p class="clubName" th:text="${pastEvents.get(i).description}"></p>
+          <td th:if="${pastEvents.size()}>=1">
+            <p class="clubName" th:text="${pastClubs.get(i)}"></p>
             <img>
             <p class="eventName" th:text="${pastEvents.get(i).getName()}"></p>
             <div class="eventInfo">
@@ -69,7 +69,7 @@
           </td>
 
           <td th:if="${pastEvents.size()}>=2">
-          <p class="clubName" th:text="${pastEvents.get(i+1).description}"></p>
+          <p class="clubName" th:text="${pastClubs.get(i+1)}"></p>
           <img>
           <p class="eventName" th:text="${pastEvents.get(i+1).getName()}"></p>
           <div class="eventInfo">
@@ -79,7 +79,7 @@
         </td>
 
           <td th:if="${pastEvents.size()}>=3">
-          <p class="clubName" th:text="${pastEvents.get(i+2).description}"></p>
+          <p class="clubName" th:text="${pastClubs.get(i+2)}"></p>
           <img>
           <p class="eventName" th:text="${pastEvents.get(i+2).getName()}"></p>
           <div class="eventInfo">
@@ -95,8 +95,8 @@
       <table th:each="i : ${#numbers.sequence( 0, upcomingEvents.size(), 4)}">
         <tr>
 
-          <td>
-            <p class="clubName" th:text="${upcomingEvents.get(i).description}"></p>
+          <td th:if="${upcomingEvents.size()}>=1">
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
             <p class="eventName" th:text="${upcomingEvents.get(i).getName()}"></p>
             <div class="eventInfo">
@@ -106,7 +106,7 @@
           </td>
 
           <td th:if="${upcomingEvents.size()}>=2">
-            <p class="clubName" th:text="${upcomingEvents.get(i+1).description}"></p>
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
             <p class="eventName" th:text="${upcomingEvents.get(i+1).getName()}"></p>
             <div class="eventInfo">
@@ -116,7 +116,7 @@
           </td>
 
           <td th:if="${upcomingEvents.size()}>=3">
-            <p class="clubName" th:text="${upcomingEvents.get(i+2).description}"></p>
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
             <p class="eventName" th:text="${upcomingEvents.get(i+2).getName()}"></p>
             <div class="eventInfo">
