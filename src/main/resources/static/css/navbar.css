@@ -3,6 +3,15 @@
     height: 70px;
     background: #45818F;
 }
+.logo {
+    position: absolute;
+    margin-left: 0;
+    margin-top: 0;
+    height: 70px;
+    width: 70px;
+    z-index: 1;
+}
+
 .brand {
     position: absolute;
     padding-left: 20px;
