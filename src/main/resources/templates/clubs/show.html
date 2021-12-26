@@ -55,17 +55,17 @@
 <div id="pastevents">
     <p class="eventstitle">Past events:</p>
     <ul class="eventslist">
-        <li class="event1" th:if="${upcomingEvents.size() >= 1}">
+        <li class="event1" th:if="${pastEvents.size() >= 1}">
             <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(0).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(0).location}"></p>
         </li>
-        <li class="event2" th:if="${upcomingEvents.size() >= 2}">
+        <li class="event2" th:if="${pastEvents.size() >= 2}">
             <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(1).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(1).location}"></p>
         </li>
-        <li class="event3" th:if="${upcomingEvents.size() >= 3}">
+        <li class="event3" th:if="${pastEvents.size() >= 3}">
             <a href=""><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="event photo"  style="width: 232px; height: 154px; object-fit: cover;" /></a>
             <a class="eventname" href="" th:text="${pastEvents.get(2).name}"></a>
             <p class="eventdate" th:text="${pastEvents.get(2).location}"></p>

@@ -60,7 +60,7 @@
 
           <td th:if="${pastEvents.size()}>=${i}+1">
             <p class="clubName" th:text="${pastClubs.get(i)}"></p>
-            <img>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(i).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
             <p class="eventName" th:text="${pastEvents.get(i).getName()}"></p>
             <div class="eventInfo">
               <p class="eventInfoElement" th:text="${pastDates.get(i)}"></p>
@@ -70,7 +70,7 @@
 
           <td th:if="${pastEvents.size()}>=${i}+2">
           <p class="clubName" th:text="${pastClubs.get(i+1)}"></p>
-          <img>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(i+1).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
           <p class="eventName" th:text="${pastEvents.get(i+1).getName()}"></p>
           <div class="eventInfo">
             <p class="eventInfoElement" th:text="${pastDates.get(i+1)}"></p>
@@ -80,7 +80,7 @@
 
           <td th:if="${pastEvents.size()}>=${i}+3">
           <p class="clubName" th:text="${pastClubs.get(i+2)}"></p>
-          <img>
+            <a th:href="@{/events/{id}(id=${pastEvents.get(i+2).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
           <p class="eventName" th:text="${pastEvents.get(i+2).getName()}"></p>
           <div class="eventInfo">
             <p class="eventInfoElement" th:text="${pastDates.get(i+2)}"></p>
@@ -97,7 +97,7 @@
 
           <td th:if="${upcomingEvents.size()}>=${i}+1">
             <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
-            <img>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(i).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
             <p class="eventName" th:text="${upcomingEvents.get(i).getName()}"></p>
             <div class="eventInfo">
               <p class="eventInfoElement" th:text="${upcomingDates.get(i)}"></p>
@@ -106,8 +106,8 @@
           </td>
 
           <td th:if="${upcomingEvents.size()}>=${i}+2">
-            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
-            <img>
+            <p class="clubName" th:text="${upcomingClubs.get(i+1)}"></p>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(i+1).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
             <p class="eventName" th:text="${upcomingEvents.get(i+1).getName()}"></p>
             <div class="eventInfo">
               <p class="eventInfoElement" th:text="${upcomingDates.get(i+1)}"></p>
@@ -116,8 +116,8 @@
           </td>
 
           <td th:if="${upcomingEvents.size()}>=${i}+3">
-            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
-            <img>
+            <p class="clubName" th:text="${upcomingClubs.get(i+2)}"></p>
+            <a th:href="@{/events/{id}(id=${upcomingEvents.get(i+2).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
             <p class="eventName" th:text="${upcomingEvents.get(i+2).getName()}"></p>
             <div class="eventInfo">
               <p class="eventInfoElement" th:text="${upcomingDates.get(i+2)}"></p>
