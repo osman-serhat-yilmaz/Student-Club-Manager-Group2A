@@ -27,19 +27,25 @@
     <div class="dropdown">
       <button onclick="dropdown()" class="dropbtn">Choose a filter</button>
       <div id="myDropdown" class="dropdown-content">
-        <button style="background-color: darkred" onclick="dropdown()" class="dropbtn">Tags</button>
-        <div id="myDropdown1" class="dropdown-content1">
+        <ul>
+        <li class="dropdown">
+        <button style="background-color: darkred" onclick="dropdown1()" class="dropbtn">Tags</button>
+        <div id="myDropdown1" class="dropdown-content">
           <a href="#home">Science</a>
           <a href="#about">Engineering</a>
           <a href="#contact">Astronomy</a>
         </div>
+        </li>
 
-        <button style="background-color: darkred" onclick="dropdown()" class="dropbtn">Clubs</button>
-        <div id="myDropdown2" class="dropdown-content2">
+        <li class="dropdown">
+        <button style="background-color: darkred" onclick="dropdown2()" class="dropbtn">Clubs</button>
+        <div id="myDropdown2" class="dropdown-content">
           <a href="#home">OR</a>
           <a href="#about">YES</a>
           <a href="#contact">ADT</a>
         </div>
+        </li>
+        </ul>
       </div>
     </div>
 
