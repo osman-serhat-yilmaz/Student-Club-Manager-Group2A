@@ -1,12 +1,7 @@
 package com.app.controller;
 
-import com.app.entity.Attendance;
-import com.app.entity.Event;
-import com.app.entity.MyUserDetails;
-import com.app.entity.User;
-import com.app.service.AttendanceService;
-import com.app.service.EventService;
-import com.app.service.UserService;
+import com.app.entity.*;
+import com.app.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +25,8 @@ public class UserController {
     private final UserService userService;
     private final EventService eventService;
     private final AttendanceService attendanceService;
+    private final ClubService clubService;
+    private final ClubRoleService clubRoleService;
 
     @GetMapping("/user-profile")
     public String goUserProfilePage(Model model) {
@@ -40,8 +37,14 @@ public class UserController {
         for(Attendance at : ats){
             attendedEvents.add(eventService.findOneById(at.getEventID()));
         }
+        List<Club> clubs = new ArrayList<>();
+        for(ClubRole cr : clubRoleService.findActiveMemberships(((MyUserDetails) authentication.getPrincipal()).getUUID())){
+            clubs.add(clubService.findOneById(cr.getClubID()));
+        }
+        model.addAttribute("clubs", clubs);
         model.addAttribute("canEdit", true);
         model.addAttribute("attendedevents", attendedEvents);
+
         return "users/show";
     }
 
@@ -62,8 +65,12 @@ public class UserController {
         for(Attendance at : ats){
             attendedEvents.add(eventService.findOneById(at.getEventID()));
         }
+        List<Club> clubs = new ArrayList<>();
+        for(ClubRole cr : clubRoleService.findActiveMemberships(id)){
+            clubs.add(clubService.findOneById(cr.getClubID()));
+        }
         model.addAttribute("attendedevents", attendedEvents);
-
+        model.addAttribute("clubs", clubs);
         model.addAttribute("user", userService.findOneById(id));
         model.addAttribute("canEdit", false);
         return "users/show";

@@ -41,11 +41,18 @@ public class ClubRoleService {
         return clubRoleRepository.findClubRolesByUserIDAndRole(userId, role);
     }
 
-    public List<ClubRole> findActiveMembers(UUID userId) {
-        List<ClubRole> activeMembers = findClubRolesByClubIDAndRole(userId, Role.MANAGEMENT_MEMBER);
-        activeMembers.addAll(findClubRolesByClubIDAndRole(userId, Role.MANAGER));
-        activeMembers.addAll(findClubRolesByClubIDAndRole(userId, Role.ACTIVE_MEMBER));
+    public List<ClubRole> findActiveMembers(UUID clubId) {
+        List<ClubRole> activeMembers = findClubRolesByClubIDAndRole(clubId, Role.MANAGEMENT_MEMBER);
+        activeMembers.addAll(findClubRolesByClubIDAndRole(clubId, Role.MANAGER));
+        activeMembers.addAll(findClubRolesByClubIDAndRole(clubId, Role.ACTIVE_MEMBER));
         return activeMembers;
+    }
+
+    public List<ClubRole> findActiveMemberships(UUID userId) {
+        List<ClubRole> activeMemberships = findClubRolesByUserIDAndRole(userId, Role.MANAGEMENT_MEMBER);
+        activeMemberships.addAll(findClubRolesByUserIDAndRole(userId, Role.MANAGER));
+        activeMemberships.addAll(findClubRolesByUserIDAndRole(userId, Role.ACTIVE_MEMBER));
+        return activeMemberships;
     }
 
     public ClubRole findClubByName(UUID clubId, UUID userId) {
