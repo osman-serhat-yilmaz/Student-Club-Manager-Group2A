@@ -78,7 +78,12 @@ public class ClubController {
             requestedUsers.add(userService.findOneById(request.getSenderID()));
         }
         model.addAttribute("activeMembershipRequests", requestedUsers);
-        
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        ClubRole role = clubRoleService.findClubRoleByIDs(id, ((MyUserDetails)authentication.getPrincipal()).getUUID());
+        if(role==null)
+            model.addAttribute("role", 6);
+        else
+            model.addAttribute("role", role.getRole().ordinal());
         return "clubs/show";
     }
 

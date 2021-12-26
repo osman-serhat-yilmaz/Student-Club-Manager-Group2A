@@ -55,7 +55,7 @@ public class ClubRoleService {
         return activeMemberships;
     }
 
-    public ClubRole findClubByName(UUID clubId, UUID userId) {
+    public ClubRole findClubRoleByIDs(UUID clubId, UUID userId) {
         return clubRoleRepository.findClubRoleByClubIDAndUserID(clubId, userId);
     }
 
