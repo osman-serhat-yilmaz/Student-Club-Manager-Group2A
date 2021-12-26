@@ -39,7 +39,7 @@
 		}   
 		form {   
 			border: none;   
-			padding-bottom: 50px;
+			padding-bottom: 20px;
 		} 
 		#forgot_password{
 			color: #8C8C8C;
@@ -72,8 +72,8 @@
 			opacity: 0.7;   
 		}    	
 		.container {   
-			padding: 25px; 
-			padding-top: 5px;
+			padding-left: 25px;
+			padding-top: -15px;
 		}   
 		#parent {
 			display: flex;
@@ -82,16 +82,28 @@
 			padding-left: 110px;
 		}
 		#div2 {
-			padding-left: 110px;
+			padding-left: 100px;
 			padding-right: 200px;
+		}
+		.logo {
+			margin-left: 0;
+			margin-top: 0;
+			height: 500px;
+			width: 500px;
+			z-index: 1;
+		}
+		.editText{
+			padding-top: 20px;
+			margin-top: 30px;
+			margin-bottom: 40px;
 		}
 </style>   
 </head>    
 <body>    
 	<div id="parent">
-	<div id="div1">
-		<img src="rec.png" alt="Rectangle">
-	</div>
+		<div id="div1">
+			<img class="logo" src="../img/sigma_logo.png">
+		</div>
 	<div id="div2">
 	<center><h1>Welcome</h1></center>
     <form method="post" action="/register">
@@ -105,14 +117,14 @@
             <input type="password" id="password" placeholder="password" name="password" required>
 			<label>Department</label>
 			<input type="text" id="department" placeholder="department" name="department" required>
-			<label>Date Of Birth</label>
+			<label class="editText">Date Of Birth</label>
 			<input type="date" id="dateOfBirth" placeholder="dateOfBirth" name="dateOfBirth" >
-			<label>Start Of Studies</label>
-			<input type="number" id="startOfStudies" placeholder="startOfStudies" name="startOfStudies" >
+			<label class="editText">Start Of Studies</label>
+			<input type="number" id="startOfStudies" placeholder="Start of studies" name="startOfStudies" >
 			<label>Instagram Username</label>
-			<input type="text" id="instagramUsername" placeholder="instagramUsername" name="instagramUsername" >
+			<input class="editText" type="text" id="instagramUsername" placeholder="instagram Username" name="instagramUsername" >
 			<label>LinkedIn Username</label>
-			<input type="text" id="linkedinUsername" placeholder="linkedinUsername" name="linkedinUsername" >
+			<input type="text" id="linkedinUsername" placeholder="linkedin Username" name="linkedinUsername" >
             <button type="submit">Register</button>    
         </div> 
 	</form>

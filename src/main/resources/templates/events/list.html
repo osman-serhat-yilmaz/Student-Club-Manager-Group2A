@@ -7,16 +7,7 @@
 <body>
   <div th:replace="navbar/show :: navbar" ></div>
 
-  <div id="pastEvents">
-    <tr th:each="event: ${pastEvents}">
-      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
-    </tr>
-  </div>
-  <div id="upcomingEvents">
-    <tr th:each="event: ${upcomingEvents}">
-      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
-    </tr>
-  </div>
+
 
 
   <div class="filters">
@@ -50,61 +41,90 @@
     </div>
 
   </div>
+<!--
+  <div id="pastEvents">
+    <tr th:each="event: ${pastEvents}">
+      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
+    </tr>
+  </div>
+  <div id="upcomingEvents">
+    <tr th:each="event: ${upcomingEvents}">
+      <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.name}">bruh</a>
+    </tr>
+  </div> -->
 
   <div class="middle">
-    <div id="events">
-      <table>
+    <div id="pastEvents">
+      <table th:each="i : ${#numbers.sequence( 0, pastEvents.size(), 3)}">
         <tr>
-          <td>
-            <p class="clubName">Club Name</p>
+
+          <td th:if="${pastEvents.size()}>=${i}+1">
+            <p class="clubName" th:text="${pastClubs.get(i)}"></p>
             <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
+            <p class="eventName" th:text="${pastEvents.get(i).getName()}"></p>
+            <div class="eventInfo">
+              <p class="eventInfoElement" th:text="${pastDates.get(i)}"></p>
+              <p class="eventInfoElement" th:text="${pastEvents.get(i).getLocation()}"></p>
+            </div>
           </td>
-          <td>
-            <p class="clubName">Club Name</p>
-            <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
-          </td>
-          <td>
-            <p class="clubName">Club Name</p>
-            <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
-          </td>
-          <td>
-            <p class="clubName">Club Name</p>
-            <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
-          </td>
+
+          <td th:if="${pastEvents.size()}>=${i}+2">
+          <p class="clubName" th:text="${pastClubs.get(i+1)}"></p>
+          <img>
+          <p class="eventName" th:text="${pastEvents.get(i+1).getName()}"></p>
+          <div class="eventInfo">
+            <p class="eventInfoElement" th:text="${pastDates.get(i+1)}"></p>
+            <p class="eventInfoElement" th:text="${pastEvents.get(i+1).getLocation()}"></p>
+          </div>
+        </td>
+
+          <td th:if="${pastEvents.size()}>=${i}+3">
+          <p class="clubName" th:text="${pastClubs.get(i+2)}"></p>
+          <img>
+          <p class="eventName" th:text="${pastEvents.get(i+2).getName()}"></p>
+          <div class="eventInfo">
+            <p class="eventInfoElement" th:text="${pastDates.get(i+2)}"></p>
+            <p class="eventInfoElement" th:text="${pastEvents.get(i+2).getLocation()}"></p>
+          </div>
+        </td>
+
         </tr>
+      </table>
+    </div>
+    <div id="upcomingEvents">
+      <table th:each="i : ${#numbers.sequence( 0, upcomingEvents.size(), 3)}">
         <tr>
-          <td>
-            <p class="clubName">Club Name</p>
+
+          <td th:if="${upcomingEvents.size()}>=${i}+1">
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
+            <p class="eventName" th:text="${upcomingEvents.get(i).getName()}"></p>
+            <div class="eventInfo">
+              <p class="eventInfoElement" th:text="${upcomingDates.get(i)}"></p>
+              <p class="eventInfoElement" th:text="${upcomingEvents.get(i).getLocation()}"></p>
+            </div>
           </td>
-          <td>
-            <p class="clubName">Club Name</p>
+
+          <td th:if="${upcomingEvents.size()}>=${i}+2">
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
+            <p class="eventName" th:text="${upcomingEvents.get(i+1).getName()}"></p>
+            <div class="eventInfo">
+              <p class="eventInfoElement" th:text="${upcomingDates.get(i+1)}"></p>
+              <p class="eventInfoElement" th:text="${upcomingEvents.get(i+1).getLocation()}"></p>
+            </div>
           </td>
-          <td>
-            <p class="clubName">Club Name</p>
+
+          <td th:if="${upcomingEvents.size()}>=${i}+3">
+            <p class="clubName" th:text="${upcomingClubs.get(i)}"></p>
             <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
+            <p class="eventName" th:text="${upcomingEvents.get(i+2).getName()}"></p>
+            <div class="eventInfo">
+              <p class="eventInfoElement" th:text="${upcomingDates.get(i+2)}"></p>
+              <p class="eventInfoElement" th:text="${upcomingEvents.get(i+2).getLocation()}"></p>
+            </div>
           </td>
-          <td>
-            <p class="clubName">Club Name</p>
-            <img>
-            <p class="eventName">X Event</p>
-            <div class="eventInfo"><p class="eventInfoElement">tomorrow</p><p class="eventInfoElement">Location</p><p class="eventInfoElement">Price</p></div>
-          </td>
+
         </tr>
       </table>
     </div>

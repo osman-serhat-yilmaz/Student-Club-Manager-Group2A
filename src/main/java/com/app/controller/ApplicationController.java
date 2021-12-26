@@ -1,9 +1,9 @@
 package com.app.controller;
 
-import com.app.entity.Application;
-import com.app.entity.Club;
-import com.app.entity.MyUserDetails;
+import com.app.entity.*;
+import com.app.helpers.Role;
 import com.app.service.ApplicationService;
+import com.app.service.ClubRoleService;
 import com.app.service.ClubService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +26,8 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__({@Autowired,@NonNull}))
 public class ApplicationController {
     private final ApplicationService applicationService;
+    private final ClubRoleService clubRoleService;
+
 
     @RequestMapping(value = "clubs/{id}/applications",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createApplication(@PathVariable("id") UUID clubid, RedirectAttributes redirectAttributes) {
@@ -39,12 +41,33 @@ public class ApplicationController {
         redirectAttributes.addAttribute("id", clubid);
         return "redirect:/clubs/{id}";
     }
-
-    /*@DeleteMapping("/{id}")
-    public String deleteApplication(@PathVariable UUID id, Model model) {
+    /*
+    @DeleteMapping("/{id}")
+    public String deleteApplication(@PathVariable String , Model model) {
         applicationService.delete(id);
         model.asMap().clear();
         return "redirect:/clubs/applications";
-    }*/
+    }
+    */
+
+    @RequestMapping(value = "clubs/{id}/applications/approve",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String approveApplication(@PathVariable("id") UUID clubid,@ModelAttribute("user") User user,
+                                     RedirectAttributes redirectAttributes) {
+
+        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(user.getId(), clubid).getId() );
+        ClubRole clubrole = new ClubRole(user.getId(), clubid, Role.ACTIVE_MEMBER);
+        clubRoleService.save(clubrole);
+        redirectAttributes.addAttribute("id", clubid);
+        return "redirect:/clubs/{id}";
+    }
+
+    @RequestMapping(value = "clubs/{id}/applications/reject",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String rejectApplication(@PathVariable("id") UUID clubid,@ModelAttribute("user") User user,
+                                     RedirectAttributes redirectAttributes) {
+
+        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(user.getId(), clubid).getId() );
+        redirectAttributes.addAttribute("id", clubid);
+        return "redirect:/clubs/{id}";
+    }
 
 }

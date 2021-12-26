@@ -87,4 +87,8 @@ public class AttendanceController {
         return "attendances/edit";
     }
 
+    @PostMapping("/attendances/enteratt")
+    public String takeAttendance() {
+        return "index";
+    }
 }

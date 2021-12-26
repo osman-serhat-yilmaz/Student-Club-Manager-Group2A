@@ -5,10 +5,7 @@ import com.app.entity.ClubRole;
 import com.app.entity.Event;
 import com.app.entity.MyUserDetails;
 import com.app.helpers.Role;
-import com.app.service.AttendanceService;
-import com.app.service.ClubRoleService;
-import com.app.service.ClubService;
-import com.app.service.EventService;
+import com.app.service.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +28,7 @@ public class EventController {
     private final AttendanceService attendanceService;
     private final ClubRoleService clubRoleService;
     private final ClubService clubService;
+    private final UserService userService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getEvents(Model model) {
@@ -39,6 +37,8 @@ public class EventController {
 
         model.addAttribute("pastDates", getDates(pastEvents));
         model.addAttribute("upcomingDates", getDates(upcomingEvents));
+        model.addAttribute("pastClubs", getClubs(pastEvents));
+        model.addAttribute("upcomingClubs", getClubs(upcomingEvents));
         model.addAttribute("pastEvents", pastEvents);
         model.addAttribute("upcomingEvents", upcomingEvents);
         return "events/list";
@@ -72,6 +72,8 @@ public class EventController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String showEvent(@PathVariable("id") UUID id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UUID userId = ((MyUserDetails)authentication.getPrincipal()).getUUID();
         Event event = eventService.findOneById(id);
         String date;
         if(event.getStartDate() != null && event.getEndDate() != null) {
@@ -85,8 +87,16 @@ public class EventController {
         else
             date = "TBA";
 
+        boolean showAttendance = false;
+        List<Club> managedClubs = new ArrayList<>();
+        for(ClubRole cr: clubRoleService.findManagementMemberships(userId)){
+            if (cr.getClubID().equals(event.getClubID()))
+                showAttendance = true;
+        }
+        model.addAttribute("eventid", event.getId());
         model.addAttribute("date", date);
         model.addAttribute("event", event);
+        model.addAttribute("showAttendance", showAttendance);
         return "/events/show";
     }
 
@@ -127,9 +137,11 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{id}/attendances", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String eventAttendancesPage(@PathVariable("id") UUID id, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(id));
-        return "/users/attendances";
+    public String eventAttendancesPage(@PathVariable("id") UUID eventId, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("attendances", attendanceService.findAttendancesByEventID(eventId));
+        redirectAttributes.addAttribute("event", eventService.findOneById(eventId));
+
+        return "redirect:/attendances/enteratt";
     }
 
     //|||||||||||||||||||||||||||||||||||||||||||||||||
@@ -144,7 +156,7 @@ public class EventController {
         for (Event event: events)
         {
             if(event.getStartDate() != null && event.getEndDate() != null) {
-                if(event.getStartDate() == event.getEndDate()) {
+                if(Objects.equals(event.getStartDate(), event.getEndDate())) {
                     dates.add(dateString(event.getStartDate()));
                 }
                 else {
@@ -155,6 +167,15 @@ public class EventController {
                 dates.add("TBA");
         }
         return dates;
+    }
+
+    public List<String> getClubs(List<Event> events){
+        List<String> clubs = new ArrayList<String>();
+        for (Event event: events)
+        {
+            clubs.add(clubService.findOneById(event.getClubID()).getName());
+        }
+        return clubs;
     }
 
 }

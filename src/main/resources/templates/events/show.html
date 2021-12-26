@@ -17,6 +17,7 @@
     <p id="date" style="font-size: 30px;">date</p>
     <p id="location" style="font-size: 26px;">location</p>
     <button class="registerButton">Register</button></div>
+
 </div>
 
 
@@ -24,6 +25,7 @@
 <div class="bottom">
   <div id="buttons"><button class="descriptionButton" onclick="displayDescription()">Description</button>
     <button class="participantsButton" onclick="displayParticipants()">Participants</button></div>
+		<form method="post" action="@{/${eventid}/attendances}"><button th:if="${showAttendance}" class="registerButton">Take Attendance</button></form></div>
   <div id="lineWhite"></div>
   <div id="lineGray"></div>
 

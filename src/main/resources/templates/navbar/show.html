@@ -7,20 +7,18 @@
         margin: auto;
     }
 </style>
-
     <div th:fragment="navbar">
         <link th:href="@{/css/navbar.css}" rel="stylesheet" />
 
         <section class="navigation">
+            <div><img class="logo" src="../img/sigma_logo.png"></div>
             <div class="nav-container">
                 <div class="brand">
                 </div>
                 <nav>
                     <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
                     <ul class="nav-list">
-                        <li>
-                            <a href="/users">Users</a>
-                        </li>
+
                         <li>
                             <a href="/clubs">Clubs</a>
                         </li>
@@ -28,7 +26,7 @@
                             <a href="/events">Events</a>
                         </li>
                         <li>
-                            <a href="/schedule">Schedule</a>
+                            <a href="/users">Users</a>
                         </li>
                         <li>
                             <a href="/users/user-profile">Profile</a>
