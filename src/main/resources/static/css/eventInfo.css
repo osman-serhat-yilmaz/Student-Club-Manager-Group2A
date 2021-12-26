@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+Body {
+    font-family: Calibri, Helvetica, sans-serif;
+    background-color: white;
+    margin: auto;
+}
+
 .row {
     width: 1500px;
     margin: auto;
@@ -20,6 +26,7 @@
     height: 370px;
     object-fit: cover;
     margin-left: 230px;
+    padding-top: 40px;
     font-family: Georgia, serif;
 }
 
@@ -38,6 +45,18 @@
     font-size: 18px;
     color: white;
     margin: 30px;
+}
+
+.attendanceButton{
+    width: 160px;
+    height: 38px;
+    background: #bba585;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    color: white;
+    margin-left: 60px;
+    margin-bottom: 60px;
 }
 
 #eventName{
