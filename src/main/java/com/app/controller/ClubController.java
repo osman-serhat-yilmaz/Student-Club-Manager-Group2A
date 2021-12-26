@@ -65,11 +65,19 @@ public class ClubController {
         model.addAttribute("upcomingEvents", eventService.findEventsByClubIDAndDateAfter(id));
         model.addAttribute("pastEvents", eventService.findEventsByClubIDAndDateBefore(id));
         List<User> activeMembers = new ArrayList<User>();
-        List<ClubRole> activeMemberRoles = clubRoleService.findClubRolesByClubIDAndRole(id, Role.ACTIVE_MEMBER);
+        List<ClubRole> activeMemberRoles = clubRoleService.findActiveMembers(id);
+
         for (ClubRole role: activeMemberRoles ) {
             activeMembers.add(userService.findOneById(role.getUserID()));
         }
         model.addAttribute("activeMembers", activeMembers);
+
+        List<User> requestedUsers = new ArrayList<User>();
+        List<Application> requests = applicationService.findApplicationsByClubID(id);
+        for (Application request: requests ) {
+            requestedUsers.add(userService.findOneById(request.getSenderID()));
+        }
+        model.addAttribute("activeMembershipRequests", requestedUsers);
         
         return "clubs/show";
     }

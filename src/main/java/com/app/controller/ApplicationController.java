@@ -30,8 +30,12 @@ public class ApplicationController {
     @RequestMapping(value = "clubs/{id}/applications",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String createApplication(@PathVariable("id") UUID clubid, RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Application application = new Application(((MyUserDetails)authentication.getPrincipal()).getUUID(),"pending", clubid);
-        applicationService.save(application);
+        UUID userid = ((MyUserDetails)authentication.getPrincipal()).getUUID();
+        System.out.println(applicationService.findApplicationBySenderIDAndClubID( userid, clubid ));
+        if( applicationService.findApplicationBySenderIDAndClubID( userid, clubid ) == null ) {
+            Application application = new Application( userid, "pending", clubid);
+            applicationService.save(application);
+        }
         redirectAttributes.addAttribute("id", clubid);
         return "redirect:/clubs/{id}";
     }

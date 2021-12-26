@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Controller
@@ -33,16 +34,16 @@ public class UserController {
 
     @GetMapping("/user-profile")
     public String goUserProfilePage(Model model) {
-       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-       model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
         List<Attendance> ats = attendanceService.findAttendancesByUserIDAndAttended(((MyUserDetails) authentication.getPrincipal()).getUUID(), true);
         List<Event> attendedEvents = new ArrayList<>();
         for(Attendance at : ats){
             attendedEvents.add(eventService.findOneById(at.getEventID()));
         }
+        model.addAttribute("canEdit", true);
         model.addAttribute("attendedevents", attendedEvents);
-
-       return "users/show";
+        return "users/show";
     }
 
  /*   @RequestMapping(method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
@@ -54,17 +55,38 @@ public class UserController {
 
     //single item
 
-  /*  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String showUser(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("user", userService.findOneById(id));
-        return "users/show";
-    }*/
 
-    @PutMapping("/{id}")
-    public String updateUser(@RequestBody User user, RedirectAttributes redirectAttributes) throws Exception {
-        User savedUser = userService.save(user);
-        redirectAttributes.addAttribute("id", savedUser.getId());
-        return "redirect:/users/{id}";
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String showAnotherUser(@PathVariable("id") UUID id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if( Objects.equals( ((MyUserDetails)authentication.getPrincipal()).getUUID(), id) )
+            return "redirect:/users/user-profile";
+            
+        List<Attendance> ats = attendanceService.findAttendancesByUserIDAndAttended(id, true);
+        List<Event> attendedEvents = new ArrayList<>();
+        for(Attendance at : ats){
+            attendedEvents.add(eventService.findOneById(at.getEventID()));
+        }
+        model.addAttribute("attendedevents", attendedEvents);
+
+        model.addAttribute("user", userService.findOneById(id));
+        model.addAttribute("canEdit", false);
+        return "users/show";
+    }
+
+    @PutMapping()
+    public String updateUser(@RequestBody User user) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setDepartment(user.getDepartment());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setDescription(user.getDescription());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setUsername(user.getUsername());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setLinkedinUsername(user.getLinkedinUsername());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setPassword(user.getPassword());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setInstagramUsername(user.getInstagramUsername());
+        userService.findOneById(((MyUserDetails)authentication.getPrincipal()).getUUID()).setDateOfBirth(user.getDateOfBirth());
+
+        return "/user-profile";
     }
 
     @DeleteMapping("/{id}")
@@ -80,9 +102,10 @@ public class UserController {
         return "users/create";
     }
 
-    @RequestMapping(value = "/edit-form/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String editForm(@PathVariable("id") UUID id, Model model) {
-        model.addAttribute("user", userService.findOneById(id));
+    @GetMapping("/edit-profile-page")
+    public String editForm( Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("user", ((MyUserDetails)authentication.getPrincipal()));
         return "users/edit";
     }
 

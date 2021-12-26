@@ -36,7 +36,7 @@ public class ApplicationService {
         return applicationRepository.findApplicationsByClubID(clubID);
     }
 
-    public Application findApplicationBySenderIDAndRecipientID(UUID senderId, UUID clubId) {
+    public Application findApplicationBySenderIDAndClubID(UUID senderId, UUID clubId) {
         return applicationRepository.findApplicationBySenderIDAndClubID(senderId, clubId);
     }
 
