@@ -97,18 +97,24 @@
 			margin-top: 30px;
 			margin-bottom: 40px;
 		}
+		.alert{
+			margin-bottom:3px;
+			font-size: 18px;
+			color: red;
+		}
 </style>   
 </head>    
 <body>    
 	<div id="parent">
 		<div id="div1">
-			<img class="logo" src="../img/sigma_logo.png">
+			<img class="logo" src="https://i.ibb.co/pJRhkQR/sigma-logo.png">
 		</div>
 	<div id="div2">
 	<center><h1>Welcome</h1></center>
     <form method="post" action="/register">
         <div class="container">   
 			<center><h2>Create account</h2></center>
+			<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
             <label>Email</label>   
             <input type="text" id="email" placeholder="email" name="email" required>
 			<label>Username</label>
