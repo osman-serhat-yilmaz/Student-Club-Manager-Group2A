@@ -257,7 +257,7 @@ button:hover {
     font-family: PoetsenOne, sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 24px;
     display: flex;
     align-items: center;
@@ -280,7 +280,7 @@ button:hover {
     font-family: Poly, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 12px;
     line-height: 21px;
     display: flex;
     align-items: center;
@@ -436,6 +436,10 @@ button:hover {
     padding-left: 20px;
 }
 
+#requests form{
+    display: inline;
+}
+
 .requestlisttitle{
     padding-top: 15px;
     padding-left: 20px;
@@ -546,4 +550,5 @@ Body {
     padding-top: 19px;
     text-decoration: none;
     font-size: 18px;
+    color: #2f2f2f;
 }

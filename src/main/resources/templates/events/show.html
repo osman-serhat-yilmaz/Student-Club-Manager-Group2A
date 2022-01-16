@@ -23,9 +23,16 @@
 
 
 <div class="bottom">
-  <div id="buttons"><button class="descriptionButton" onclick="displayDescription()">Description</button>
-    <button class="participantsButton" onclick="displayParticipants()">Participants</button></div>
-		<form method="post" action="@{/${eventid}/attendances}"><button th:if="${showAttendance}" class="attendanceButton">Take Attendance</button></form></div>
+
+
+  <div id="buttons">
+    <form style="display: inline; margin-top: 4px" method="post" action="@{/${eventid}/attendances}">
+      <button style="margin: 0" th:if="${showAttendance}" class="attendanceButton">Take Attendance</button>
+    </form>
+    <button class="descriptionButton" onclick="displayDescription()">Description</button>
+    <button class="participantsButton" onclick="displayParticipants()">Participants</button>
+  </div>
+
   <div id="lineWhite"></div>
   <div id="lineGray"></div>
 
@@ -40,19 +47,19 @@
       <tr>
         <td>
           <img>
-          <p class="participant">X Club</p>
+          <p class="participant">Person X</p>
         </td>
         <td>
           <img>
-          <p class="participant">X Club</p>
+          <p class="participant">Person Y</p>
         </td>
         <td>
           <img>
-          <p class="participant">X Club</p>
+          <p class="participant">Person Z</p>
         </td>
         <td>
           <img>
-          <p class="participant">X Club</p>
+          <p class="participant">Person T</p>
         </td>
       </tr>
     </table>

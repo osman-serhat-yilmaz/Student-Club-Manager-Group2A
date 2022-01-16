@@ -48,9 +48,9 @@ public class ClubController {
         club.setName(name);
         club.setDescription(description);
         clubService.save(club);
-        System.out.println("club created");
+        /*System.out.println("club created");
         Club club2 = clubService.findOneById(club.getId());
-        System.out.println("club2 name: " + club2.getName());
+        System.out.println("club2 name: " + club2.getName());*/
         //return "redirect:/clubs/{id}";
         return "clubs/create";
     }
