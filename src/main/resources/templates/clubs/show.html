@@ -12,8 +12,11 @@
 
 
 <!-- <button class="followbutton" type="submit" >follow</button> -->
-<form method="POST" th:action="@{/clubs/{id}/applications(id=${club.id})}">
+<form method="POST" th:action="@{/clubs/{id}/applications(id=${club.id})}" th:if="${role}==6">
     <button class="requestactivemembershipbutton" type="submit" name="submit" value="value" >request active membership</button>
+</form>
+<form method="POST" th:action="@{/clubs/{id}/applications/resign(id=${club.id})}" th:if="${role}==2">
+    <button class="requestactivemembershipbutton" type="submit" name="submit" value="value" >resign from active membership</button>
 </form>
 <a th:if="${role}<=1" href="/events/create" class="createeventbutton">create event</a>
 <a th:if="${role}==0 or ${role}==3" href="/financeTable" class="goToFinanceTablePageButton">view finance table</a>
@@ -89,10 +92,10 @@
             <li>
                 <a class="username" th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}"></a>
                 <form method="POST" th:action="@{/clubs/{id}/applications/approve(id=${club.id})}">
-                    <button class= "acceptbutton" type="submit" >🗸</button>
+                    <button class= "acceptbutton" type="submit" th:name="userid" th:value="${user.getId()}">🗸</button>
                 </form>
                 <form method="POST" th:action="@{/clubs/{id}/applications/reject(id=${club.id})}">
-                    <button class= "rejectbutton" type="submit" >✖</button>
+                    <button class= "rejectbutton" type="submit" th:name="userid" th:value="${user.getId()}">✖</button>
                 </form>
             </li>
         </ul>

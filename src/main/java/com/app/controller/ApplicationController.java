@@ -33,7 +33,7 @@ public class ApplicationController {
     public String createApplication(@PathVariable("id") UUID clubid, RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UUID userid = ((MyUserDetails)authentication.getPrincipal()).getUUID();
-        System.out.println(applicationService.findApplicationBySenderIDAndClubID( userid, clubid ));
+        //System.out.println(applicationService.findApplicationBySenderIDAndClubID( userid, clubid ));
         if( applicationService.findApplicationBySenderIDAndClubID( userid, clubid ) == null ) {
             Application application = new Application( userid, "pending", clubid);
             applicationService.save(application);
@@ -41,31 +41,30 @@ public class ApplicationController {
         redirectAttributes.addAttribute("id", clubid);
         return "redirect:/clubs/{id}";
     }
-    /*
-    @DeleteMapping("/{id}")
-    public String deleteApplication(@PathVariable String , Model model) {
-        applicationService.delete(id);
-        model.asMap().clear();
-        return "redirect:/clubs/applications";
+
+    @RequestMapping(value = "clubs/{id}/applications/resign", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String deleteApplication(@PathVariable("id") UUID clubid, RedirectAttributes redirectAttributes) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UUID userid = ((MyUserDetails)authentication.getPrincipal()).getUUID();
+        clubRoleService.delete(clubRoleService.findClubRoleByIDs(clubid, userid).getId());
+        redirectAttributes.addAttribute("id", clubid);
+        return "redirect:/clubs/{id}";
     }
-    */
 
-    @RequestMapping(value = "clubs/{id}/applications/approve",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String approveApplication(@PathVariable("id") UUID clubid,@ModelAttribute("user") User user,
+    @RequestMapping(value = "clubs/{id}/applications/approve", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String approveApplication(@PathVariable("id") UUID clubid,@RequestParam UUID userid,
                                      RedirectAttributes redirectAttributes) {
-
-        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(user.getId(), clubid).getId() );
-        ClubRole clubrole = new ClubRole(user.getId(), clubid, Role.ACTIVE_MEMBER);
+        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(userid, clubid).getId() );
+        ClubRole clubrole = new ClubRole(userid, clubid, Role.ACTIVE_MEMBER);
         clubRoleService.save(clubrole);
         redirectAttributes.addAttribute("id", clubid);
         return "redirect:/clubs/{id}";
     }
 
     @RequestMapping(value = "clubs/{id}/applications/reject",method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-    public String rejectApplication(@PathVariable("id") UUID clubid,@ModelAttribute("user") User user,
+    public String rejectApplication(@PathVariable("id") UUID clubid,@RequestParam UUID userid,
                                      RedirectAttributes redirectAttributes) {
-
-        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(user.getId(), clubid).getId() );
+        applicationService.delete( applicationService.findApplicationBySenderIDAndClubID(userid, clubid).getId() );
         redirectAttributes.addAttribute("id", clubid);
         return "redirect:/clubs/{id}";
     }

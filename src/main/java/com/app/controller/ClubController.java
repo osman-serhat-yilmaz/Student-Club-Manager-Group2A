@@ -33,12 +33,13 @@ public class ClubController {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String getClubs( Model model) {
         model.addAttribute("clubs", clubService.findAll());
+        /*
         for (Club c : clubService.findAll()){
             System.out.println(c.getName() + " / " + c.getDescription() + " / " + c.getId());
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(((MyUserDetails)authentication.getPrincipal()).getEmail());
-
+        */
         return "clubs/list";
     }
 
