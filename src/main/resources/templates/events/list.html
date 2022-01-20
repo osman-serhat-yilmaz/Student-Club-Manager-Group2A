@@ -61,6 +61,9 @@
           <td th:if="${pastEvents.size()}>=${i}+1">
             <p class="clubName" th:text="${pastClubs.get(i)}"></p>
             <a th:href="@{/events/{id}(id=${pastEvents.get(i).getId()})}"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="club photo" /></a>
+            <!--
+            <a class="eventName" th:href="@{/events/{id}(id=${pastEvents.get(i).getId()})}" th:text="${pastEvents.get(i).getName()}"></a>
+            -->
             <p class="eventName" th:text="${pastEvents.get(i).getName()}"></p>
             <div class="eventInfo">
               <p class="eventInfoElement" th:text="${pastDates.get(i)}"></p>

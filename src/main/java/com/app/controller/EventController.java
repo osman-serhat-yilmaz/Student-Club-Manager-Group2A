@@ -75,10 +75,10 @@ public class EventController {
         String date;
         if(event.getStartDate() != null && event.getEndDate() != null) {
             if(Objects.equals(event.getStartDate(), event.getEndDate())) {
-                date = dateString(event.getStartDate());
+                date = DateService.dateString(event.getStartDate());
             }
             else {
-                date = dateString(event.getStartDate()) + " - " + dateString(event.getEndDate());
+                date = DateService.dateString(event.getStartDate()) + " - " + DateService.dateString(event.getEndDate());
             }
         }
         else
@@ -148,21 +148,16 @@ public class EventController {
 
     //|||||||||||||||||||||||||||||||||||||||||||||||||
 
-    public String dateString(Long longDate) {
-        String date = Long.toString(longDate);
-        return date.substring(6) + "." + date.substring(4, 6) + "." + date.substring(0, 4);
-    }
-
     public List<String> getDates(List<Event> events){
         List<String> dates = new ArrayList<String>();
         for (Event event: events)
         {
             if(event.getStartDate() != null && event.getEndDate() != null) {
                 if(Objects.equals(event.getStartDate(), event.getEndDate())) {
-                    dates.add(dateString(event.getStartDate()));
+                    dates.add(DateService.dateString(event.getStartDate()));
                 }
                 else {
-                    dates.add( dateString(event.getStartDate()) + " - " + dateString(event.getEndDate()) );
+                    dates.add( DateService.dateString(event.getStartDate()) + " - " + DateService.dateString(event.getEndDate()) );
                 }
             }
             else

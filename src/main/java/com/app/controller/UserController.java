@@ -52,6 +52,8 @@ public class UserController {
         model.addAttribute("canEdit", true);
         model.addAttribute("attendedevents", attendedEvents);
 
+        model.addAttribute("dateOfBirth", DateService.dateString(((MyUserDetails)authentication.getPrincipal()).getDateOfBirth()));
+
         return "users/show";
     }
 
@@ -73,8 +75,10 @@ public class UserController {
         }
         model.addAttribute("attendedevents", attendedEvents);
         model.addAttribute("clubs", clubs);
-        model.addAttribute("user", userService.findOneById(id));
+        User user = userService.findOneById(id);
+        model.addAttribute("user", user);
         model.addAttribute("canEdit", false);
+        model.addAttribute("dateOfBirth", DateService.dateString(user.getDateOfBirth()));
         return "users/show";
     }
 
