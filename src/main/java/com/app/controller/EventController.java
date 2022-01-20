@@ -1,9 +1,6 @@
 package com.app.controller;
 
-import com.app.entity.Club;
-import com.app.entity.ClubRole;
-import com.app.entity.Event;
-import com.app.entity.MyUserDetails;
+import com.app.entity.*;
 import com.app.helpers.Role;
 import com.app.service.*;
 import lombok.NonNull;
@@ -97,6 +94,11 @@ public class EventController {
         model.addAttribute("date", date);
         model.addAttribute("event", event);
         model.addAttribute("showAttendance", showAttendance);
+        List<User> participants = new ArrayList<>();
+        for(Attendance att: attendanceService.findAttendancesByEventID(id)){
+            participants.add(userService.findOneById(att.getUserID()));
+        }
+        model.addAttribute("participants", participants);
         return "/events/show";
     }
 

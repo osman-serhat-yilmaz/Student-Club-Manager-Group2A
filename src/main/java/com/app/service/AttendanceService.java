@@ -43,6 +43,10 @@ public class AttendanceService {
         return attendanceRepository.findAttendancesByUserIDAndAttended(userId, attended);
     }
 
+    public Attendance findAttendanceByUserIDAndEventID(UUID userId, UUID eventId) {
+        return attendanceRepository.findAttendanceByUserIDAndEventID(userId, eventId);
+    }
+
     public Long count() {
         return attendanceRepository.count();
     }

@@ -15,6 +15,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, UUID> {
     public List<Attendance> findAttendancesByUserID(UUID userId);
     public List<Attendance> findAttendancesByEventID(UUID eventId);
     public List<Attendance> findAttendancesByUserIDAndAttended(UUID userId, boolean attended);
+    public Attendance findAttendanceByUserIDAndEventID(UUID userId, UUID eventId);
 
     Attendance findAttendanceById(UUID uuid);
 }
